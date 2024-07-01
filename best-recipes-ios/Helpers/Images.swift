@@ -48,4 +48,13 @@ enum Images {
         static let kitchen5: UIImage = .kitchen5
         static let kitchen6: UIImage = .kitchen6
     }
+    
+    enum Avatars {
+        static let avatar1: UIImage = .author1
+        static let avatar2: UIImage = .author2
+        static let avatar3: UIImage = .author3
+        static let avatar4: UIImage = .author4
+        static let avatar5: UIImage = .author5
+        static let avatar6: UIImage = .author6
+    }
 }
