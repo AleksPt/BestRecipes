@@ -13,6 +13,8 @@
 		D998A1322C3089FB0084F9C4 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = D998A1312C3089FB0084F9C4 /* Base */; };
 		D998A1342C3089FC0084F9C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D998A1332C3089FC0084F9C4 /* Assets.xcassets */; };
 		D998A1372C3089FC0084F9C4 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = D998A1362C3089FC0084F9C4 /* Base */; };
+		FA6ED7B22C328DD4004F1B10 /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FA6ED7B12C328DD4004F1B10 /* Poppins-Bold.ttf */; };
+		FA6ED7B42C328DDF004F1B10 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FA6ED7B32C328DDF004F1B10 /* Poppins-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		D998A1332C3089FC0084F9C4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D998A1362C3089FC0084F9C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D998A1382C3089FC0084F9C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FA6ED7B12C328DD4004F1B10 /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
+		FA6ED7B32C328DDF004F1B10 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,8 +67,18 @@
 				D998A1332C3089FC0084F9C4 /* Assets.xcassets */,
 				D998A1352C3089FC0084F9C4 /* LaunchScreen.storyboard */,
 				D998A1382C3089FC0084F9C4 /* Info.plist */,
+				FA6ED7B02C328DB3004F1B10 /* Fonts */,
 			);
 			path = "best-recipes-ios";
+			sourceTree = "<group>";
+		};
+		FA6ED7B02C328DB3004F1B10 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				FA6ED7B12C328DD4004F1B10 /* Poppins-Bold.ttf */,
+				FA6ED7B32C328DDF004F1B10 /* Poppins-Regular.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -128,6 +142,8 @@
 				D998A1342C3089FC0084F9C4 /* Assets.xcassets in Resources */,
 				D998A1372C3089FC0084F9C4 /* Base in Resources */,
 				D998A1322C3089FB0084F9C4 /* Base in Resources */,
+				FA6ED7B22C328DD4004F1B10 /* Poppins-Bold.ttf in Resources */,
+				FA6ED7B42C328DDF004F1B10 /* Poppins-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
