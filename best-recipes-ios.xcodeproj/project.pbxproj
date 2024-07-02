@@ -11,15 +11,17 @@
 		64285E4D2C34824A00A7E7ED /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64285E4C2C34824A00A7E7ED /* Recipe.swift */; };
 		64285E502C3483A200A7E7ED /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64285E4F2C3483A200A7E7ED /* DataStore.swift */; };
 		64285E522C3483F300A7E7ED /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64285E512C3483F300A7E7ED /* NetworkManager.swift */; };
+		64285E592C34AFC400A7E7ED /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64285E582C34AFC400A7E7ED /* UIImageView+Extension.swift */; };
+		64285E5C2C34AFE200A7E7ED /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 64285E5B2C34AFE200A7E7ED /* Kingfisher */; };
 		D998A12B2C3089FB0084F9C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D998A12A2C3089FB0084F9C4 /* AppDelegate.swift */; };
 		D998A12D2C3089FB0084F9C4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D998A12C2C3089FB0084F9C4 /* SceneDelegate.swift */; };
 		D998A12F2C3089FB0084F9C4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D998A12E2C3089FB0084F9C4 /* ViewController.swift */; };
 		D998A1322C3089FB0084F9C4 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = D998A1312C3089FB0084F9C4 /* Base */; };
 		D998A1342C3089FC0084F9C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D998A1332C3089FC0084F9C4 /* Assets.xcassets */; };
 		D998A1372C3089FC0084F9C4 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = D998A1362C3089FC0084F9C4 /* Base */; };
-		DC39DC842C34470600464EBD /* ButtonFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC39DC832C34470600464EBD /* ButtonFactory.swift */; };
 		D998A1472C345ACB0084F9C4 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D998A1462C345ACB0084F9C4 /* TabBarController.swift */; };
 		D998A1522C345FD60084F9C4 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D998A1512C345FD60084F9C4 /* TabBar.swift */; };
+		DC39DC842C34470600464EBD /* ButtonFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC39DC832C34470600464EBD /* ButtonFactory.swift */; };
 		FA685E6D2C329F0B0028BA17 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA685E6C2C329F0B0028BA17 /* Colors.swift */; };
 		FA685E6F2C32A10C0028BA17 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA685E6E2C32A10C0028BA17 /* Fonts.swift */; };
 		FA685E712C32A3310028BA17 /* Icons.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA685E702C32A3310028BA17 /* Icons.swift */; };
@@ -36,6 +38,7 @@
 		64285E4C2C34824A00A7E7ED /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		64285E4F2C3483A200A7E7ED /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		64285E512C3483F300A7E7ED /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		64285E582C34AFC400A7E7ED /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		D998A1272C3089FB0084F9C4 /* best-recipes-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "best-recipes-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D998A12A2C3089FB0084F9C4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D998A12C2C3089FB0084F9C4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -44,9 +47,9 @@
 		D998A1332C3089FC0084F9C4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D998A1362C3089FC0084F9C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D998A1382C3089FC0084F9C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DC39DC832C34470600464EBD /* ButtonFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonFactory.swift; sourceTree = "<group>"; };
 		D998A1462C345ACB0084F9C4 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		D998A1512C345FD60084F9C4 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
+		DC39DC832C34470600464EBD /* ButtonFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonFactory.swift; sourceTree = "<group>"; };
 		FA685E6C2C329F0B0028BA17 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		FA685E6E2C32A10C0028BA17 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		FA685E702C32A3310028BA17 /* Icons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icons.swift; sourceTree = "<group>"; };
@@ -63,6 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64285E5C2C34AFE200A7E7ED /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,6 +99,14 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		64285E572C34AF9B00A7E7ED /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				64285E582C34AFC400A7E7ED /* UIImageView+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		D998A11E2C3089FA0084F9C4 = {
 			isa = PBXGroup;
 			children = (
@@ -114,6 +126,7 @@
 		D998A1292C3089FB0084F9C4 /* best-recipes-ios */ = {
 			isa = PBXGroup;
 			children = (
+				64285E572C34AF9B00A7E7ED /* Extensions */,
 				64285E4E2C34833900A7E7ED /* Services */,
 				64285E4B2C34823B00A7E7ED /* Models */,
 				D998A1442C345A980084F9C4 /* Components */,
@@ -187,6 +200,9 @@
 			dependencies = (
 			);
 			name = "best-recipes-ios";
+			packageProductDependencies = (
+				64285E5B2C34AFE200A7E7ED /* Kingfisher */,
+			);
 			productName = "best-recipes-ios";
 			productReference = D998A1272C3089FB0084F9C4 /* best-recipes-ios.app */;
 			productType = "com.apple.product-type.application";
@@ -215,6 +231,9 @@
 				Base,
 			);
 			mainGroup = D998A11E2C3089FA0084F9C4;
+			packageReferences = (
+				64285E5A2C34AFE200A7E7ED /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			productRefGroup = D998A1282C3089FB0084F9C4 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -247,6 +266,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64285E592C34AFC400A7E7ED /* UIImageView+Extension.swift in Sources */,
 				64285E522C3483F300A7E7ED /* NetworkManager.swift in Sources */,
 				DC39DC842C34470600464EBD /* ButtonFactory.swift in Sources */,
 				FA685E732C32A6860028BA17 /* Images.swift in Sources */,
@@ -491,6 +511,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		64285E5A2C34AFE200A7E7ED /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.12.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		64285E5B2C34AFE200A7E7ED /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 64285E5A2C34AFE200A7E7ED /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D998A11F2C3089FA0084F9C4 /* Project object */;
 }
