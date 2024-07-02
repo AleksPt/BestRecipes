@@ -35,8 +35,8 @@ final class MainView: UIView {
             forCellWithReuseIdentifier: RecentCell.description()
         )
         collectionView.register(
-            CuisineCell.self,
-            forCellWithReuseIdentifier: CuisineCell.description()
+            WorldCuisineCell.self,
+            forCellWithReuseIdentifier: WorldCuisineCell.description()
         )
         collectionView.register(
             HeaderSupplementaryView.self,

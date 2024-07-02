@@ -88,9 +88,9 @@ extension MainScreen: UICollectionViewDataSource {
             
         case 4:
             guard let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: CuisineCell.description(),
+                withReuseIdentifier: WorldCuisineCell.description(),
                 for: indexPath
-            ) as? CuisineCell else {
+            ) as? WorldCuisineCell else {
                 return UICollectionViewCell()
             }
             

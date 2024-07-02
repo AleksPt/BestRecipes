@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class CuisineCell: UICollectionViewCell {
+final class WorldCuisineCell: UICollectionViewCell {
     
     // MARK: - UI
     private lazy var coverImageView: UIImageView = {
@@ -19,17 +19,22 @@ final class CuisineCell: UICollectionViewCell {
         return element
     }()
     
+    private lazy var titleLabel: UILabel = {
+        let element = UILabel()
+        element.font = UIFont.TextFonts.Home.Kitchens.title
+        element.textColor = UIColor.Home.title
+        element.translatesAutoresizingMaskIntoConstraints = false
+        element.textAlignment = .center
+        element.numberOfLines = 0
+        return element
+    }()
+    
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
-        addSubview(coverImageView)
+        addSubviews()
         setupConstraints()
     }
-    
-//    override func layoutSubviews() {
-//        super.layoutSubviews()
-//        image.layer.cornerRadius = image.frame.width / 2
-//    }
     
     required init?(coder: NSCoder) {
         fatalError()
@@ -38,22 +43,40 @@ final class CuisineCell: UICollectionViewCell {
     // MARK: - Overrides methods
     override func prepareForReuse() {
         super.prepareForReuse()
-        self.coverImageView.image = nil
+        coverImageView.image = nil
+        titleLabel.text = nil
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        coverImageView.layer.cornerRadius = coverImageView.frame.width / 2
+        coverImageView.heightAnchor.constraint(equalToConstant: coverImageView.frame.width).isActive = true
+    }
+    
+    // MARK: - Add subviews
+    private func addSubviews() {
+        addSubview(coverImageView)
+        addSubview(titleLabel)
+    }
+    
+    // MARK: - Configure Cell
     func configureCell(item: Item) {
         coverImageView.image = item.coverImage
+        titleLabel.text = item.worldCuisine.rawValue
     }
 }
 
 // MARK: - Setup Constraints
-private extension CuisineCell {
+private extension WorldCuisineCell {
     func setupConstraints() {
         NSLayoutConstraint.activate([
+            coverImageView.topAnchor.constraint(equalTo: topAnchor),
             coverImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
             coverImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            coverImageView.topAnchor.constraint(equalTo: topAnchor),
-            coverImageView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            
+            titleLabel.topAnchor.constraint(equalTo: coverImageView.bottomAnchor, constant: 8),
+            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
+            titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
         ])
     }
 }
