@@ -20,12 +20,32 @@ final class MainScreen: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         mainView.setDelegates(viewController: self)
+        selectCategory()
+    }
+    
+    // MARK: - Private methods
+    /// Выделяет популярную категорию при старте приложения
+    private func selectCategory() {
+        let indexPath = IndexPath(item: 0, section: 1)
+        mainView.collectionView.selectItem(
+            at: indexPath,
+            animated: false,
+            scrollPosition: .top
+        )
     }
 }
 
 // MARK: - UICollectionViewDelegate
 extension MainScreen: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        if indexPath.section != 1 {
+            print("go to Recipe Detail Screen")
+        } else {
+            
+        }
+        
+    }
 }
 
 // MARK: - UICollectionViewDataSource

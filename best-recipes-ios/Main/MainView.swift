@@ -47,6 +47,16 @@ final class MainView: UIView {
         return collectionView
     }()
     
+    private lazy var titleScreen: UILabel = {
+        let element = UILabel()
+        element.text = "Get amazing recipes for cooking"
+        element.font = UIFont.TextFonts.NavigationBar.title
+        element.textColor = UIColor.Home.title
+        element.numberOfLines = 0
+        element.translatesAutoresizingMaskIntoConstraints = false
+        return element
+    }()
+    
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -74,12 +84,17 @@ final class MainView: UIView {
     // MARK: - Add subviews
     private func addSubviews() {
         addSubview(collectionView)
+        addSubview(titleScreen)
     }
     
     // MARK: - Setup Constraint
     func setupConstraints() {
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            titleScreen.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            titleScreen.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            titleScreen.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            
+            collectionView.topAnchor.constraint(equalTo: titleScreen.bottomAnchor, constant: 20),
             collectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
@@ -135,7 +150,7 @@ extension MainView {
         let group = NSCollectionLayoutGroup.horizontal(
             layoutSize: .init(
                 widthDimension: .fractionalWidth(0.75),
-                heightDimension: .fractionalHeight(0.35)
+                heightDimension: .fractionalHeight(0.4)
             ),
             subitems: [item]
         )
@@ -203,7 +218,7 @@ extension MainView {
         let group = NSCollectionLayoutGroup.horizontal(
             layoutSize: .init(
                 widthDimension: .fractionalWidth(0.4),
-                heightDimension: .fractionalHeight(0.35)
+                heightDimension: .fractionalHeight(0.375)
             ),
             subitems: [item]
         )
@@ -237,7 +252,7 @@ extension MainView {
         let group = NSCollectionLayoutGroup.horizontal(
             layoutSize: .init(
                 widthDimension: .fractionalWidth(0.35),
-                heightDimension: .fractionalHeight(0.3)
+                heightDimension: .fractionalHeight(0.35)
             ),
             subitems: [item]
         )

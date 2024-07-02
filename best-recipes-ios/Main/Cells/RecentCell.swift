@@ -76,10 +76,22 @@ final class RecentCell: UICollectionViewCell {
         addSubview(nameAuthor)
     }
     
+    // MARK: - Private methods
+    /// Ищет первый пробел в строке и сносит на новый абзац
+    private func replaceFirstSpace(in string: String, with character: Character) -> String? {
+        if let spaceIndex = string.firstIndex(of: " ") {
+            var modifiedString = string
+            modifiedString.replaceSubrange(spaceIndex...spaceIndex, with: String(character))
+            return modifiedString
+        } else {
+            return string
+        }
+    }
+
     // MARK: - Configure Cell
     func configureCell(item: Item) {
         coverImageView.image = item.coverImage
-        titleLabel.text = item.title
+        titleLabel.text = replaceFirstSpace(in: item.title, with: "\n")
         nameAuthor.text = "By " + item.nameAuthor
     }
 }

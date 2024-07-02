@@ -8,7 +8,7 @@
 import UIKit
 
 struct Section {
-    let items: [Item]
+    var items: [Item]
 }
 
 struct Item {
