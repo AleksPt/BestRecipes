@@ -78,6 +78,13 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		64285E4E2C34833900A7E7ED /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
 		D998A11E2C3089FA0084F9C4 = {
 			isa = PBXGroup;
 			children = (
@@ -97,6 +104,7 @@
 		D998A1292C3089FB0084F9C4 /* best-recipes-ios */ = {
 			isa = PBXGroup;
 			children = (
+				64285E4E2C34833900A7E7ED /* New Group */,
 				64285E4B2C34823B00A7E7ED /* Models */,
 				4D15898A2C333213005F4D2E /* Factories */,
 				FA685E6B2C329EEB0028BA17 /* Helpers */,
