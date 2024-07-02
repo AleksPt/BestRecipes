@@ -7,14 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		647D86712C32E3060091DE21 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647D86702C32E3060091DE21 /* Recipe.swift */; };
-		647D86742C32E3590091DE21 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647D86732C32E3590091DE21 /* DataStore.swift */; };
+		4D15898C2C333276005F4D2E /* LabelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D15898B2C333276005F4D2E /* LabelFactory.swift */; };
 		D998A12B2C3089FB0084F9C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D998A12A2C3089FB0084F9C4 /* AppDelegate.swift */; };
 		D998A12D2C3089FB0084F9C4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D998A12C2C3089FB0084F9C4 /* SceneDelegate.swift */; };
 		D998A12F2C3089FB0084F9C4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D998A12E2C3089FB0084F9C4 /* ViewController.swift */; };
 		D998A1322C3089FB0084F9C4 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = D998A1312C3089FB0084F9C4 /* Base */; };
 		D998A1342C3089FC0084F9C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D998A1332C3089FC0084F9C4 /* Assets.xcassets */; };
 		D998A1372C3089FC0084F9C4 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = D998A1362C3089FC0084F9C4 /* Base */; };
+		DC39DC842C34470600464EBD /* ButtonFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC39DC832C34470600464EBD /* ButtonFactory.swift */; };
 		FA685E6D2C329F0B0028BA17 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA685E6C2C329F0B0028BA17 /* Colors.swift */; };
 		FA685E6F2C32A10C0028BA17 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA685E6E2C32A10C0028BA17 /* Fonts.swift */; };
 		FA685E712C32A3310028BA17 /* Icons.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA685E702C32A3310028BA17 /* Icons.swift */; };
@@ -27,8 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		647D86702C32E3060091DE21 /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
-		647D86732C32E3590091DE21 /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
+		4D15898B2C333276005F4D2E /* LabelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelFactory.swift; sourceTree = "<group>"; };
 		D998A1272C3089FB0084F9C4 /* best-recipes-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "best-recipes-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D998A12A2C3089FB0084F9C4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D998A12C2C3089FB0084F9C4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -37,6 +36,7 @@
 		D998A1332C3089FC0084F9C4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D998A1362C3089FC0084F9C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D998A1382C3089FC0084F9C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DC39DC832C34470600464EBD /* ButtonFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonFactory.swift; sourceTree = "<group>"; };
 		FA685E6C2C329F0B0028BA17 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		FA685E6E2C32A10C0028BA17 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		FA685E702C32A3310028BA17 /* Icons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icons.swift; sourceTree = "<group>"; };
@@ -59,20 +59,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		647D866F2C32E2ED0091DE21 /* Models */ = {
+		4D15898A2C333213005F4D2E /* Factories */ = {
 			isa = PBXGroup;
 			children = (
-				647D86702C32E3060091DE21 /* Recipe.swift */,
+				4D15898B2C333276005F4D2E /* LabelFactory.swift */,
+				DC39DC832C34470600464EBD /* ButtonFactory.swift */,
 			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		647D86722C32E34A0091DE21 /* DataStore */ = {
-			isa = PBXGroup;
-			children = (
-				647D86732C32E3590091DE21 /* DataStore.swift */,
-			);
-			path = DataStore;
+			path = Factories;
 			sourceTree = "<group>";
 		};
 		D998A11E2C3089FA0084F9C4 = {
@@ -94,8 +87,7 @@
 		D998A1292C3089FB0084F9C4 /* best-recipes-ios */ = {
 			isa = PBXGroup;
 			children = (
-				647D86722C32E34A0091DE21 /* DataStore */,
-				647D866F2C32E2ED0091DE21 /* Models */,
+				4D15898A2C333213005F4D2E /* Factories */,
 				FA685E6B2C329EEB0028BA17 /* Helpers */,
 				D998A12A2C3089FB0084F9C4 /* AppDelegate.swift */,
 				D998A12C2C3089FB0084F9C4 /* SceneDelegate.swift */,
@@ -208,15 +200,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC39DC842C34470600464EBD /* ButtonFactory.swift in Sources */,
 				FA685E732C32A6860028BA17 /* Images.swift in Sources */,
 				D998A12F2C3089FB0084F9C4 /* ViewController.swift in Sources */,
 				FA685E6F2C32A10C0028BA17 /* Fonts.swift in Sources */,
 				FA685E712C32A3310028BA17 /* Icons.swift in Sources */,
 				FA685E6D2C329F0B0028BA17 /* Colors.swift in Sources */,
+				4D15898C2C333276005F4D2E /* LabelFactory.swift in Sources */,
 				D998A12B2C3089FB0084F9C4 /* AppDelegate.swift in Sources */,
 				D998A12D2C3089FB0084F9C4 /* SceneDelegate.swift in Sources */,
-				647D86742C32E3590091DE21 /* DataStore.swift in Sources */,
-				647D86712C32E3060091DE21 /* Recipe.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
