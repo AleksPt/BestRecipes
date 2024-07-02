@@ -16,7 +16,7 @@ struct Item {
         case breakfasts = "Затраки"
         case broths = "Бульоны"
         case appetisers = "Закуски"
-        case mainCourses = "Основные блюда"
+        case drinks = "Напитки"
         case pasta = "Паста"
         case pizza = "Пицца"
         case risotto = "Ризотто"
@@ -103,7 +103,7 @@ final class CollectionData {
             avatar: Images.Avatars.avatar4,
             nameAuthor: Item.Author.fox.rawValue,
             time: 18,
-            category: .mainCourses,
+            category: .drinks,
             worldCuisine: .brazil
         ),
         Item(

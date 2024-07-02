@@ -19,9 +19,10 @@ final class TrendingCell: UICollectionViewCell {
         return element
     }()
     
-    private lazy var title: UILabel = {
+    private lazy var titleLabel: UILabel = {
         let element = UILabel()
         element.font = UIFont.TextFonts.Home.Trending.titleTrendingCell
+        element.textColor = UIColor.Home.title
         element.translatesAutoresizingMaskIntoConstraints = false
         return element
     }()
@@ -62,12 +63,15 @@ final class TrendingCell: UICollectionViewCell {
     // MARK: - Configure Cell
     func configureCell(item: Item) {
         coverImageView.image = item.coverImage
+        titleLabel.text = item.title
+        avatar.image = item.avatar
+        nameAuthor.text = item.nameAuthor
     }
     
     // MARK: - Add subviews
     private func addSubviews(){
         addSubview(coverImageView)
-        addSubview(title)
+        addSubview(titleLabel)
         addSubview(avatar)
         addSubview(nameAuthor)
     }
@@ -80,10 +84,12 @@ private extension TrendingCell {
             coverImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
             coverImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
             coverImageView.topAnchor.constraint(equalTo: topAnchor),
-            coverImageView.bottomAnchor.constraint(equalTo: title.topAnchor, constant: 12),
+            coverImageView.bottomAnchor.constraint(equalTo: titleLabel.topAnchor, constant: -12),
             
-            title.leadingAnchor.constraint(equalTo: leadingAnchor),
-            title.bottomAnchor.constraint(equalTo: avatar.topAnchor, constant: 8),
+            titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
+            titleLabel.heightAnchor.constraint(equalToConstant: 22),
+            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
+            titleLabel.bottomAnchor.constraint(equalTo: avatar.topAnchor, constant: -8),
             
             avatar.leadingAnchor.constraint(equalTo: leadingAnchor),
             avatar.widthAnchor.constraint(equalToConstant: 32),
