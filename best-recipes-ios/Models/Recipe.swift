@@ -2,28 +2,33 @@
 //  Recipe.swift
 //  best-recipes-ios
 //
-//  Created by Vladimir Dmitriev on 01.07.24.
+//  Created by Vladimir Dmitriev on 02.07.24.
 //
 
-struct complexSearch {
+import Foundation
+
+struct ComplexSearch: Decodable {
     let results: [Recipe]
+    let offset: Int
+    let number: Int
+    let totalResults: Int
 }
 
-struct Recipe {
+struct Recipe: Decodable {
     let sourceName: String
-    let extendedIngredients: [Ingredient]
-    let id: Int // ?
+    let extendedIngredients: [Ingredient]?
+    let id: Int
     let title: String
     let readyInMinutes: Int
     let servings: Int
     let image: String
     let cuisines: [String]
     let dishTypes: [String]
-    let analyzedInstructions: [AnalyzedInstruction]
+    let analyzedInstructions: [AnalyzedInstruction]?
+    let aggregateLikes: Int
     let spoonacularScore: Double
-    
-    let isFavorite: Bool
-    
+    var isFavorite: Bool?
+
     init(
         sourceName: String,
         extendedIngredients: [Ingredient],
@@ -35,8 +40,9 @@ struct Recipe {
         cuisines: [String],
         dishTypes: [String],
         analyzedInstructions: [AnalyzedInstruction],
+        aggregateLikes: Int,
         spoonacularScore: Double,
-        isFavorite: Bool = false
+        isFavorite: Bool? = false
     ) {
         self.sourceName = sourceName
         self.extendedIngredients = extendedIngredients
@@ -48,35 +54,40 @@ struct Recipe {
         self.cuisines = cuisines
         self.dishTypes = dishTypes
         self.analyzedInstructions = analyzedInstructions
+        self.aggregateLikes = aggregateLikes
         self.spoonacularScore = spoonacularScore
         self.isFavorite = isFavorite
     }
 }
 
-struct AnalyzedInstruction {
+struct AnalyzedInstruction: Decodable {
     let steps: [Step]
 }
 
-struct Step {
+struct Step: Decodable {
     let number: Int
     let step: String
 }
 
-struct Ingredient {
+struct Ingredient: Decodable {
     let name: String
     let image: String
     let measures: Measure
-    
+
     var capitalizedName: String {
         name.capitalized
     }
+    
+//    var fullImageURL: URL {
+//        Link.recipesURL.getIngredientImageURL(image)
+//    }
 }
 
-struct Measure {
+struct Measure: Decodable {
     let metric: Metric
 }
 
-struct Metric {
+struct Metric: Decodable {
     let amount: Double
     let unitShort: String
 }

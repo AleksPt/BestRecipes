@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4D15898C2C333276005F4D2E /* LabelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D15898B2C333276005F4D2E /* LabelFactory.swift */; };
+		647D867E2C34353C0091DE21 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647D867D2C34353C0091DE21 /* Recipe.swift */; };
 		D998A12B2C3089FB0084F9C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D998A12A2C3089FB0084F9C4 /* AppDelegate.swift */; };
 		D998A12D2C3089FB0084F9C4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D998A12C2C3089FB0084F9C4 /* SceneDelegate.swift */; };
 		D998A12F2C3089FB0084F9C4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D998A12E2C3089FB0084F9C4 /* ViewController.swift */; };
@@ -27,6 +28,7 @@
 
 /* Begin PBXFileReference section */
 		4D15898B2C333276005F4D2E /* LabelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelFactory.swift; sourceTree = "<group>"; };
+		647D867D2C34353C0091DE21 /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		D998A1272C3089FB0084F9C4 /* best-recipes-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "best-recipes-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D998A12A2C3089FB0084F9C4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D998A12C2C3089FB0084F9C4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -65,6 +67,21 @@
 			path = Factories;
 			sourceTree = "<group>";
 		};
+		647D867B2C3434950091DE21 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		647D867C2C34349B0091DE21 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				647D867D2C34353C0091DE21 /* Recipe.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		D998A11E2C3089FA0084F9C4 = {
 			isa = PBXGroup;
 			children = (
@@ -84,6 +101,8 @@
 		D998A1292C3089FB0084F9C4 /* best-recipes-ios */ = {
 			isa = PBXGroup;
 			children = (
+				647D867C2C34349B0091DE21 /* Models */,
+				647D867B2C3434950091DE21 /* Services */,
 				4D15898A2C333213005F4D2E /* Factories */,
 				FA685E6B2C329EEB0028BA17 /* Helpers */,
 				D998A12A2C3089FB0084F9C4 /* AppDelegate.swift */,
@@ -203,6 +222,7 @@
 				FA685E712C32A3310028BA17 /* Icons.swift in Sources */,
 				FA685E6D2C329F0B0028BA17 /* Colors.swift in Sources */,
 				4D15898C2C333276005F4D2E /* LabelFactory.swift in Sources */,
+				647D867E2C34353C0091DE21 /* Recipe.swift in Sources */,
 				D998A12B2C3089FB0084F9C4 /* AppDelegate.swift in Sources */,
 				D998A12D2C3089FB0084F9C4 /* SceneDelegate.swift in Sources */,
 			);
