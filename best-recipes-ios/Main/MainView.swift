@@ -1,44 +1,22 @@
 //
-//  MainScreen.swift
+//  MainView.swift
 //  best-recipes-ios
 //
-//  Created by Алексей on 01.07.2024.
+//  Created by Алексей on 02.07.2024.
 //
 
 import UIKit
 
-final class MainScreen: UIViewController {
-    
-    private let sections = MockData.shared.pageData
+final class MainView: UIView {
     
     // MARK: - UI
-    private let collectionView: UICollectionView = {
+    let collectionView: UICollectionView = {
         let collectionViewLayout = UICollectionViewLayout()
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
+        let collectionView = UICollectionView(
+            frame: .zero,
+            collectionViewLayout: collectionViewLayout
+        )
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.backgroundColor = .none
-        return collectionView
-    }()
-    
-    // MARK: - Life Cycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupViews()
-        setupConstraints()
-        setDelegates()
-    }
-    
-    // MARK: - Set Delegates
-    private func setDelegates() {
-        collectionView.delegate = self
-        collectionView.dataSource = self
-    }
-    
-    // MARK: - Setup Views
-    private func setupViews() {
-        view.backgroundColor = UIColor.GlobalBackground.light
-        
-        view.addSubview(collectionView)
         
         collectionView.register(
             TrendingCell.self,
@@ -66,13 +44,51 @@ final class MainScreen: UIViewController {
             withReuseIdentifier: HeaderSupplementaryView.description()
         )
         
-        collectionView.collectionViewLayout = createLayout()
+        return collectionView
+    }()
+    
+    // MARK: - Init
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupView()
+        addSubviews()
+        setupConstraints()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("MainView not initialised")
+    }
+    
+    // MARK: - Set Delegates
+    func setDelegates(viewController: MainScreen) {
+        collectionView.delegate = viewController
+        collectionView.dataSource = viewController
+    }
+    
+    // MARK: - Setup View
+    private func setupView() {
+        backgroundColor = UIColor.GlobalBackground.light
+    }
+    
+    // MARK: - Add subviews
+    private func addSubviews() {
+        addSubview(collectionView)
+    }
+    
+    // MARK: - Setup Constraint
+    func setupConstraints() {
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
+        ])
     }
 }
 
 // MARK: - Create Layout
-extension MainScreen {
-    private func createLayout() -> UICollectionViewCompositionalLayout {
+extension MainView {
+    func createLayout(sections: [ListSection]) -> UICollectionViewCompositionalLayout {
         UICollectionViewCompositionalLayout { [weak self] sectionIndex, _ in
             guard let self else { return nil }
             let section = sections[sectionIndex]
@@ -280,112 +296,5 @@ extension MainScreen {
             elementKind: UICollectionView.elementKindSectionHeader,
             alignment: .top
         )
-    }
-}
-
-// MARK: - UICollectionViewDelegate
-extension MainScreen: UICollectionViewDelegate {
-    
-}
-
-// MARK: - UICollectionViewDataSource
-extension MainScreen: UICollectionViewDataSource {
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        sections.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        sections[section].count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        switch sections[indexPath.section] {
-        case .trending(let trending):
-            guard let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: TrendingCell.description(),
-                for: indexPath
-            ) as? TrendingCell else {
-                return UICollectionViewCell()
-            }
-            
-            cell.configureCell(image: trending[indexPath.item].image)
-            return cell
-            
-        case .category(let category):
-            guard let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: CategoryCell.description(),
-                for: indexPath
-            ) as? CategoryCell else {
-                return UICollectionViewCell()
-            }
-            cell.configureCell(title: category[indexPath.item].title)
-            return cell
-            
-        case .categoryRecipe(let categoryRecipe):
-            guard let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: CategoryRecipeCell.description(),
-                for: indexPath
-            ) as? CategoryRecipeCell else {
-                return UICollectionViewCell()
-            }
-            
-            cell.configureCell(image: categoryRecipe[indexPath.item].image)
-            return cell
-            
-        case .recent(let recent):
-            guard let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: RecentCell.description(),
-                for: indexPath
-            ) as? RecentCell else {
-                return UICollectionViewCell()
-            }
-            
-            cell.configureCell(image: recent[indexPath.item].image)
-            return cell
-            
-        case .cuisine(let cuisine):
-            guard let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: CuisineCell.description(),
-                for: indexPath
-            ) as? CuisineCell else {
-                return UICollectionViewCell()
-            }
-            
-            cell.configureCell(image: cuisine[indexPath.item].image)
-            return cell
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        switch kind {
-        case UICollectionView.elementKindSectionHeader:
-            guard let header = collectionView.dequeueReusableSupplementaryView(
-                ofKind: kind,
-                withReuseIdentifier: HeaderSupplementaryView.description(),
-                for: indexPath
-            ) as? HeaderSupplementaryView else {
-                return UICollectionReusableView()
-            }
-            
-            header.configureHeader(
-                title: sections[indexPath.section].title,
-                section: indexPath.section
-            )
-            return header
-        default:
-            return UICollectionReusableView()
-        }
-    }
-}
-
-// MARK: - Setup Constraints
-private extension MainScreen {
-    func setupConstraints() {
-        NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-        ])
     }
 }
