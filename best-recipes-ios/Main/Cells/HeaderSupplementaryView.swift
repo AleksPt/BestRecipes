@@ -17,9 +17,38 @@ final class HeaderSupplementaryView: UICollectionReusableView {
         return element
     }()
     
+    private lazy var seeAllButton: UIButton = {
+        let element = UIButton(type: .system)
+        element.setTitle("See All", for: .normal)
+        element.tintColor = UIColor.NavigationBar.title
+        element.setTitleColor(UIColor.Home.buttonSeeAll, for: .normal)
+        element.translatesAutoresizingMaskIntoConstraints = false
+        element.addTarget(self, action: #selector(didTapSeeAll), for: .touchUpInside)
+        
+        let arrowImage = Icons.arrowRight
+        element.semanticContentAttribute = .forceRightToLeft
+        element.setImage(arrowImage, for: .normal)
+        
+        var configuration = UIButton.Configuration.plain()
+        element.configuration = configuration
+        element.configurationUpdateHandler = { button in
+            button.configuration?.attributedTitle?.font = UIFont.TextFonts.Home.buttonSeeAll
+            button.configuration?.imagePadding = 6
+            button.configuration?.contentInsets = NSDirectionalEdgeInsets(
+                top: 0,
+                leading: 0,
+                bottom: 0,
+                trailing: -6
+            )
+        }
+        
+        return element
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(title)
+        addSubview(seeAllButton)
         setupConstraints()
     }
     
@@ -39,6 +68,7 @@ final class HeaderSupplementaryView: UICollectionReusableView {
             title.text = "Trending now 🔥"
         case 1:
             title.text = "Popular category"
+            seeAllButton.isHidden = true
         case 2:
             title.text = ""
         case 3:
@@ -49,6 +79,12 @@ final class HeaderSupplementaryView: UICollectionReusableView {
             break
         }
     }
+    
+    // MARK: - Actions
+    @objc
+    private func didTapSeeAll() {
+        print("go to See All Screen")
+    }
 }
 
 // MARK: - Setup Constraints
@@ -57,6 +93,9 @@ private extension HeaderSupplementaryView {
         NSLayoutConstraint.activate([
             title.centerYAnchor.constraint(equalTo: centerYAnchor),
             title.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            
+            seeAllButton.centerYAnchor.constraint(equalTo: title.centerYAnchor),
+            seeAllButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
         ])
     }
 }

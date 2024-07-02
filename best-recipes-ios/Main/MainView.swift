@@ -43,6 +43,7 @@ final class MainView: UIView {
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
             withReuseIdentifier: HeaderSupplementaryView.description()
         )
+        collectionView.delaysContentTouches = false
         return collectionView
     }()
     
