@@ -28,6 +28,10 @@ struct Recipe: Decodable {
     let aggregateLikes: Int
     let spoonacularScore: Double
     var isFavorite: Bool?
+    
+    var imageURL: URL {
+        URL(string: image)!
+    }
 
     init(
         sourceName: String,
@@ -78,9 +82,9 @@ struct Ingredient: Decodable {
         name.capitalized
     }
     
-//    var fullImageURL: URL {
-//        Link.recipesURL.getIngredientImageURL(image)
-//    }
+    var fullImageURL: URL {
+        Link.ingredientImageURL(imageName: image).url
+    }
 }
 
 struct Measure: Decodable {
