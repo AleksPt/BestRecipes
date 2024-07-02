@@ -14,6 +14,7 @@
 		D998A1322C3089FB0084F9C4 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = D998A1312C3089FB0084F9C4 /* Base */; };
 		D998A1342C3089FC0084F9C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D998A1332C3089FC0084F9C4 /* Assets.xcassets */; };
 		D998A1372C3089FC0084F9C4 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = D998A1362C3089FC0084F9C4 /* Base */; };
+		DC39DC842C34470600464EBD /* ButtonFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC39DC832C34470600464EBD /* ButtonFactory.swift */; };
 		FA685E6D2C329F0B0028BA17 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA685E6C2C329F0B0028BA17 /* Colors.swift */; };
 		FA685E6F2C32A10C0028BA17 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA685E6E2C32A10C0028BA17 /* Fonts.swift */; };
 		FA685E712C32A3310028BA17 /* Icons.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA685E702C32A3310028BA17 /* Icons.swift */; };
@@ -35,6 +36,7 @@
 		D998A1332C3089FC0084F9C4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D998A1362C3089FC0084F9C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D998A1382C3089FC0084F9C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DC39DC832C34470600464EBD /* ButtonFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonFactory.swift; sourceTree = "<group>"; };
 		FA685E6C2C329F0B0028BA17 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		FA685E6E2C32A10C0028BA17 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		FA685E702C32A3310028BA17 /* Icons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icons.swift; sourceTree = "<group>"; };
@@ -61,6 +63,7 @@
 			isa = PBXGroup;
 			children = (
 				4D15898B2C333276005F4D2E /* LabelFactory.swift */,
+				DC39DC832C34470600464EBD /* ButtonFactory.swift */,
 			);
 			path = Factories;
 			sourceTree = "<group>";
@@ -197,6 +200,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC39DC842C34470600464EBD /* ButtonFactory.swift in Sources */,
 				FA685E732C32A6860028BA17 /* Images.swift in Sources */,
 				D998A12F2C3089FB0084F9C4 /* ViewController.swift in Sources */,
 				FA685E6F2C32A10C0028BA17 /* Fonts.swift in Sources */,
