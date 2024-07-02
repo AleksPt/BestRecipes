@@ -9,6 +9,21 @@ import UIKit
 
 final class RecentCell: UICollectionViewCell {
     
+    /// Выравнивает текст по верхнему краю
+    final class CustomTitleLabel: UILabel {
+        override func drawText(in rect: CGRect) {
+            super.drawText(
+                in: .init(
+                    origin: .zero,
+                    size: textRect(
+                        forBounds: rect,
+                        limitedToNumberOfLines: numberOfLines
+                    ).size
+                )
+            )
+        }
+    }
+    
     // MARK: - UI
     private lazy var coverImageView: UIImageView = {
         let element = UIImageView()
@@ -19,10 +34,27 @@ final class RecentCell: UICollectionViewCell {
         return element
     }()
     
+    private lazy var titleLabel: CustomTitleLabel = {
+        let element = CustomTitleLabel()
+        element.font = UIFont.TextFonts.Home.RecentRecipe.titleCell
+        element.textColor = UIColor.Home.title
+        element.translatesAutoresizingMaskIntoConstraints = false
+        element.numberOfLines = 2
+        return element
+    }()
+    
+    private lazy var nameAuthor: UILabel = {
+        let element = UILabel()
+        element.font = UIFont.TextFonts.Home.RecentRecipe.subtitle
+        element.textColor = UIColor.Home.authorName
+        element.translatesAutoresizingMaskIntoConstraints = false
+        return element
+    }()
+    
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
-        addSubview(coverImageView)
+        addSubviews()
         setupConstraints()
     }
     
@@ -32,16 +64,25 @@ final class RecentCell: UICollectionViewCell {
     
     // MARK: - Overrides Methods
     override func prepareForReuse() {
-        super.prepareForReuse()
-        self.coverImageView.image = nil
+        coverImageView.image = nil
+        titleLabel.text = nil
+        nameAuthor.text = nil
+    }
+    
+    // MARK: - Add subviews
+    private func addSubviews() {
+        addSubview(coverImageView)
+        addSubview(titleLabel)
+        addSubview(nameAuthor)
     }
     
     // MARK: - Configure Cell
     func configureCell(item: Item) {
         coverImageView.image = item.coverImage
+        titleLabel.text = item.title
+        nameAuthor.text = "By " + item.nameAuthor
     }
 }
-
 
 // MARK: - Setup Constraints
 private extension RecentCell {
@@ -50,7 +91,17 @@ private extension RecentCell {
             coverImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
             coverImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
             coverImageView.topAnchor.constraint(equalTo: topAnchor),
-            coverImageView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            coverImageView.bottomAnchor.constraint(equalTo: titleLabel.topAnchor, constant: -8),
+            
+            titleLabel.heightAnchor.constraint(equalToConstant: 40),
+            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
+            titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5),
+            titleLabel.bottomAnchor.constraint(equalTo: nameAuthor.topAnchor, constant: -4),
+            
+            nameAuthor.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 3),
+            nameAuthor.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -12),
+            nameAuthor.heightAnchor.constraint(equalToConstant: 14),
+            nameAuthor.trailingAnchor.constraint(equalTo: trailingAnchor),
         ])
     }
 }

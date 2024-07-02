@@ -235,8 +235,8 @@ extension MainView {
         
         let group = NSCollectionLayoutGroup.horizontal(
             layoutSize: .init(
-                widthDimension: .fractionalWidth(0.4),
-                heightDimension: .fractionalHeight(0.25)
+                widthDimension: .fractionalWidth(0.35),
+                heightDimension: .fractionalHeight(0.3)
             ),
             subitems: [item]
         )

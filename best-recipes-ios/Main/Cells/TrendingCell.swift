@@ -39,6 +39,7 @@ final class TrendingCell: UICollectionViewCell {
     private lazy var nameAuthor: UILabel = {
         let element = UILabel()
         element.font = UIFont.TextFonts.Home.Trending.nameAuthor
+        element.textColor = UIColor.Home.authorName
         element.translatesAutoresizingMaskIntoConstraints = false
         return element
     }()
@@ -58,6 +59,9 @@ final class TrendingCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         coverImageView.image = nil
+        titleLabel.text = nil
+        avatar.image = nil
+        nameAuthor.text = nil
     }
     
     // MARK: - Configure Cell
@@ -65,7 +69,7 @@ final class TrendingCell: UICollectionViewCell {
         coverImageView.image = item.coverImage
         titleLabel.text = item.title
         avatar.image = item.avatar
-        nameAuthor.text = item.nameAuthor
+        nameAuthor.text = "By " + item.nameAuthor
     }
     
     // MARK: - Add subviews
@@ -98,6 +102,7 @@ private extension TrendingCell {
             
             nameAuthor.leadingAnchor.constraint(equalTo: avatar.trailingAnchor, constant: 8),
             nameAuthor.centerYAnchor.constraint(equalTo: avatar.centerYAnchor),
+            nameAuthor.trailingAnchor.constraint(equalTo: trailingAnchor),
         ])
     }
 }
