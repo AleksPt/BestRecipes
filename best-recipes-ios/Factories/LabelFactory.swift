@@ -9,7 +9,7 @@ final class LabelFactory {
     //Best Recipe
     static func makeOnboardingScreenLabel(text: String) -> UILabel {
         let label = UILabel()
-        label.font = UIFont.PoppinsFont.bold(size: 56)
+        label.font = UIFont.TextFonts.Onboarding.StartPage.title
         label.textAlignment = .center
         label.numberOfLines = 0
         label.textColor = .white
@@ -23,7 +23,7 @@ final class LabelFactory {
     //Cook it now or save it for later
     static func makeOnboardingPageLabel(text: String) -> UILabel {
         let label = UILabel()
-        label.font = UIFont.PoppinsFont.bold(size: 40)
+        label.font = UIFont.TextFonts.Onboarding.title
         label.textAlignment = .center
         label.numberOfLines = 0
         label.textColor = .white
@@ -49,7 +49,7 @@ final class LabelFactory {
     // Find best recipes for cooking
     static func makeOnboardingSmallLabel(text: String) -> UILabel {
         let label = UILabel()
-        label.font = UIFont.PoppinsFont.regular(size: 16)
+        label.font = UIFont.TextFonts.Onboarding.StartPage.subtitleRegular
         label.textAlignment = .center
         label.numberOfLines = 0
         label.textColor = .white
@@ -61,7 +61,7 @@ final class LabelFactory {
     // 100+
     static func makeOnboardingSmallBoldLabel(text: String) -> UILabel {
         let label = UILabel()
-        label.font = UIFont.PoppinsFont.bold(size: 16)
+        label.font = UIFont.TextFonts.Onboarding.StartPage.subtitleSemibold
         label.textAlignment = .center
         label.numberOfLines = 0
         label.textColor = .white
@@ -78,7 +78,7 @@ final class LabelFactory {
         label.textAlignment = .left
         label.textColor = UIColor.Home.title
         label.numberOfLines = 0
-        label.font = UIFont.PoppinsFont.bold(size: 24)
+        label.font = UIFont.TextFonts.NavigationBar.title
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = text
         return label
@@ -91,7 +91,7 @@ final class LabelFactory {
         label.textColor = UIColor.Colors.Neutral.neutral100
         label.numberOfLines = 0
         label.textAlignment = .center
-        label.font = UIFont.PoppinsFont.bold(size: 24)
+        label.font = UIFont.TextFonts.NavigationBar.title
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = text
         return label
@@ -103,7 +103,7 @@ final class LabelFactory {
         label.textColor = .white
         label.numberOfLines = 0
         label.textAlignment = .left
-        label.font = UIFont.PoppinsFont.bold(size: 16)
+        label.font = UIFont.TextFonts.SeeAll.titleCell
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = text
         return label
@@ -115,7 +115,7 @@ final class LabelFactory {
         label.textColor = .white
         label.numberOfLines = 0
         label.textAlignment = .left
-        label.font = UIFont.PoppinsFont.regular(size: 12)
+        label.font = UIFont.TextFonts.SeeAll.timeLabel
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = text
         return label
@@ -129,7 +129,7 @@ final class LabelFactory {
         let label = UILabel()
         label.textAlignment = .left
         label.textColor = UIColor.Colors.Neutral.neutral100
-        label.font = UIFont.PoppinsFont.bold(size: 20)
+        label.font = UIFont.TextFonts.Home.titleSection
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = text
         return label
@@ -144,7 +144,7 @@ final class LabelFactory {
         label.numberOfLines = 0
         label.textAlignment = .left
         label.textColor = UIColor.Colors.Neutral.neutral100
-        label.font = UIFont.PoppinsFont.bold(size: 16)
+        label.font = UIFont.TextFonts.Home.Trending.titleTrendingCell
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = text
         return label
@@ -156,7 +156,7 @@ final class LabelFactory {
         label.textColor = UIColor.Colors.Neutral.neutral50
         label.numberOfLines = 0
         label.textAlignment = .left
-        label.font = UIFont.PoppinsFont.regular(size: 12)
+        label.font = UIFont.TextFonts.Home.Trending.nameAuthor
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = text
         return label
@@ -169,7 +169,7 @@ final class LabelFactory {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = .white
-        label.font = UIFont.PoppinsFont.bold(size: 12)
+        label.font = UIFont.TextFonts.Home.PopularCategory.nameCategory
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = text
         return label
@@ -181,7 +181,7 @@ final class LabelFactory {
         label.textColor = UIColor.Colors.Neutral.neutral100
         label.numberOfLines = 0
         label.textAlignment = .center
-        label.font = UIFont.PoppinsFont.bold(size: 14)
+        label.font = UIFont.TextFonts.Home.PopularCategory.titleCell
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = text
         return label
@@ -193,7 +193,7 @@ final class LabelFactory {
         label.textColor = UIColor.Colors.Neutral.neutral30
         label.numberOfLines = 0
         label.textAlignment = .left
-        label.font = UIFont.PoppinsFont.regular(size: 12)
+        label.font = UIFont.TextFonts.Home.PopularCategory.timeSubtitle
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = text
         return label
@@ -205,7 +205,7 @@ final class LabelFactory {
         label.textColor = UIColor.Colors.Neutral.neutral100
         label.numberOfLines = 0
         label.textAlignment = .left
-        label.font = UIFont.PoppinsFont.bold(size: 12)
+        label.font = UIFont.TextFonts.Home.PopularCategory.timeTitle
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = text
         return label
@@ -219,7 +219,7 @@ final class LabelFactory {
         label.textColor =  UIColor.Colors.Neutral.neutral100
         label.numberOfLines = 0
         label.textAlignment = .left
-        label.font = UIFont.PoppinsFont.semibold(size: 14)
+        label.font = UIFont.TextFonts.Home.RecentRecipe.titleCell
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = text
         return label
@@ -231,7 +231,7 @@ final class LabelFactory {
         label.textColor =  UIColor.Colors.Neutral.neutral50
         label.numberOfLines = 0
         label.textAlignment = .left
-        label.font = UIFont.PoppinsFont.regular(size: 10)
+        label.font = UIFont.TextFonts.Home.RecentRecipe.subtitle
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = text
         return label
@@ -243,7 +243,7 @@ final class LabelFactory {
         label.textColor =  UIColor.Colors.Neutral.neutral100
         label.numberOfLines = 0
         label.textAlignment = .center
-        label.font = UIFont.PoppinsFont.bold(size: 12)
+        label.font = UIFont.TextFonts.Home.Kitchens.title
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = text
         return label
@@ -257,7 +257,7 @@ final class LabelFactory {
         label.numberOfLines = 0
         label.textAlignment = .left
         label.textColor =  UIColor.Colors.Neutral.neutral50
-        label.font = UIFont.PoppinsFont.regular(size: 14)
+        label.font = UIFont.TextFonts.RecipeDetail.countReviews
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = text
         return label
@@ -269,7 +269,7 @@ final class LabelFactory {
         label.numberOfLines = 0
         label.textAlignment = .left
         label.textColor =  UIColor.Colors.Neutral.neutral100
-        label.font = UIFont.PoppinsFont.semibold(size: 20)
+        label.font = UIFont.TextFonts.RecipeDetail.instructionTitle
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = text
         return label
@@ -281,7 +281,7 @@ final class LabelFactory {
         label.numberOfLines = 0
         label.textAlignment = .right
         label.textColor =  UIColor.Colors.Neutral.neutral50
-        label.font = UIFont.PoppinsFont.regular(size: 14)
+        label.font = UIFont.TextFonts.RecipeDetail.countIngredients
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = text
         return label
