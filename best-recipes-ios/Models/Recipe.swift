@@ -82,9 +82,9 @@ struct Ingredient: Decodable {
         name.capitalized
     }
     
-//    var fullImageURL: URL {
-//        Link.ingredientImageURL(imageName: image).url
-//    }
+    var fullImageURL: URL {
+        Link.ingredientImageURL(imageName: image).url
+    }
 }
 
 struct Measure: Decodable {
