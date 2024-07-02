@@ -15,9 +15,6 @@
 		D998A1342C3089FC0084F9C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D998A1332C3089FC0084F9C4 /* Assets.xcassets */; };
 		D998A1372C3089FC0084F9C4 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = D998A1362C3089FC0084F9C4 /* Base */; };
 		D998A1472C345ACB0084F9C4 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D998A1462C345ACB0084F9C4 /* TabBarController.swift */; };
-		D998A14C2C345C0B0084F9C4 /* MainScreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D998A14B2C345C0B0084F9C4 /* MainScreenController.swift */; };
-		D998A14E2C345C4A0084F9C4 /* SavedRecipesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D998A14D2C345C4A0084F9C4 /* SavedRecipesController.swift */; };
-		D998A1502C345C650084F9C4 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D998A14F2C345C650084F9C4 /* ProfileController.swift */; };
 		D998A1522C345FD60084F9C4 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D998A1512C345FD60084F9C4 /* TabBar.swift */; };
 		FA685E6D2C329F0B0028BA17 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA685E6C2C329F0B0028BA17 /* Colors.swift */; };
 		FA685E6F2C32A10C0028BA17 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA685E6E2C32A10C0028BA17 /* Fonts.swift */; };
@@ -41,9 +38,6 @@
 		D998A1362C3089FC0084F9C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D998A1382C3089FC0084F9C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D998A1462C345ACB0084F9C4 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
-		D998A14B2C345C0B0084F9C4 /* MainScreenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenController.swift; sourceTree = "<group>"; };
-		D998A14D2C345C4A0084F9C4 /* SavedRecipesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedRecipesController.swift; sourceTree = "<group>"; };
-		D998A14F2C345C650084F9C4 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		D998A1512C345FD60084F9C4 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		FA685E6C2C329F0B0028BA17 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		FA685E6E2C32A10C0028BA17 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
@@ -95,7 +89,6 @@
 			isa = PBXGroup;
 			children = (
 				D998A1442C345A980084F9C4 /* Components */,
-				D998A1432C345A7D0084F9C4 /* Modules */,
 				4D15898A2C333213005F4D2E /* Factories */,
 				FA685E6B2C329EEB0028BA17 /* Helpers */,
 				D998A12A2C3089FB0084F9C4 /* AppDelegate.swift */,
@@ -108,16 +101,6 @@
 				FA6ED7B02C328DB3004F1B10 /* Fonts */,
 			);
 			path = "best-recipes-ios";
-			sourceTree = "<group>";
-		};
-		D998A1432C345A7D0084F9C4 /* Modules */ = {
-			isa = PBXGroup;
-			children = (
-				D998A14A2C345BF30084F9C4 /* Profile */,
-				D998A1492C345BE30084F9C4 /* SavedRecipes */,
-				D998A1482C345BD50084F9C4 /* MainScreen */,
-			);
-			path = Modules;
 			sourceTree = "<group>";
 		};
 		D998A1442C345A980084F9C4 /* Components */ = {
@@ -135,30 +118,6 @@
 				D998A1512C345FD60084F9C4 /* TabBar.swift */,
 			);
 			path = TabBar;
-			sourceTree = "<group>";
-		};
-		D998A1482C345BD50084F9C4 /* MainScreen */ = {
-			isa = PBXGroup;
-			children = (
-				D998A14B2C345C0B0084F9C4 /* MainScreenController.swift */,
-			);
-			path = MainScreen;
-			sourceTree = "<group>";
-		};
-		D998A1492C345BE30084F9C4 /* SavedRecipes */ = {
-			isa = PBXGroup;
-			children = (
-				D998A14D2C345C4A0084F9C4 /* SavedRecipesController.swift */,
-			);
-			path = SavedRecipes;
-			sourceTree = "<group>";
-		};
-		D998A14A2C345BF30084F9C4 /* Profile */ = {
-			isa = PBXGroup;
-			children = (
-				D998A14F2C345C650084F9C4 /* ProfileController.swift */,
-			);
-			path = Profile;
 			sourceTree = "<group>";
 		};
 		FA685E6B2C329EEB0028BA17 /* Helpers */ = {
@@ -264,15 +223,12 @@
 				D998A12F2C3089FB0084F9C4 /* ViewController.swift in Sources */,
 				FA685E6F2C32A10C0028BA17 /* Fonts.swift in Sources */,
 				D998A1472C345ACB0084F9C4 /* TabBarController.swift in Sources */,
-				D998A14C2C345C0B0084F9C4 /* MainScreenController.swift in Sources */,
 				FA685E712C32A3310028BA17 /* Icons.swift in Sources */,
 				FA685E6D2C329F0B0028BA17 /* Colors.swift in Sources */,
 				4D15898C2C333276005F4D2E /* LabelFactory.swift in Sources */,
 				D998A12B2C3089FB0084F9C4 /* AppDelegate.swift in Sources */,
 				D998A1522C345FD60084F9C4 /* TabBar.swift in Sources */,
 				D998A12D2C3089FB0084F9C4 /* SceneDelegate.swift in Sources */,
-				D998A14E2C345C4A0084F9C4 /* SavedRecipesController.swift in Sources */,
-				D998A1502C345C650084F9C4 /* ProfileController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
