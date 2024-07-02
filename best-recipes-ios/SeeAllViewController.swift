@@ -19,20 +19,13 @@ final class SeeAllViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         customView.setDelegates(value: self)
     }
     
     override func loadView() {
         
         view = customView
-        
     }
-    
-    
-    
-    
-    
 }
 
 

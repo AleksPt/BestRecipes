@@ -15,12 +15,12 @@ final class SeeAllView: UIView {
         layout.itemSize = CGSize(width: 340, height: 200)
         layout.minimumLineSpacing = 24
         
-        var collectionView = UICollectionView()
-        collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .white
         collectionView.layer.cornerRadius = 15
         
         collectionView.register(CustomCell.self, forCellWithReuseIdentifier: "CustomCell")
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
     }()
     
@@ -28,11 +28,11 @@ final class SeeAllView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        setupConstraint()
         setViews()
-        
+        setupConstraint()
         
     }
+    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -54,13 +54,9 @@ final class SeeAllView: UIView {
         collectionView.dataSource = value
     }
     
-    
 
     //MARK: - setup Views
     private func setViews() {
-//        self.title = "Trending Now"
-//        self.navigationController?.navigationBar.prefersLargeTitles = true
-//        
         
         addSubview(collectionView)
     }
