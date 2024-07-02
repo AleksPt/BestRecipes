@@ -27,13 +27,24 @@ final class HeaderSupplementaryView: UICollectionReusableView {
         fatalError()
     }
     
-    func configureHeader(title: String, section: Int) {
-        self.title.text = title
-
+    // MARK: - Overrides methods
+    override func prepareForReuse() {
+        title.text = nil
+    }
+    
+    // MARK: - Configure Header
+    func configureHeader(section: Int) {
         switch section {
         case 0:
-            guard self.title.text != nil else { return }
-            self.title.text! += " 🔥"
+            title.text = "Trending now 🔥"
+        case 1:
+            title.text = "Popular category"
+        case 2:
+            title.text = ""
+        case 3:
+            title.text = "Recent recipe"
+        case 4:
+            title.text = "World cuisine"
         default:
             break
         }

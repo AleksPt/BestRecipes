@@ -31,6 +31,7 @@ final class CategoryCell: UICollectionViewCell {
         fatalError()
     }
     
+    // MARK: - Overrides methods
     override func prepareForReuse() {
         super.prepareForReuse()
         title.text = nil
@@ -48,8 +49,9 @@ final class CategoryCell: UICollectionViewCell {
         }
     }
     
-    func configureCell(title: String?) {
-        self.title.text = title
+    // MARK: - Configure Cell
+    func configureCell(item: Item) {
+        title.text = item.category.rawValue
     }
 }
 

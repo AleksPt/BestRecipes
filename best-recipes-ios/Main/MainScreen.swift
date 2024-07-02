@@ -10,7 +10,7 @@ import UIKit
 final class MainScreen: UIViewController {
     
     private let mainView = MainView()
-    private let sections = MockData.shared.pageData
+    private var collectionData = CollectionData.getData()
     
     // MARK: - Life Cycle
     override func loadView() {
@@ -20,7 +20,6 @@ final class MainScreen: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         mainView.setDelegates(viewController: self)
-        mainView.collectionView.collectionViewLayout = mainView.createLayout(sections: sections)
     }
 }
 
@@ -32,16 +31,19 @@ extension MainScreen: UICollectionViewDelegate {
 // MARK: - UICollectionViewDataSource
 extension MainScreen: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        sections.count
+        collectionData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        sections[section].count
+        collectionData[section].items.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        switch sections[indexPath.section] {
-        case .trending(let trending):
+        
+        let item = collectionData[indexPath.section].items[indexPath.item]
+        
+        switch indexPath.section {
+        case 0:
             guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: TrendingCell.description(),
                 for: indexPath
@@ -49,20 +51,20 @@ extension MainScreen: UICollectionViewDataSource {
                 return UICollectionViewCell()
             }
             
-            cell.configureCell(image: trending[indexPath.item].image)
+            cell.configureCell(item: item)
             return cell
             
-        case .category(let category):
+        case 1:
             guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: CategoryCell.description(),
                 for: indexPath
             ) as? CategoryCell else {
                 return UICollectionViewCell()
             }
-            cell.configureCell(title: category[indexPath.item].title)
+            cell.configureCell(item: item)
             return cell
             
-        case .categoryRecipe(let categoryRecipe):
+        case 2:
             guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: CategoryRecipeCell.description(),
                 for: indexPath
@@ -70,10 +72,10 @@ extension MainScreen: UICollectionViewDataSource {
                 return UICollectionViewCell()
             }
             
-            cell.configureCell(image: categoryRecipe[indexPath.item].image)
+            cell.configureCell(item: item)
             return cell
             
-        case .recent(let recent):
+        case 3:
             guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: RecentCell.description(),
                 for: indexPath
@@ -81,10 +83,10 @@ extension MainScreen: UICollectionViewDataSource {
                 return UICollectionViewCell()
             }
             
-            cell.configureCell(image: recent[indexPath.item].image)
+            cell.configureCell(item: item)
             return cell
             
-        case .cuisine(let cuisine):
+        case 4:
             guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: CuisineCell.description(),
                 for: indexPath
@@ -92,8 +94,10 @@ extension MainScreen: UICollectionViewDataSource {
                 return UICollectionViewCell()
             }
             
-            cell.configureCell(image: cuisine[indexPath.item].image)
+            cell.configureCell(item: item)
             return cell
+        default:
+            return UICollectionViewCell()
         }
     }
     
@@ -108,10 +112,7 @@ extension MainScreen: UICollectionViewDataSource {
                 return UICollectionReusableView()
             }
             
-            header.configureHeader(
-                title: sections[indexPath.section].title,
-                section: indexPath.section
-            )
+            header.configureHeader(section: indexPath.section)
             return header
         default:
             return UICollectionReusableView()

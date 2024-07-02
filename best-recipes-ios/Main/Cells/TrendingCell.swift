@@ -10,7 +10,7 @@ import UIKit
 final class TrendingCell: UICollectionViewCell {
     
     // MARK: - UI
-    private lazy var image: UIImageView = {
+    private lazy var coverImageView: UIImageView = {
         let element = UIImageView()
         element.contentMode = .scaleAspectFill
         element.clipsToBounds = true
@@ -19,10 +19,33 @@ final class TrendingCell: UICollectionViewCell {
         return element
     }()
     
+    private lazy var title: UILabel = {
+        let element = UILabel()
+        element.font = UIFont.TextFonts.Home.Trending.titleTrendingCell
+        element.translatesAutoresizingMaskIntoConstraints = false
+        return element
+    }()
+    
+    private lazy var avatar: UIImageView = {
+        let element = UIImageView()
+        element.contentMode = .scaleAspectFill
+        element.clipsToBounds = true
+        element.layer.cornerRadius = 16
+        element.translatesAutoresizingMaskIntoConstraints = false
+        return element
+    }()
+    
+    private lazy var nameAuthor: UILabel = {
+        let element = UILabel()
+        element.font = UIFont.TextFonts.Home.Trending.nameAuthor
+        element.translatesAutoresizingMaskIntoConstraints = false
+        return element
+    }()
+    
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
-        addSubview(image)
+        addSubviews()
         setupConstraints()
     }
     
@@ -30,13 +53,23 @@ final class TrendingCell: UICollectionViewCell {
         fatalError()
     }
     
+    // MARK: - Overrides methods
     override func prepareForReuse() {
         super.prepareForReuse()
-        image.image = nil
+        coverImageView.image = nil
     }
     
-    func configureCell(image: UIImage) {
-        self.image.image = image
+    // MARK: - Configure Cell
+    func configureCell(item: Item) {
+        coverImageView.image = item.coverImage
+    }
+    
+    // MARK: - Add subviews
+    private func addSubviews(){
+        addSubview(coverImageView)
+        addSubview(title)
+        addSubview(avatar)
+        addSubview(nameAuthor)
     }
 }
 
@@ -44,10 +77,21 @@ final class TrendingCell: UICollectionViewCell {
 private extension TrendingCell {
     func setupConstraints() {
         NSLayoutConstraint.activate([
-            image.leadingAnchor.constraint(equalTo: leadingAnchor),
-            image.trailingAnchor.constraint(equalTo: trailingAnchor),
-            image.topAnchor.constraint(equalTo: topAnchor),
-            image.bottomAnchor.constraint(equalTo: bottomAnchor)
+            coverImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            coverImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            coverImageView.topAnchor.constraint(equalTo: topAnchor),
+            coverImageView.bottomAnchor.constraint(equalTo: title.topAnchor, constant: 12),
+            
+            title.leadingAnchor.constraint(equalTo: leadingAnchor),
+            title.bottomAnchor.constraint(equalTo: avatar.topAnchor, constant: 8),
+            
+            avatar.leadingAnchor.constraint(equalTo: leadingAnchor),
+            avatar.widthAnchor.constraint(equalToConstant: 32),
+            avatar.heightAnchor.constraint(equalToConstant: 32),
+            avatar.bottomAnchor.constraint(equalTo: bottomAnchor),
+            
+            nameAuthor.leadingAnchor.constraint(equalTo: avatar.trailingAnchor, constant: 8),
+            nameAuthor.centerYAnchor.constraint(equalTo: avatar.centerYAnchor),
         ])
     }
 }

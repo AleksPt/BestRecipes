@@ -43,7 +43,6 @@ final class MainView: UIView {
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
             withReuseIdentifier: HeaderSupplementaryView.description()
         )
-        
         return collectionView
     }()
     
@@ -68,6 +67,7 @@ final class MainView: UIView {
     // MARK: - Setup View
     private func setupView() {
         backgroundColor = UIColor.GlobalBackground.light
+        collectionView.collectionViewLayout = createLayout()
     }
     
     // MARK: - Add subviews
@@ -88,21 +88,22 @@ final class MainView: UIView {
 
 // MARK: - Create Layout
 extension MainView {
-    func createLayout(sections: [ListSection]) -> UICollectionViewCompositionalLayout {
+    func createLayout() -> UICollectionViewCompositionalLayout {
         UICollectionViewCompositionalLayout { [weak self] sectionIndex, _ in
             guard let self else { return nil }
-            let section = sections[sectionIndex]
-            switch section {
-            case .trending(_):
+            switch sectionIndex {
+            case 0:
                 return createTrendingSection()
-            case .category(_):
+            case 1:
                 return createCategorySection()
-            case .categoryRecipe(_):
+            case 2:
                 return createCategoryRecipeSection()
-            case .recent(_):
+            case 3:
                 return createRecentSection()
-            case .cuisine(_):
+            case 4:
                 return createCuisineSection()
+            default:
+                return nil
             }
         }
     }

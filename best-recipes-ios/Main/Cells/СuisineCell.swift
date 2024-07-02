@@ -10,7 +10,7 @@ import UIKit
 final class CuisineCell: UICollectionViewCell {
     
     // MARK: - UI
-    private lazy var image: UIImageView = {
+    private lazy var coverImageView: UIImageView = {
         let element = UIImageView()
         element.contentMode = .scaleAspectFill
         element.clipsToBounds = true
@@ -22,7 +22,7 @@ final class CuisineCell: UICollectionViewCell {
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
-        addSubview(image)
+        addSubview(coverImageView)
         setupConstraints()
     }
     
@@ -35,25 +35,25 @@ final class CuisineCell: UICollectionViewCell {
         fatalError()
     }
     
+    // MARK: - Overrides methods
     override func prepareForReuse() {
         super.prepareForReuse()
-        self.image.image = nil
+        self.coverImageView.image = nil
     }
     
-    func configureCell(image: UIImage) {
-        self.image.image = image
+    func configureCell(item: Item) {
+        coverImageView.image = item.coverImage
     }
 }
-
 
 // MARK: - Setup Constraints
 private extension CuisineCell {
     func setupConstraints() {
         NSLayoutConstraint.activate([
-            image.leadingAnchor.constraint(equalTo: leadingAnchor),
-            image.trailingAnchor.constraint(equalTo: trailingAnchor),
-            image.topAnchor.constraint(equalTo: topAnchor),
-            image.bottomAnchor.constraint(equalTo: bottomAnchor),
+            coverImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            coverImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            coverImageView.topAnchor.constraint(equalTo: topAnchor),
+            coverImageView.bottomAnchor.constraint(equalTo: bottomAnchor),
         ])
     }
 }

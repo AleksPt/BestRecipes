@@ -10,7 +10,7 @@ import UIKit
 final class RecentCell: UICollectionViewCell {
     
     // MARK: - UI
-    private lazy var image: UIImageView = {
+    private lazy var coverImageView: UIImageView = {
         let element = UIImageView()
         element.contentMode = .scaleAspectFill
         element.clipsToBounds = true
@@ -22,7 +22,7 @@ final class RecentCell: UICollectionViewCell {
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
-        addSubview(image)
+        addSubview(coverImageView)
         setupConstraints()
     }
     
@@ -30,13 +30,15 @@ final class RecentCell: UICollectionViewCell {
         fatalError()
     }
     
+    // MARK: - Overrides Methods
     override func prepareForReuse() {
         super.prepareForReuse()
-        self.image.image = nil
+        self.coverImageView.image = nil
     }
     
-    func configureCell(image: UIImage) {
-        self.image.image = image
+    // MARK: - Configure Cell
+    func configureCell(item: Item) {
+        coverImageView.image = item.coverImage
     }
 }
 
@@ -45,10 +47,10 @@ final class RecentCell: UICollectionViewCell {
 private extension RecentCell {
     func setupConstraints() {
         NSLayoutConstraint.activate([
-            image.leadingAnchor.constraint(equalTo: leadingAnchor),
-            image.trailingAnchor.constraint(equalTo: trailingAnchor),
-            image.topAnchor.constraint(equalTo: topAnchor),
-            image.bottomAnchor.constraint(equalTo: bottomAnchor),
+            coverImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            coverImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            coverImageView.topAnchor.constraint(equalTo: topAnchor),
+            coverImageView.bottomAnchor.constraint(equalTo: bottomAnchor),
         ])
     }
 }
