@@ -58,6 +58,7 @@ final class HeaderSupplementaryView: UICollectionReusableView {
     
     // MARK: - Overrides methods
     override func prepareForReuse() {
+        super.prepareForReuse()
         title.text = nil
     }
     

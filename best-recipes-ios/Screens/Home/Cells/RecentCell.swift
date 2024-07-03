@@ -64,6 +64,7 @@ final class RecentCell: UICollectionViewCell {
     
     // MARK: - Overrides Methods
     override func prepareForReuse() {
+        super.prepareForReuse()
         coverImageView.image = nil
         titleLabel.text = nil
         nameAuthor.text = nil

@@ -7,9 +7,9 @@
 
 import UIKit
 
-final class MainScreen: UIViewController {
+final class HomeScreen: UIViewController {
     
-    private let mainView = MainView()
+    private let mainView = HomeView()
     private var collectionData = CollectionData.getData()
     
     // MARK: - Life Cycle
@@ -40,7 +40,7 @@ final class MainScreen: UIViewController {
 }
 
 // MARK: - UICollectionViewDelegate
-extension MainScreen: UICollectionViewDelegate {
+extension HomeScreen: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         if indexPath.section != 1 {
@@ -64,7 +64,7 @@ extension MainScreen: UICollectionViewDelegate {
 }
 
 // MARK: - UICollectionViewDataSource
-extension MainScreen: UICollectionViewDataSource {
+extension HomeScreen: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         collectionData.count
     }

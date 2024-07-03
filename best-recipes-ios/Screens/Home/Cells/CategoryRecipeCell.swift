@@ -20,7 +20,6 @@ final class CategoryRecipeCell: UICollectionViewCell {
     
     private lazy var shadowView: UIView = {
         let element = UIView()
-//        element.clipsToBounds = true
         element.translatesAutoresizingMaskIntoConstraints = false
         return element
     }()

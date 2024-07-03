@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class MainView: UIView {
+final class HomeView: UIView {
     
     // MARK: - UI
     let collectionView: UICollectionView = {
@@ -70,7 +70,7 @@ final class MainView: UIView {
     }
     
     // MARK: - Set Delegates
-    func setDelegates(viewController: MainScreen) {
+    func setDelegates(viewController: HomeScreen) {
         collectionView.delegate = viewController
         collectionView.dataSource = viewController
     }
@@ -103,7 +103,7 @@ final class MainView: UIView {
 }
 
 // MARK: - Create Layout
-extension MainView {
+extension HomeView {
     func createLayout() -> UICollectionViewCompositionalLayout {
         UICollectionViewCompositionalLayout { [weak self] sectionIndex, _ in
             guard let self else { return nil }
