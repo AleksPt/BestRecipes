@@ -8,18 +8,32 @@
 import Foundation
 
 enum Link {
-    case recipesURL(offset: Int, number: Int)
+    case recipesURL(offset: Int, query: String)
+    case popularRecipesURL(offset: Int)
+    case cuisineSortedRecipesURL(offset: Int, cuisine: String)
     case recipeDetailsURL(recipeID: Int)
     case ingredientImageURL(imageName: String)
-    
-    private var apiKey: String {
-        "6422cff154a64782a341a0356afd3ec6"
+
+    private var baseURL: String {
+        "https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&number=20"
     }
     
+    private var apiKey: String {
+        ProcessInfo.processInfo.environment["API_KEY"] ?? ""
+    }
+    
+    var offset: Int {
+        10
+    }
+
     var url: URL {
         switch self {
-        case .recipesURL(let offset, let number):
-            return URL(string: "https://api.spoonacular.com/recipes/complexSearch?apiKey=\(apiKey)&addRecipeInformation=true&offset=\(offset)&number=\(number)")!
+        case .recipesURL(let offset, let query):
+            return URL(string: "\(baseURL)&apiKey=\(apiKey)&offset=\(offset)&query=\(query)")!
+        case .popularRecipesURL(let offset):
+            return URL(string: "\(baseURL)&apiKey=\(apiKey)&offset=\(offset)&sort=popularity")!
+        case .cuisineSortedRecipesURL(let offset, let cuisine):
+            return URL(string: "\(baseURL)&apiKey=\(apiKey)&offset=\(offset)&cuisine=\(cuisine)")!
         case .recipeDetailsURL(let id):
             return URL(string: "https://api.spoonacular.com/recipes/\(id)/information?apiKey=\(apiKey)")!
         case .ingredientImageURL(let imageName):
