@@ -51,7 +51,7 @@ final class CategoryCell: UICollectionViewCell {
     
     // MARK: - Configure Cell
     func configureCell(item: Item) {
-        title.text = item.category.rawValue.uppercased()
+        title.text = item.category.rawValue.capitalized
     }
 }
 
@@ -60,8 +60,9 @@ final class CategoryCell: UICollectionViewCell {
 private extension CategoryCell {
     func setupConstraints() {
         NSLayoutConstraint.activate([
-            title.centerXAnchor.constraint(equalTo: centerXAnchor),
             title.centerYAnchor.constraint(equalTo: centerYAnchor),
+            title.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12),
+            title.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12),
         ])
     }
 }

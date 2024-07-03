@@ -62,7 +62,7 @@ final class WorldCuisineCell: UICollectionViewCell {
     // MARK: - Configure Cell
     func configureCell(item: Item) {
         coverImageView.image = item.coverImage
-        titleLabel.text = item.worldCuisine.rawValue.uppercased()
+        titleLabel.text = item.worldCuisine.rawValue.capitalized
     }
 }
 

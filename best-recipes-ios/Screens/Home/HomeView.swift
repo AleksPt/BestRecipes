@@ -182,7 +182,7 @@ extension HomeView {
         
         let group = NSCollectionLayoutGroup.horizontal(
             layoutSize: .init(
-                widthDimension: .estimated(83),
+                widthDimension: .estimated(100),
                 heightDimension: .absolute(34)
             ),
             subitems: [item]
@@ -218,7 +218,7 @@ extension HomeView {
         let group = NSCollectionLayoutGroup.horizontal(
             layoutSize: .init(
                 widthDimension: .fractionalWidth(0.4),
-                heightDimension: .fractionalHeight(0.375)
+                heightDimension: .fractionalHeight(0.425)
             ),
             subitems: [item]
         )
@@ -252,7 +252,7 @@ extension HomeView {
         let group = NSCollectionLayoutGroup.horizontal(
             layoutSize: .init(
                 widthDimension: .fractionalWidth(0.35),
-                heightDimension: .fractionalHeight(0.35)
+                heightDimension: .fractionalHeight(0.375)
             ),
             subitems: [item]
         )
@@ -300,7 +300,7 @@ extension HomeView {
         section.contentInsets = .init(
             top: 16,
             leading: 16,
-            bottom: 21,
+            bottom: 80,
             trailing: 16
         )
         
