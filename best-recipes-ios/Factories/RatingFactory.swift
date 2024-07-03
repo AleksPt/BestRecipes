@@ -23,7 +23,7 @@ final class RatingFactory {
         localImage.contentMode = .scaleAspectFit
         
         let label = UILabel(frame: CGRect(x: 28, y: 3, width: 24, height: 20))
-        label.textColor = .white
+        label.textColor = blur ? UIColor.Colors.Rating.ratingWhite : UIColor.Colors.Rating.ratingBlack
         label.font = UIFont.PoppinsFont.semibold(size: 14)
         label.text = ratingLabel
         

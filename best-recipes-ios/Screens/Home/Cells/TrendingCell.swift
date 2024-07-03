@@ -18,6 +18,8 @@ final class TrendingCell: UICollectionViewCell {
         blur: true
     )
     
+    private let buttonFavorite = ButtonFactory.makeButtonFavorite(isActive: true)
+    
     private let coverImageView = CoverImageFactory.makeCoverImageView(image: Images.Trending.tranding4)
     
     private let titleLabel = LabelFactory.makeRecipeTitleLabel(text: "Title Recipe")
@@ -54,6 +56,11 @@ final class TrendingCell: UICollectionViewCell {
         ratingValue = nil
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        buttonFavorite.layer.cornerRadius = buttonFavorite.frame.size.width / 2
+    }
+    
     // MARK: - Configure Cell
     func configureCell(item: Item) {
         coverImageView.image = item.coverImage
@@ -70,6 +77,7 @@ final class TrendingCell: UICollectionViewCell {
         addSubview(avatar)
         addSubview(nameAuthor)
         coverImageView.addSubview(ratingView)
+        coverImageView.addSubview(buttonFavorite)
     }
 }
 
@@ -84,6 +92,11 @@ private extension TrendingCell {
             
             ratingView.leadingAnchor.constraint(equalTo: coverImageView.leadingAnchor, constant: 8),
             ratingView.topAnchor.constraint(equalTo: coverImageView.topAnchor, constant: 8),
+            
+            buttonFavorite.topAnchor.constraint(equalTo: coverImageView.topAnchor, constant: 8),
+            buttonFavorite.trailingAnchor.constraint(equalTo: coverImageView.trailingAnchor, constant: -8),
+            buttonFavorite.widthAnchor.constraint(equalToConstant: 32),
+            buttonFavorite.heightAnchor.constraint(equalToConstant: 32),
             
             titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
             titleLabel.heightAnchor.constraint(equalToConstant: 22),

@@ -10,6 +10,14 @@ import UIKit
 //MARK: - Onboarding Screen
 
 final class ButtonFactory {
+    static func makeButtonFavorite(isActive: Bool = false) -> UIButton {
+        let button = UIButton(type: .system)
+        button.backgroundColor = .white
+        button.setImage(isActive ? Icons.TabBar.bookmarkActive.withRenderingMode(UIImage.RenderingMode.alwaysOriginal) : Icons.TabBar.bookmarkInactive.withRenderingMode(UIImage.RenderingMode.alwaysOriginal), for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }
+    
     // onboarding main page Button
     static func onboardingMainPageButton(title: String) -> UIButton {
         let button = UIButton(type: .system)

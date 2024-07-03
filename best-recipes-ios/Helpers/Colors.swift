@@ -21,6 +21,8 @@ extension UIColor {
         
         enum Rating {
             static let rating100: UIColor = .rating100
+            static let ratingWhite: UIColor = .white
+            static let ratingBlack: UIColor = .black
         }
         
         enum Neutral {
