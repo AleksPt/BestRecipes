@@ -12,17 +12,20 @@ final class TrendingCell: UICollectionViewCell {
     // MARK: - UI
     private var ratingValue: String?
     
-    private lazy var ratingView = RatingFactory.makeSavedTrandingRating(
+    private lazy var ratingView = RatingFactory
+        .makeSavedTrandingRating(
         image: UIImageView(image: Icons.star),
-        ratingLabel: ratingValue ?? "5.0",
-        blur: true
+        ratingLabel: ratingValue ?? "2.9"
     )
     
-    private let buttonFavorite = ButtonFactory.makeButtonFavorite()
+    private let buttonFavorite = ButtonFactory
+        .makeButtonFavorite()
     
-    private let coverImageView = CoverImageFactory.makeCoverImageView(image: Images.Trending.tranding4)
+    private let coverImageView = CoverImageFactory
+        .makeCoverImageView(image: Images.Trending.tranding4)
     
-    private let titleLabel = LabelFactory.makeRecipeTitleLabel(text: "Title Recipe")
+    private let titleLabel = LabelFactory
+        .makeRecipeTitleLabel(text: "Title Recipe")
     
     private lazy var avatar: UIImageView = {
         let element = UIImageView()
@@ -33,15 +36,20 @@ final class TrendingCell: UICollectionViewCell {
         return element
     }()
     
-    private let nameAuthor = LabelFactory.makeCreatorNameLabel(text: "Name")
+    private let nameAuthor = LabelFactory
+        .makeCreatorNameLabel(text: "Name")
     
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubviews()
         setupConstraints()
-        
-        buttonFavorite.addTarget(self, action: #selector(didTapFavorite), for: .touchUpInside)
+
+        buttonFavorite.addTarget(
+            self,
+            action: #selector(didTapFavorite),
+            for: .touchUpInside
+        )
     }
     
     required init?(coder: NSCoder) {
@@ -84,9 +92,14 @@ final class TrendingCell: UICollectionViewCell {
     
     // MARK: - Actions
     @objc private func didTapFavorite(_ sender: UIButton) {
-        let bigActiveIcon = Icons.TabBar.bookmarkActive.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
-        let bigInactiveIcon = Icons.TabBar.bookmarkInactive.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
-        let image = sender.currentImage == bigActiveIcon ? bigInactiveIcon : bigActiveIcon
+        let bigActiveIcon = 
+            Icons.TabBar.bookmarkActive
+            .withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
+        let bigInactiveIcon = 
+            Icons.TabBar.bookmarkInactive
+            .withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
+        let image = sender.currentImage == 
+            bigActiveIcon ? bigInactiveIcon : bigActiveIcon
         sender.setImage(image, for: .normal)
         print("add to Favorite")
     }

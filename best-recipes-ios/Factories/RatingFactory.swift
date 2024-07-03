@@ -18,14 +18,15 @@ final class RatingFactory {
         blurEffectView.clipsToBounds = true
         blurEffectView.frame = ratingView.frame
         
-        var localImage = UIImageView(frame: CGRect(origin: .zero, size: CGSize(width: 12, height: 12)))
-        localImage = image
+        let localImage = image
         localImage.contentMode = .scaleAspectFit
+        localImage.translatesAutoresizingMaskIntoConstraints = false
         
-        let label = UILabel(frame: CGRect(x: 28, y: 3, width: 24, height: 20))
+        let label = UILabel()
         label.textColor = blur ? UIColor.Colors.Rating.ratingWhite : UIColor.Colors.Rating.ratingBlack
         label.font = UIFont.PoppinsFont.semibold(size: 14)
         label.text = ratingLabel
+        label.translatesAutoresizingMaskIntoConstraints = false
         
         ratingView.addSubview(blurEffectView)
         blurEffectView.contentView.addSubview(localImage)
@@ -36,6 +37,18 @@ final class RatingFactory {
             ratingView.addSubview(label)
         }
         ratingView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            localImage.centerYAnchor.constraint(equalTo: blurEffectView.centerYAnchor),
+            localImage.leadingAnchor.constraint(equalTo: blurEffectView.leadingAnchor, constant: 8),
+            localImage.widthAnchor.constraint(equalToConstant: 16),
+            localImage.heightAnchor.constraint(equalToConstant: 16),
+            
+            label.centerYAnchor.constraint(equalTo: blurEffectView.centerYAnchor),
+            label.leadingAnchor.constraint(equalTo: localImage.trailingAnchor, constant: 3),
+            label.trailingAnchor.constraint(equalTo: blurEffectView.trailingAnchor, constant: -8),
+        ])
+        
         return ratingView
     }
 }
