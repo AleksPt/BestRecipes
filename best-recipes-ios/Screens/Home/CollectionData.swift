@@ -13,44 +13,44 @@ struct Section {
 
 struct Item {
     enum Category: String {
-        case breakfasts = "Затраки"
-        case broths = "Бульоны"
-        case appetisers = "Закуски"
-        case drinks = "Напитки"
-        case pasta = "Паста"
-        case pizza = "Пицца"
-        case risotto = "Ризотто"
-        case salads = "Салаты"
-        case soups = "Супы"
-        case sandwiches = "Сэндвичи"
-        case desserts = "Десерты"
+        case breakfasts
+        case broths
+        case appetisers
+        case drinks
+        case pasta
+        case pizza
+        case risotto
+        case salads
+        case soups
+        case sandwiches
+        case desserts
     }
     
     enum Author: String {
-        case scarlett = "Скарлетт Йоханссон"
-        case portman = "Натали Портман"
-        case alba = "Джессика Альба"
-        case fox = "Меган Фокс"
-        case salma = "Сальма Хайек"
-        case teron = "Шарлиз Терон"
+        case scarlett = "Scarlett Johansson"
+        case portman = "Natalie Portman"
+        case alba = "Jessica Alba"
+        case fox = "Megan Fox"
+        case salma = "Salma Hayek"
+        case teron = "Charlize Theron"
     }
     
     enum WorldCuisine: String {
-        case usa = "США"
-        case canada = "Канада"
-        case brazil = "Бразилия"
-        case germany = "Германия"
-        case japan = "Япония"
-        case australia = "Австралия"
-        case india = "Индия"
-        case france = "Франция"
-        case italy = "Италия"
-        case portugal = "Португалия"
-        case mexico = "Мексика"
-        case russia = "Россия"
-        case argentina = "Аргентина"
-        case egypt = "Египет"
-        case china = "Китай"
+        case usa = "USA"
+        case canada
+        case brazil
+        case germany
+        case japan
+        case australia
+        case india
+        case france
+        case italy
+        case portugal
+        case mexico
+        case russia
+        case argentina
+        case egypt
+        case china
     }
     
     let rating: Double
@@ -69,7 +69,7 @@ final class CollectionData {
         Item(
             rating: 3.5,
             coverImage: Images.Trending.tranding1,
-            title: "Сырники из творога",
+            title: "Chicken Soup",
             avatar: Images.Avatars.avatar1,
             nameAuthor: Item.Author.scarlett.rawValue,
             time: 7,
@@ -79,7 +79,7 @@ final class CollectionData {
         Item(
             rating: 4.5,
             coverImage: Images.Trending.tranding2,
-            title: "Лисички в сметане",
+            title: "Lemon Cheesecake",
             avatar: Images.Avatars.avatar2,
             nameAuthor: Item.Author.fox.rawValue,
             time: 42,
@@ -89,7 +89,7 @@ final class CollectionData {
         Item(
             rating: 2.2,
             coverImage: Images.Trending.tranding3,
-            title: "Пюре из кабачка",
+            title: "Summer Meat Slaw",
             avatar: Images.Avatars.avatar3,
             nameAuthor: Item.Author.salma.rawValue,
             time: 11,
@@ -99,7 +99,7 @@ final class CollectionData {
         Item(
             rating: 4.9,
             coverImage: Images.Trending.tranding2,
-            title: "Классическая шарлотка",
+            title: "Olive Boursin Spread",
             avatar: Images.Avatars.avatar2,
             nameAuthor: Item.Author.portman.rawValue,
             time: 15,
@@ -109,7 +109,7 @@ final class CollectionData {
         Item(
             rating: 4.1,
             coverImage: Images.Trending.tranding3,
-            title: "Азу по-татарски",
+            title: "Beef Enchilada Bake",
             avatar: Images.Avatars.avatar3,
             nameAuthor: Item.Author.alba.rawValue,
             time: 25,
@@ -119,7 +119,7 @@ final class CollectionData {
         Item(
             rating: 2.7,
             coverImage: Images.Trending.tranding4,
-            title: "Крем-суп из тыквы",
+            title: "Carrot Cake Pancakes",
             avatar: Images.Avatars.avatar4,
             nameAuthor: Item.Author.fox.rawValue,
             time: 18,
@@ -129,7 +129,7 @@ final class CollectionData {
         Item(
             rating: 5.0,
             coverImage: Images.Popular.popular1,
-            title: "Домашний рататуй",
+            title: "Air Fryer Po' Boy",
             avatar: Images.Avatars.avatar5,
             nameAuthor: Item.Author.salma.rawValue,
             time: 7,
@@ -139,7 +139,7 @@ final class CollectionData {
         Item(
             rating: 4.1,
             coverImage: Images.Popular.popular2,
-            title: "Суп харчо",
+            title: "Harissa Baked Salmon",
             avatar: Images.Avatars.avatar6,
             nameAuthor: Item.Author.teron.rawValue,
             time: 34,
@@ -149,7 +149,7 @@ final class CollectionData {
         Item(
             rating: 3.5,
             coverImage: Images.Popular.popular3,
-            title: "Оладьи на кефире",
+            title: "Shirazi Salad",
             avatar: Images.Avatars.avatar1,
             nameAuthor: Item.Author.scarlett.rawValue,
             time: 11,
@@ -159,7 +159,7 @@ final class CollectionData {
         Item(
             rating: 4.7,
             coverImage: Images.Popular.popular4,
-            title: "Банановые панкейки",
+            title: "Bloody Mary Pork Tacos",
             avatar: Images.Avatars.avatar2,
             nameAuthor: Item.Author.salma.rawValue,
             time: 15,
@@ -169,7 +169,7 @@ final class CollectionData {
         Item(
             rating: 3.0,
             coverImage: Images.Popular.popular5,
-            title: "Чечевичный суп с томатами",
+            title: "BBQ'D Beans",
             avatar: Images.Avatars.avatar3,
             nameAuthor: Item.Author.fox.rawValue,
             time: 25,
@@ -179,7 +179,7 @@ final class CollectionData {
         Item(
             rating: 2.4,
             coverImage: Images.Popular.popular6,
-            title: "Паста со свежими помидорами",
+            title: "The Viral Crookie",
             avatar: Images.Avatars.avatar4,
             nameAuthor: Item.Author.portman.rawValue,
             time: 22,
@@ -189,7 +189,7 @@ final class CollectionData {
         Item(
             rating: 4.6,
             coverImage: Images.Recent.recent1,
-            title: "Французские тосты с яблоками",
+            title: "Thai Spice Sweet Tea",
             avatar: Images.Avatars.avatar5,
             nameAuthor: Item.Author.teron.rawValue,
             time: 5,

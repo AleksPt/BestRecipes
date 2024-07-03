@@ -51,7 +51,7 @@ final class CategoryCell: UICollectionViewCell {
     
     // MARK: - Configure Cell
     func configureCell(item: Item) {
-        title.text = item.category.rawValue
+        title.text = item.category.rawValue.uppercased()
     }
 }
 
