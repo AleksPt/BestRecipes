@@ -10,6 +10,14 @@ import UIKit
 final class TrendingCell: UICollectionViewCell {
     
     // MARK: - UI
+    private var ratingValue: String?
+    
+    private lazy var ratingView = RatingFactory.makeSavedTrandingRating(
+        image: UIImageView(image: Icons.star),
+        ratingLabel: ratingValue ?? "5.0",
+        blur: true
+    )
+    
     private let coverImageView = CoverImageFactory.makeCoverImageView(image: Images.Trending.tranding4)
     
     private let titleLabel = LabelFactory.makeRecipeTitleLabel(text: "Title Recipe")
@@ -43,6 +51,7 @@ final class TrendingCell: UICollectionViewCell {
         titleLabel.text = nil
         avatar.image = nil
         nameAuthor.text = nil
+        ratingValue = nil
     }
     
     // MARK: - Configure Cell
@@ -51,6 +60,7 @@ final class TrendingCell: UICollectionViewCell {
         titleLabel.text = item.title
         avatar.image = item.avatar
         nameAuthor.text = "By " + item.nameAuthor
+        ratingValue = item.rating.description
     }
     
     // MARK: - Add subviews
@@ -59,6 +69,7 @@ final class TrendingCell: UICollectionViewCell {
         addSubview(titleLabel)
         addSubview(avatar)
         addSubview(nameAuthor)
+        coverImageView.addSubview(ratingView)
     }
 }
 
@@ -70,6 +81,9 @@ private extension TrendingCell {
             coverImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
             coverImageView.topAnchor.constraint(equalTo: topAnchor),
             coverImageView.bottomAnchor.constraint(equalTo: titleLabel.topAnchor, constant: -12),
+            
+            ratingView.leadingAnchor.constraint(equalTo: coverImageView.leadingAnchor, constant: 8),
+            ratingView.topAnchor.constraint(equalTo: coverImageView.topAnchor, constant: 8),
             
             titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
             titleLabel.heightAnchor.constraint(equalToConstant: 22),

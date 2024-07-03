@@ -23,7 +23,7 @@ final class RatingFactory {
         localImage.contentMode = .scaleAspectFit
         
         let label = UILabel(frame: CGRect(x: 28, y: 3, width: 24, height: 20))
-        label.textColor = UIColor.Colors.Rating.rating100
+        label.textColor = .white
         label.font = UIFont.PoppinsFont.semibold(size: 14)
         label.text = ratingLabel
         
@@ -35,6 +35,7 @@ final class RatingFactory {
             ratingView.addSubview(localImage)
             ratingView.addSubview(label)
         }
+        ratingView.translatesAutoresizingMaskIntoConstraints = false
         return ratingView
     }
 }
