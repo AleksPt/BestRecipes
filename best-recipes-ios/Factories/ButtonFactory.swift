@@ -10,10 +10,18 @@ import UIKit
 //MARK: - Onboarding Screen
 
 final class ButtonFactory {
-    static func makeButtonFavorite(isActive: Bool = false) -> UIButton {
+    static func makeButtonFavorite(isActive: Bool = false, bigSize: Bool = true) -> UIButton {
         let button = UIButton(type: .system)
         button.backgroundColor = .white
-        button.setImage(isActive ? Icons.TabBar.bookmarkActive.withRenderingMode(UIImage.RenderingMode.alwaysOriginal) : Icons.TabBar.bookmarkInactive.withRenderingMode(UIImage.RenderingMode.alwaysOriginal), for: .normal)
+        
+        let bigActiveIcon = Icons.TabBar.bookmarkActive.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
+        let bigInactiveIcon = Icons.TabBar.bookmarkInactive.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
+        let smallActiveIcon = Icons.bookmarkActiveSmall.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
+        let smallInctiveIcon = Icons.bookmarkInactiveSmall.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
+        
+        button.setImage(isActive ?
+                        (bigSize ? bigActiveIcon : smallActiveIcon)
+                        : (bigSize ? bigInactiveIcon : smallInctiveIcon), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }

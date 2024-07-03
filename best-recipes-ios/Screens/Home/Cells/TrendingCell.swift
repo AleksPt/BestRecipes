@@ -18,7 +18,7 @@ final class TrendingCell: UICollectionViewCell {
         blur: true
     )
     
-    private let buttonFavorite = ButtonFactory.makeButtonFavorite(isActive: true)
+    private let buttonFavorite = ButtonFactory.makeButtonFavorite()
     
     private let coverImageView = CoverImageFactory.makeCoverImageView(image: Images.Trending.tranding4)
     
@@ -40,6 +40,8 @@ final class TrendingCell: UICollectionViewCell {
         super.init(frame: frame)
         addSubviews()
         setupConstraints()
+        
+        buttonFavorite.addTarget(self, action: #selector(didTapFavorite), for: .touchUpInside)
     }
     
     required init?(coder: NSCoder) {
@@ -78,6 +80,15 @@ final class TrendingCell: UICollectionViewCell {
         addSubview(nameAuthor)
         coverImageView.addSubview(ratingView)
         coverImageView.addSubview(buttonFavorite)
+    }
+    
+    // MARK: - Actions
+    @objc private func didTapFavorite(_ sender: UIButton) {
+        let bigActiveIcon = Icons.TabBar.bookmarkActive.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
+        let bigInactiveIcon = Icons.TabBar.bookmarkInactive.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
+        let image = sender.currentImage == bigActiveIcon ? bigInactiveIcon : bigActiveIcon
+        sender.setImage(image, for: .normal)
+        print("add to Favorite")
     }
 }
 

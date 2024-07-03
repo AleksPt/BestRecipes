@@ -32,11 +32,15 @@ final class CategoryRecipeCell: UICollectionViewCell {
     
     private let timeValueLabel = LabelFactory.makeMinutesLabel(text: "")
     
+    private let buttonFavorite = ButtonFactory.makeButtonFavorite(bigSize: false)
+    
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubviews()
         setupConstraints()
+        
+        buttonFavorite.addTarget(self, action: #selector(didTapFavorite), for: .touchUpInside)
     }
     
     required init?(coder: NSCoder) {
@@ -53,11 +57,10 @@ final class CategoryRecipeCell: UICollectionViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        buttonFavorite.layer.cornerRadius = buttonFavorite.frame.size.width / 2
         shadowView.layer.cornerRadius = shadowView.frame.width / 2
         shadowView.heightAnchor.constraint(equalToConstant: shadowView.frame.width).isActive = true
-        
         coverImageView.layer.cornerRadius = shadowView.layer.cornerRadius
-        
         shadowView.addShadow(
             offset: CGSize.init(width: 0, height: 8),
             color: UIColor.black,
@@ -74,6 +77,7 @@ final class CategoryRecipeCell: UICollectionViewCell {
         customBackgroundView.addSubview(titleLabel)
         customBackgroundView.addSubview(timeSubtitleLabel)
         customBackgroundView.addSubview(timeValueLabel)
+        customBackgroundView.addSubview(buttonFavorite)
     }
     
     // MARK: - Configure Cell
@@ -81,6 +85,15 @@ final class CategoryRecipeCell: UICollectionViewCell {
         coverImageView.image = item.coverImage
         titleLabel.text = item.title
         timeValueLabel.text = item.time.description + " Mins"
+    }
+    
+    // MARK: - Actions
+    @objc private func didTapFavorite(_ sender: UIButton) {
+        let smallActiveIcon = Icons.bookmarkActiveSmall.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
+        let smallInctiveIcon = Icons.bookmarkInactiveSmall.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
+        let image = sender.currentImage == smallActiveIcon ? smallInctiveIcon : smallActiveIcon
+        sender.setImage(image, for: .normal)
+        print("add to Favorite")
     }
 }
 
@@ -112,6 +125,11 @@ private extension CategoryRecipeCell {
             
             timeValueLabel.leadingAnchor.constraint(equalTo: customBackgroundView.leadingAnchor, constant: 12),
             timeValueLabel.bottomAnchor.constraint(equalTo: customBackgroundView.bottomAnchor, constant: -11),
+            
+            buttonFavorite.trailingAnchor.constraint(equalTo: customBackgroundView.trailingAnchor, constant: -12),
+            buttonFavorite.bottomAnchor.constraint(equalTo: customBackgroundView.bottomAnchor, constant: -11),
+            buttonFavorite.widthAnchor.constraint(equalToConstant: 24),
+            buttonFavorite.heightAnchor.constraint(equalToConstant: 24),
         ])
     }
 }
