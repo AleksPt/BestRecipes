@@ -20,11 +20,15 @@ final class MainScreen: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         mainView.setDelegates(viewController: self)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         selectCategory()
     }
     
     // MARK: - Private methods
-    /// Выделяет популярную категорию при старте приложения
+    /// Выделяет популярную категорию перед показом экрана
     private func selectCategory() {
         let indexPath = IndexPath(item: 0, section: 1)
         mainView.collectionView.selectItem(
@@ -42,9 +46,20 @@ extension MainScreen: UICollectionViewDelegate {
         if indexPath.section != 1 {
             print("go to Recipe Detail Screen")
         } else {
+            let recipeItems = CollectionData.getData()[indexPath.section + 1].items
+            let resultFilter = recipeItems.filter {
+                $0.category.rawValue == collectionData[indexPath.section].items[indexPath.item].category.rawValue
+            }
+            collectionData[indexPath.section + 1].items = resultFilter
             
+            let indexSet = IndexSet(integer: indexPath.section + 1)
+            mainView.collectionView.reloadSections(indexSet)
         }
         
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, shouldDeselectItemAt indexPath: IndexPath) -> Bool {
+        false
     }
 }
 

@@ -17,7 +17,7 @@ final class HeaderSupplementaryView: UICollectionReusableView {
         return element
     }()
     
-    private lazy var seeAllButton: UIButton = {
+    lazy var seeAllButton: UIButton = {
         let element = UIButton(type: .system)
         element.setTitle("See All", for: .normal)
         element.tintColor = UIColor.NavigationBar.title

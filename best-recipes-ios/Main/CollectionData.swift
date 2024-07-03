@@ -77,6 +77,26 @@ final class CollectionData {
             worldCuisine: .usa
         ),
         Item(
+            rating: 4.5,
+            coverImage: Images.Trending.tranding2,
+            title: "Лисички в сметане",
+            avatar: Images.Avatars.avatar2,
+            nameAuthor: Item.Author.fox.rawValue,
+            time: 42,
+            category: .breakfasts,
+            worldCuisine: .argentina
+        ),
+        Item(
+            rating: 2.2,
+            coverImage: Images.Trending.tranding3,
+            title: "Пюре из кабачка",
+            avatar: Images.Avatars.avatar3,
+            nameAuthor: Item.Author.salma.rawValue,
+            time: 11,
+            category: .breakfasts,
+            worldCuisine: .canada
+        ),
+        Item(
             rating: 4.9,
             coverImage: Images.Trending.tranding2,
             title: "Классическая шарлотка",
