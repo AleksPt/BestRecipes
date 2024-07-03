@@ -84,3 +84,57 @@ struct NetworkManager {
         }.resume()
     }
 }
+
+// Пример использования методов во ViewController
+
+//    private func setupRecipeImage() {
+//
+//        // для загрузки картинки рецепта, используя Kingfisher
+//
+//        guard let url = dataStore.recipes.first?.imageURL else { return }
+//        recipeImage.getImage(from: url)
+//
+//        // для загрузки картинки ингредиента, используя URLSession
+//
+////        guard let url = dataStore.recipes.first?.extendedIngredients?.last?.fullImageURL else { return }
+////
+////        networkManager.fetchImage(from: url) { [unowned self] result in
+////            switch result {
+////            case .success(let image):
+////                recipeImage.image = UIImage(data: image)
+////            case .failure(let error):
+////                print(error)
+////            }
+////        }
+//    }
+//
+//    private func fetchData() {
+//
+//        // для загрузки рецептов, используя URLSession
+//
+//        let url = Link.recipesURL(offset: 0, query: "").url
+//
+//        networkManager.fetch(ComplexSearch.self, from: url) { result in
+//            switch result {
+//            case .success(let recipes):
+//                print(recipes)
+//            case .failure(let error):
+//                print(error)
+//            }
+//        }
+//
+//        // для загрузки рецепта, используя URLSession
+//
+////        let url = Link.recipeDetailsURL(recipeID: 705309).url
+////
+////        networkManager.fetch(Recipe.self, from: url) { result in
+////            switch result {
+////            case .success(let recipe):
+////                print(recipe)
+////            case .failure(let error):
+////                print(error)
+////            }
+////        }
+//
+//    }
+
