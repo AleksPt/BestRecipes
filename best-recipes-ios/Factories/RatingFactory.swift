@@ -31,7 +31,7 @@ final class RatingFactory {
         blurEffectView.contentView.addSubview(localImage)
         blurEffectView.contentView.addSubview(label)
         if !blur {
-            label.textColor = .neutral100
+            label.textColor = UIColor.Colors.Neutral.neutral100
             ratingView.addSubview(localImage)
             ratingView.addSubview(label)
         }
