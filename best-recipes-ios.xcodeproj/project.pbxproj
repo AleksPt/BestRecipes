@@ -98,7 +98,7 @@
 				D998A12A2C3089FB0084F9C4 /* AppDelegate.swift */,
 				D998A12C2C3089FB0084F9C4 /* SceneDelegate.swift */,
 				D998A12E2C3089FB0084F9C4 /* ViewController.swift */,
-				FA685EA92C340FB30028BA17 /* Main */,
+				FA685EA92C340FB30028BA17 /* MainScreen */,
 				D998A1302C3089FB0084F9C4 /* Main.storyboard */,
 				D998A1332C3089FC0084F9C4 /* Assets.xcassets */,
 				D998A1352C3089FC0084F9C4 /* LaunchScreen.storyboard */,
@@ -133,7 +133,7 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
-		FA685EA92C340FB30028BA17 /* Main */ = {
+		FA685EA92C340FB30028BA17 /* MainScreen */ = {
 			isa = PBXGroup;
 			children = (
 				FA685EAD2C341BAA0028BA17 /* CollectionData.swift */,
@@ -141,7 +141,7 @@
 				FA685E7A2C32EB770028BA17 /* MainScreen.swift */,
 				FA685E862C32F1520028BA17 /* Cells */,
 			);
-			path = Main;
+			path = MainScreen;
 			sourceTree = "<group>";
 		};
 		FA6ED7B02C328DB3004F1B10 /* Fonts */ = {
