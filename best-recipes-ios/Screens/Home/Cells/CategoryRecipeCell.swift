@@ -84,6 +84,13 @@ final class CategoryRecipeCell: UICollectionViewCell {
         shadowView.heightAnchor.constraint(equalToConstant: shadowView.frame.width).isActive = true
         
         coverImageView.layer.cornerRadius = shadowView.layer.cornerRadius
+        
+        shadowView.addShadow(
+            offset: CGSize.init(width: 0, height: 8),
+            color: UIColor.black,
+            radius: 25,
+            opacity: 0.25
+        )
     }
     
     // MARK: - Add subviews
@@ -94,13 +101,6 @@ final class CategoryRecipeCell: UICollectionViewCell {
         customBackgroundView.addSubview(titleLabel)
         customBackgroundView.addSubview(timeSubtitleLabel)
         customBackgroundView.addSubview(timeValueLabel)
-        
-        shadowView.addShadow(
-            offset: CGSize.init(width: 0, height: 8),
-            color: UIColor.black,
-            radius: 25,
-            opacity: 0.25
-        )
     }
     
     // MARK: - Configure Cell
