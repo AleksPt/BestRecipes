@@ -10,13 +10,7 @@ import UIKit
 final class CategoryRecipeCell: UICollectionViewCell {
     
     // MARK: - UI
-    private lazy var coverImageView: UIImageView = {
-        let element = UIImageView()
-        element.contentMode = .scaleAspectFill
-        element.clipsToBounds = true
-        element.translatesAutoresizingMaskIntoConstraints = false
-        return element
-    }()
+    private let coverImageView = CoverImageFactory.makeCoverImageView(image: Images.Trending.tranding4)
     
     private lazy var shadowView: UIView = {
         let element = UIView()

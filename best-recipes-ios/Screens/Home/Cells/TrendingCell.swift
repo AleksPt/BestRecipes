@@ -10,14 +10,7 @@ import UIKit
 final class TrendingCell: UICollectionViewCell {
     
     // MARK: - UI
-    private lazy var coverImageView: UIImageView = {
-        let element = UIImageView()
-        element.contentMode = .scaleAspectFill
-        element.clipsToBounds = true
-        element.translatesAutoresizingMaskIntoConstraints = false
-        element.layer.cornerRadius = 10
-        return element
-    }()
+    private let coverImageView = CoverImageFactory.makeCoverImageView(image: Images.Trending.tranding4)
     
     private let titleLabel = LabelFactory.makeRecipeTitleLabel(text: "Title Recipe")
     
