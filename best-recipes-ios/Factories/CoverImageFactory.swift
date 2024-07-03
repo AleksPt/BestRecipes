@@ -10,6 +10,7 @@ import UIKit
 final class CoverImageFactory {
     static func makeCoverImageView(image: UIImage) -> UIImageView {
         let element = UIImageView()
+        element.isUserInteractionEnabled = true
         element.image = image
         element.contentMode = .scaleAspectFill
         element.clipsToBounds = true
