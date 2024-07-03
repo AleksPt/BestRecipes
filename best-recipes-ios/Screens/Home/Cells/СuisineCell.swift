@@ -19,15 +19,7 @@ final class WorldCuisineCell: UICollectionViewCell {
         return element
     }()
     
-    private lazy var titleLabel: UILabel = {
-        let element = UILabel()
-        element.font = UIFont.TextFonts.Home.Kitchens.title
-        element.textColor = UIColor.Home.title
-        element.translatesAutoresizingMaskIntoConstraints = false
-        element.textAlignment = .center
-        element.numberOfLines = 0
-        return element
-    }()
+    private let titleLabel = LabelFactory.makePopularCreatorNameLabel(text: "Country")
     
     // MARK: - Init
     override init(frame: CGRect) {

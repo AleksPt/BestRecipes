@@ -19,13 +19,7 @@ final class TrendingCell: UICollectionViewCell {
         return element
     }()
     
-    private lazy var titleLabel: UILabel = {
-        let element = UILabel()
-        element.font = UIFont.TextFonts.Home.Trending.titleTrendingCell
-        element.textColor = UIColor.Home.title
-        element.translatesAutoresizingMaskIntoConstraints = false
-        return element
-    }()
+    private let titleLabel = LabelFactory.makeRecipeTitleLabel(text: "Title Recipe")
     
     private lazy var avatar: UIImageView = {
         let element = UIImageView()
@@ -36,13 +30,7 @@ final class TrendingCell: UICollectionViewCell {
         return element
     }()
     
-    private lazy var nameAuthor: UILabel = {
-        let element = UILabel()
-        element.font = UIFont.TextFonts.Home.Trending.nameAuthor
-        element.textColor = UIColor.Home.authorName
-        element.translatesAutoresizingMaskIntoConstraints = false
-        return element
-    }()
+    private let nameAuthor = LabelFactory.makeCreatorNameLabel(text: "Name")
     
     // MARK: - Init
     override init(frame: CGRect) {

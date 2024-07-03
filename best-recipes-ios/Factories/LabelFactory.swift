@@ -168,7 +168,7 @@ final class LabelFactory {
     static func makeCategoryRecipeLabel(text: String) -> UILabel {
         let label = UILabel()
         label.textAlignment = .center
-        label.textColor = .white
+        label.textColor = UIColor.Home.PopularCategory.cellUnselectedTitle
         label.font = UIFont.TextFonts.Home.PopularCategory.nameCategory
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = text

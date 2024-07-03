@@ -34,22 +34,9 @@ final class RecentCell: UICollectionViewCell {
         return element
     }()
     
-    private lazy var titleLabel: CustomTitleLabel = {
-        let element = CustomTitleLabel()
-        element.font = UIFont.TextFonts.Home.RecentRecipe.titleCell
-        element.textColor = UIColor.Home.title
-        element.translatesAutoresizingMaskIntoConstraints = false
-        element.numberOfLines = 2
-        return element
-    }()
+    private let titleLabel = LabelFactory.makeRecentRecipeTitleLabel(text: "Title")
     
-    private lazy var nameAuthor: UILabel = {
-        let element = UILabel()
-        element.font = UIFont.TextFonts.Home.RecentRecipe.subtitle
-        element.textColor = UIColor.Home.authorName
-        element.translatesAutoresizingMaskIntoConstraints = false
-        return element
-    }()
+    private let nameAuthor = LabelFactory.makeRecentRecipeCreatorLabel(text: "Name")
     
     // MARK: - Init
     override init(frame: CGRect) {

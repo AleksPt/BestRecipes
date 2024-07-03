@@ -32,32 +32,11 @@ final class CategoryRecipeCell: UICollectionViewCell {
         return element
     }()
     
-    private lazy var titleLabel: UILabel = {
-        let element = UILabel()
-        element.font = UIFont.TextFonts.Home.PopularCategory.titleCell
-        element.textColor = UIColor.Home.title
-        element.numberOfLines = 2
-        element.textAlignment = .center
-        element.translatesAutoresizingMaskIntoConstraints = false
-        return element
-    }()
+    private let titleLabel = LabelFactory.makePopularRecipeTitleLabel(text: "Title")
     
-    private lazy var timeSubtitleLabel: UILabel = {
-        let element = UILabel()
-        element.font = UIFont.TextFonts.Home.PopularCategory.timeSubtitle
-        element.textColor = UIColor.Home.PopularCategory.timeLabel
-        element.text = "Time"
-        element.translatesAutoresizingMaskIntoConstraints = false
-        return element
-    }()
+    private let timeSubtitleLabel = LabelFactory.makeTimeLabel(text: "Time")
     
-    private lazy var timeValueLabel: UILabel = {
-        let element = UILabel()
-        element.font = UIFont.TextFonts.Home.PopularCategory.timeTitle
-        element.textColor = UIColor.Home.title
-        element.translatesAutoresizingMaskIntoConstraints = false
-        return element
-    }()
+    private let timeValueLabel = LabelFactory.makeMinutesLabel(text: "")
     
     // MARK: - Init
     override init(frame: CGRect) {

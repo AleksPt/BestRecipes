@@ -10,14 +10,9 @@ import UIKit
 final class HeaderSupplementaryView: UICollectionReusableView {
     
     // MARK: - UI
-    private lazy var title: UILabel = {
-        let element = UILabel()
-        element.font = UIFont.TextFonts.Home.titleSection
-        element.translatesAutoresizingMaskIntoConstraints = false
-        return element
-    }()
+    private let title = LabelFactory.makeCollectionHeaderLabel(text: "")
     
-    lazy var seeAllButton: UIButton = {
+    private lazy var seeAllButton: UIButton = {
         let element = UIButton(type: .system)
         element.setTitle("See All", for: .normal)
         element.tintColor = UIColor.NavigationBar.title

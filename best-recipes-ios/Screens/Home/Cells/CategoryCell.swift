@@ -10,14 +10,7 @@ import UIKit
 final class CategoryCell: UICollectionViewCell {
     
     // MARK: - UI
-    private lazy var title: UILabel = {
-        let element = UILabel()
-        element.translatesAutoresizingMaskIntoConstraints = false
-        element.font = UIFont.PoppinsFont.semibold(size: 12)
-        element.textColor = UIColor.Home.PopularCategory.cellUnselectedTitle
-        element.textAlignment = .center
-        return element
-    }()
+    private let title = LabelFactory.makeCategoryRecipeLabel(text: "Category")
     
     // MARK: - Init
     override init(frame: CGRect) {
