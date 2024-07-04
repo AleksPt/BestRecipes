@@ -17,7 +17,7 @@ final class DataStore {
             extendedIngredients: [
                 Ingredient(
                     name: "curry powder",
-                    image: "curry-powder.jpg",
+                    image: "Curry.png",
                     measures: Measure(
                         metric: Metric(
                             amount: 0.5,
@@ -27,7 +27,7 @@ final class DataStore {
                 ),
                 Ingredient(
                     name: "garlic",
-                    image: "garlic.png",
+                    image: "Garlic.png",
                     measures: Measure(
                         metric: Metric(
                             amount: 2,
@@ -37,7 +37,7 @@ final class DataStore {
                 ),
                 Ingredient(
                     name: "ginger",
-                    image: "ginger.png",
+                    image: "Ginger.png",
                     measures: Measure(
                         metric: Metric(
                             amount: 1,
@@ -47,7 +47,7 @@ final class DataStore {
                 ),
                 Ingredient(
                     name: "seasoning cubes",
-                    image: "diced-ham.jpg",
+                    image: "Seasoning.png",
                     measures: Measure(
                         metric: Metric(
                             amount: 3,
@@ -57,7 +57,7 @@ final class DataStore {
                 ),
                 Ingredient(
                     name: "pineapple cubes",
-                    image: "diced-ham.jpg",
+                    image: "Pineapple.png",
                     measures: Measure(
                         metric: Metric(
                             amount: 9,
