@@ -25,9 +25,9 @@ final class TabBarController: UITabBarController, UITabBarControllerDelegate {
     
     private func setupViewControllers() {
         // MainScreen
-//        let firstVC = UIViewController()
-//        firstVC.tabBarItem = UITabBarItem(title: nil, image: Icons.TabBar.homeInactive, selectedImage: Icons.TabBar.homeActive.withRenderingMode(UIImage.RenderingMode.alwaysOriginal))
-//        firstVC.tabBarItem.tag = 1
+        let homeVC = HomeScreen()
+        homeVC.tabBarItem = UITabBarItem(title: nil, image: Icons.TabBar.homeInactive, selectedImage: Icons.TabBar.homeActive.withRenderingMode(UIImage.RenderingMode.alwaysOriginal))
+        homeVC.tabBarItem.tag = 1
         
         // Saved Recipes
 //        let secondVC = UIViewController()
@@ -50,7 +50,7 @@ final class TabBarController: UITabBarController, UITabBarControllerDelegate {
 //        fifththVC.tabBarItem = UITabBarItem(title: nil, image: Icons.TabBar.profileInactive, selectedImage: Icons.TabBar.profileActive.withRenderingMode(UIImage.RenderingMode.alwaysOriginal))
 //        fifththVC.tabBarItem.tag = 5
         
-        self.viewControllers = [] //[firstVC, secondVC, thirdVC, fourthVC, fifththVC]
+        self.viewControllers = [homeVC] //[firstVC, secondVC, thirdVC, fourthVC, fifththVC]
     }
     
     private func setupTabBar() {
