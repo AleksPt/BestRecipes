@@ -10,7 +10,7 @@ import UIKit
 struct Section {
     var recipes: [Recipe]
     let categories: [String] = DishTypes.getDishTypes()
-    let cuisines: [String] = Cuisine.getCuisines()
+    let cuisines: [Cuisine] = Cuisine.getCuisines()
 }
 
 final class CollectionData {

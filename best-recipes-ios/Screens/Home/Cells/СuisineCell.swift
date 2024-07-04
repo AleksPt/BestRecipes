@@ -45,9 +45,9 @@ final class WorldCuisineCell: UICollectionViewCell {
     }
     
     // MARK: - Configure Cell
-    func configureCell(item: String) {
-        coverImageView.image = Images.Popular.popular4
-        titleLabel.text = item
+    func configureCell(item: Cuisine) {
+        coverImageView.image = UIImage(named: item.rawValue)
+        titleLabel.text = item.rawValue
     }
 }
 

@@ -106,7 +106,7 @@ enum Cuisine: String, CaseIterable {
     case chinese = "Chinese"
     case easternEuropean = "Eastern European"
     case european = "European"
-    case french = "Erench"
+    case french = "French"
     case german = "German"
     case greek = "Greek"
     case indian = "Indian"
@@ -125,8 +125,8 @@ enum Cuisine: String, CaseIterable {
     case thai = "Thai"
     case vietnamese = "Vietnamese"
     
-    static func getCuisines() -> [String] {
-        return Cuisine.allCases.map { $0.rawValue }
+    static func getCuisines() -> [Cuisine] {
+        return Cuisine.allCases
     }
 }
 
