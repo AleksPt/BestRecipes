@@ -21,6 +21,8 @@ extension UIColor {
         
         enum Rating {
             static let rating100: UIColor = .rating100
+            static let ratingWhite: UIColor = .white
+            static let ratingBlack: UIColor = .black
         }
         
         enum Neutral {
@@ -38,7 +40,7 @@ extension UIColor {
         }
         
         enum Primary {
-            static let primary: UIColor = .primary
+            static let primary: UIColor = .primary300
             static let primary0: UIColor = .primary0
             static let primary10: UIColor = .primary10
             static let primary20: UIColor = .primary20
@@ -54,7 +56,7 @@ extension UIColor {
         }
         
         enum Secondary {
-            static let secondary: UIColor = .secondary
+            static let secondary: UIColor = .secondary200
             static let secondary0: UIColor = .secondary0
             static let secondary10: UIColor = .secondary10
             static let secondary20: UIColor = .secondary20
