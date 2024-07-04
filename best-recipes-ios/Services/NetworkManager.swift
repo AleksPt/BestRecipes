@@ -7,23 +7,39 @@
 
 import Foundation
 
-enum Link {
+enum APIEndpoint {
+    
+    enum link {
+        case base
+        case info
+        case ingredients
+        case instructions
+        
+        var url: String {
+            switch self {
+            case .base:
+                "https://api.spoonacular.com/recipes/complexSearch?"
+            case .info:
+                "addRecipeInformation=true"
+            case .instructions:
+                "addRecipeInstructions=true"
+            case .ingredients:
+                "fillIngredients=true"
+            }
+        }
+    }
+    
     case recipesURL(offset: Int, query: String)
     case popularRecipesURL(offset: Int)
     case cuisineSortedRecipesURL(offset: Int, cuisine: String)
-    case recipeDetailsURL(recipeID: Int)
     case ingredientImageURL(imageName: String)
 
     private var baseURL: String {
-        "https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&number=20"
+        "\(link.base.url)\(link.info.url)&\(link.ingredients.url)&\(link.instructions.url)"
     }
     
     private var apiKey: String {
         ProcessInfo.processInfo.environment["API_KEY"] ?? ""
-    }
-    
-    var offset: Int {
-        10
     }
 
     var url: URL {
@@ -34,8 +50,6 @@ enum Link {
             return URL(string: "\(baseURL)&apiKey=\(apiKey)&offset=\(offset)&sort=popularity")!
         case .cuisineSortedRecipesURL(let offset, let cuisine):
             return URL(string: "\(baseURL)&apiKey=\(apiKey)&offset=\(offset)&cuisine=\(cuisine)")!
-        case .recipeDetailsURL(let id):
-            return URL(string: "https://api.spoonacular.com/recipes/\(id)/information?apiKey=\(apiKey)")!
         case .ingredientImageURL(let imageName):
             return URL(string: "https://img.spoonacular.com/ingredients_100x100/\(imageName)")!
         }
