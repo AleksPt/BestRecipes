@@ -26,6 +26,8 @@ enum Icons {
     static let star: UIImage = .star
     static let checkmark: UIImage = UIImage(named: "checkCircle")!
     static let uncheckmark: UIImage = UIImage(named: "uncheckCircle")!
+    static let bookmarkActiveSmall: UIImage = .bookmarkActiveSmall
+    static let bookmarkInactiveSmall: UIImage = .bookmarkInactiveSmall
     
     enum Ingredients {
         static let cucumber: UIImage = .cucumber

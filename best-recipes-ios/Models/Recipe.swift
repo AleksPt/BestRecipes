@@ -83,7 +83,7 @@ struct Ingredient: Decodable {
     }
     
     var fullImageURL: URL {
-        Link.ingredientImageURL(imageName: image).url
+        APIEndpoint.ingredientImageURL(imageName: image).url
     }
 }
 
@@ -94,4 +94,55 @@ struct Measure: Decodable {
 struct Metric: Decodable {
     let amount: Double
     let unitShort: String
+}
+
+enum Сuisine: String {
+    case frican = "Frican"
+    case asian = "Asian"
+    case american = "American"
+    case british = "British"
+    case cajun = "Cajun"
+    case caribbean = "Caribbean"
+    case chinese = "Chinese"
+    case easternEuropean = "Eastern European"
+    case european = "European"
+    case french = "Erench"
+    case german = "German"
+    case greek = "Greek"
+    case indian = "Indian"
+    case irish = "Irish"
+    case italian = "Italian"
+    case japanese = "Japanese"
+    case jewish = "Jewish"
+    case korean = "Korean"
+    case latinAmerican = "Latin American"
+    case mediterranean = "Mediterranean"
+    case mexican = "Mexican"
+    case middleEastern = "Middle Eastern"
+    case nordic = "Nordic"
+    case southern = "Southern"
+    case spanish = "Spanish"
+    case thai = "Thai"
+    case vietnamese = "Vietnamese"
+}
+
+enum DishTypes: String, CaseIterable {
+    case mainCourse = "Main course"
+    case sideDish = "Side dish"
+    case dessert = "Dessert"
+    case appetizer = "Appetizer"
+    case salad = "Salad"
+    case bread = "Bread"
+    case breakfast = "Breakfast"
+    case soup = "Soup"
+    case beverage = "Beverage"
+    case sauce = "Sauce"
+    case marinade = "Marinade"
+    case fingerfood = "Fingerfood"
+    case snack = "Snack"
+    case drink = "Drink"
+
+    static func getDishTypes() -> [String] {
+        return DishTypes.allCases.map { $0.rawValue }
+    }
 }
