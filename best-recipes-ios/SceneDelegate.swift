@@ -21,9 +21,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.windowScene = windowScene
         
         window?.makeKeyAndVisible()
-        let welcomeController = WelcomeController()
-        let navigationController = UINavigationController(rootViewController: welcomeController)
-        self.window?.rootViewController = navigationController
+        
+        if UserDefaults.standard.bool(forKey: "isOnboardingCompleted"){
+            let tabBarController = TabBarController()
+            self.window?.rootViewController = tabBarController
+        } else {
+            let welcomeController = WelcomeController()
+            let navigationController = UINavigationController(rootViewController: welcomeController)
+            self.window?.rootViewController = navigationController
+        }
     }
     
 

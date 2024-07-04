@@ -24,12 +24,12 @@ class PageContentView: UIView {
         return element
     }()
     
-    private let gradientView: UIView = {
+    private let shadowGradientView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    private let gradientLayer = CAGradientLayer()
+    private let shadowGradientLayer = CAGradientLayer()
     
     private let label = LabelFactory.makeOnboardingPageLabel()
     private let button = ButtonFactory.onboardingPagesButton(title: "")
@@ -53,7 +53,7 @@ class PageContentView: UIView {
         setupPageControl()
         setViews()
         setupConstraints()
-        addGradient()
+        addShadowGradient()
     }
     
     required init?(coder: NSCoder) {
@@ -69,7 +69,7 @@ class PageContentView: UIView {
     func updatePageControl(with currentIndex: Int) {
         for (index, dot) in dots.enumerated() {
             if index == currentIndex {
-                applyGradient(
+                applyGradientToDot(
                     to: dot,
                     colors: [
                         UIColor.Colors.Primary.primary20.cgColor,
@@ -92,12 +92,12 @@ class PageContentView: UIView {
             button,
             skipButton,
             imageView,
-            gradientView,
+            shadowGradientView,
             pageControl
             
         ].forEach { addSubview($0) }
         
-        sendSubviewToBack(gradientView)
+        sendSubviewToBack(shadowGradientView)
         sendSubviewToBack(imageView)
         
         setUpViews()
@@ -135,7 +135,7 @@ class PageContentView: UIView {
         }
     }
     
-    private func applyGradient(to view: UIView, colors: [CGColor]) {
+    private func applyGradientToDot(to view: UIView, colors: [CGColor]) {
         let gradientLayer = CAGradientLayer()
         gradientLayer.colors = colors
         gradientLayer.cornerRadius = 5
@@ -145,20 +145,20 @@ class PageContentView: UIView {
         view.layer.insertSublayer(gradientLayer, at: 0)
     }
     
-    private func addGradient() {
-        gradientLayer.frame = gradientView.bounds
-        gradientLayer.colors = [UIColor.black.cgColor, UIColor.clear.cgColor]
-        gradientLayer.startPoint = CGPoint(x: 0.5, y: 0.9)
-        gradientLayer.endPoint = CGPoint(x: 0.5, y: 0.0)
-        gradientView.layer.addSublayer(gradientLayer)
+    internal func addShadowGradient() {
+        shadowGradientLayer.frame = shadowGradientView.bounds
+        shadowGradientLayer.colors = [UIColor.black.cgColor, UIColor.clear.cgColor]
+        shadowGradientLayer.startPoint = CGPoint(x: 0.5, y: 0.9)
+        shadowGradientLayer.endPoint = CGPoint(x: 0.5, y: 0.0)
+        shadowGradientView.layer.addSublayer(shadowGradientLayer)
         
-        gradientView.setNeedsLayout()
-        gradientView.layoutIfNeeded()
+        shadowGradientView.setNeedsLayout()
+        shadowGradientView.layoutIfNeeded()
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        gradientLayer.frame = gradientView.bounds
+        shadowGradientLayer.frame = shadowGradientView.bounds
     }
     
     private func setupConstraints() {
@@ -168,10 +168,10 @@ class PageContentView: UIView {
             imageView.topAnchor.constraint(equalTo: topAnchor),
             imageView.bottomAnchor.constraint(equalTo: bottomAnchor),
             
-            gradientView.leftAnchor.constraint(equalTo: leftAnchor),
-            gradientView.rightAnchor.constraint(equalTo: rightAnchor),
-            gradientView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            gradientView.heightAnchor.constraint(equalToConstant: 500),
+            shadowGradientView.leftAnchor.constraint(equalTo: leftAnchor),
+            shadowGradientView.rightAnchor.constraint(equalTo: rightAnchor),
+            shadowGradientView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            shadowGradientView.heightAnchor.constraint(equalToConstant: 500),
             
             label.bottomAnchor.constraint(equalTo: button.topAnchor, constant: -80),
             label.leftAnchor.constraint(equalTo: leftAnchor, constant: 20),

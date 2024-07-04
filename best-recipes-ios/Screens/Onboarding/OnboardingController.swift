@@ -22,7 +22,6 @@ class OnboardingViewController: UIPageViewController {
         
         if let firstVC = pages.first as? PageContentViewController {
             setViewControllers([firstVC], direction: .forward, animated: true, completion: nil)
-            
             firstVC.updatePageControl(with: currentIndex)
         }
     }
@@ -51,6 +50,20 @@ class OnboardingViewController: UIPageViewController {
             pageViewController.delegate = self
             
             pages.append(pageViewController)
+        }
+    }
+    
+    private func goToMainScreen() {
+        UserDefaults.standard.set(true, forKey: "isOnboardingCompleted")
+        if let windowScene = view.window?.windowScene {
+            let tabBarController = TabBarController()
+            UIView.transition(with: windowScene.windows.first!,
+                              duration: 0.5,
+                              options: .transitionCrossDissolve,
+                              animations: {
+                                  windowScene.windows.first?.rootViewController = tabBarController
+                              },
+                              completion: nil)
         }
     }
 }
@@ -93,15 +106,11 @@ extension OnboardingViewController: OnboardingActionsDelegate {
             currentIndex = pages.firstIndex(of: nextVC) ?? currentIndex
             nextVC.updatePageControl(with: currentIndex)
         } else {
-            dismiss(animated: true, completion: nil)
+            goToMainScreen()
         }
     }
     
     func onboardingSkipTapped() {
-        if let lastVC = pages.last as? PageContentViewController {
-            setViewControllers([lastVC], direction: .forward, animated: true, completion: nil)
-            currentIndex = pages.count - 1
-            lastVC.updatePageControl(with: currentIndex)
-        }
+        goToMainScreen()
     }
 }

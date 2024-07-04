@@ -45,7 +45,7 @@ final class WelcomeView: UIView {
         super.init(frame: frame)
         setViews()
         layoutViews()
-        addGradient()
+        addShadowGradient()
     }
     
     required init?(coder: NSCoder) {
@@ -121,7 +121,7 @@ final class WelcomeView: UIView {
         ])
     }
     
-    private func addGradient() {
+    private func addShadowGradient() {
         gradientLayer.frame = gradientView.bounds
         gradientLayer.colors = [UIColor.black.cgColor, UIColor.clear.cgColor]
         gradientLayer.startPoint = CGPoint(x: 0.5, y: 0.9)

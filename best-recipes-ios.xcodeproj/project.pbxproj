@@ -205,15 +205,6 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		D993B9C22C35C14E001E6F10 /* Screens */ = {
-			isa = PBXGroup;
-			children = (
-				D993B9C82C35CBDD001E6F10 /* Welcome */,
-				D993B9C32C35C947001E6F10 /* Onboarding */,
-			);
-			path = Screens;
-			sourceTree = "<group>";
-		};
 		D993B9C32C35C947001E6F10 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
@@ -254,7 +245,6 @@
 		D998A1292C3089FB0084F9C4 /* best-recipes-ios */ = {
 			isa = PBXGroup;
 			children = (
-				D993B9C22C35C14E001E6F10 /* Screens */,
 				64285E572C34AF9B00A7E7ED /* Extensions */,
 				64285E4E2C34833900A7E7ED /* Services */,
 				64285E4B2C34823B00A7E7ED /* Models */,
@@ -330,6 +320,8 @@
 		FA685EB32C356F980028BA17 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				D993B9C32C35C947001E6F10 /* Onboarding */,
+				D993B9C82C35CBDD001E6F10 /* Welcome */,
 				640BFA502C372EF200BB4923 /* Profile */,
 				FA685EA92C340FB30028BA17 /* Home */,
 			);
