@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		160BC2782C34068500944C89 /* RatingFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160BC2772C34068500944C89 /* RatingFactory.swift */; };
 		4D15898C2C333276005F4D2E /* LabelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D15898B2C333276005F4D2E /* LabelFactory.swift */; };
+		640BFA522C372F5A00BB4923 /* RecipeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640BFA512C372F5A00BB4923 /* RecipeCell.swift */; };
+		640BFA552C37305300BB4923 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640BFA542C37305300BB4923 /* ProfileController.swift */; };
+		640BFA592C373ED100BB4923 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640BFA582C373ED100BB4923 /* ProfileView.swift */; };
 		64285E4D2C34824A00A7E7ED /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64285E4C2C34824A00A7E7ED /* Recipe.swift */; };
 		64285E502C3483A200A7E7ED /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64285E4F2C3483A200A7E7ED /* DataStore.swift */; };
 		64285E522C3483F300A7E7ED /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64285E512C3483F300A7E7ED /* NetworkManager.swift */; };
@@ -48,6 +51,9 @@
 /* Begin PBXFileReference section */
 		160BC2772C34068500944C89 /* RatingFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingFactory.swift; sourceTree = "<group>"; };
 		4D15898B2C333276005F4D2E /* LabelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelFactory.swift; sourceTree = "<group>"; };
+		640BFA512C372F5A00BB4923 /* RecipeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCell.swift; sourceTree = "<group>"; };
+		640BFA542C37305300BB4923 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
+		640BFA582C373ED100BB4923 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		64285E4C2C34824A00A7E7ED /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		64285E4F2C3483A200A7E7ED /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		64285E512C3483F300A7E7ED /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
@@ -106,6 +112,24 @@
 				FA685EB62C358C360028BA17 /* CoverImageFactory.swift */,
 			);
 			path = Factories;
+			sourceTree = "<group>";
+		};
+		640BFA502C372EF200BB4923 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				640BFA582C373ED100BB4923 /* ProfileView.swift */,
+				640BFA542C37305300BB4923 /* ProfileController.swift */,
+				640BFA532C372FAD00BB4923 /* Cell */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		640BFA532C372FAD00BB4923 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				640BFA512C372F5A00BB4923 /* RecipeCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		64285E4B2C34823B00A7E7ED /* Models */ = {
@@ -227,6 +251,7 @@
 		FA685EB32C356F980028BA17 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				640BFA502C372EF200BB4923 /* Profile */,
 				FA685EA92C340FB30028BA17 /* Home */,
 			);
 			path = Screens;
@@ -329,6 +354,7 @@
 				FA685E7B2C32EB770028BA17 /* HomeScreen.swift in Sources */,
 				FA685EAC2C34100C0028BA17 /* HomeView.swift in Sources */,
 				64285E592C34AFC400A7E7ED /* UIImageView+Extension.swift in Sources */,
+				640BFA522C372F5A00BB4923 /* RecipeCell.swift in Sources */,
 				64285E522C3483F300A7E7ED /* NetworkManager.swift in Sources */,
 				DC39DC842C34470600464EBD /* ButtonFactory.swift in Sources */,
 				FA685E732C32A6860028BA17 /* Images.swift in Sources */,
@@ -338,6 +364,7 @@
 				FA685E832C32F0240028BA17 /* RecentCell.swift in Sources */,
 				FA685E6F2C32A10C0028BA17 /* Fonts.swift in Sources */,
 				FA685EB22C3490C80028BA17 /* UIView + Extension.swift in Sources */,
+				640BFA552C37305300BB4923 /* ProfileController.swift in Sources */,
 				FA685E6D2C329F0B0028BA17 /* Colors.swift in Sources */,
 				FA685EB52C3574DF0028BA17 /* CategoryCell.swift in Sources */,
 				FA685E8E2C3304D20028BA17 /* HeaderSupplementaryView.swift in Sources */,
@@ -346,6 +373,7 @@
 				160BC2782C34068500944C89 /* RatingFactory.swift in Sources */,
 				FA685E712C32A3310028BA17 /* Icons.swift in Sources */,
 				4D15898C2C333276005F4D2E /* LabelFactory.swift in Sources */,
+				640BFA592C373ED100BB4923 /* ProfileView.swift in Sources */,
 				D998A12B2C3089FB0084F9C4 /* AppDelegate.swift in Sources */,
 				D998A1522C345FD60084F9C4 /* TabBar.swift in Sources */,
 				D998A12D2C3089FB0084F9C4 /* SceneDelegate.swift in Sources */,
