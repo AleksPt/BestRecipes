@@ -7,13 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		160BC2782C34068500944C89 /* RatingFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160BC2772C34068500944C89 /* RatingFactory.swift */; };
 		4D15898C2C333276005F4D2E /* LabelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D15898B2C333276005F4D2E /* LabelFactory.swift */; };
+		4D4BC28D2C369BBE00564A7A /* RecipeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4BC28C2C369BBE00564A7A /* RecipeDetailViewController.swift */; };
+		4D4BC28F2C369BE800564A7A /* RecipeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4BC28E2C369BE800564A7A /* RecipeDetailView.swift */; };
 		64285E4D2C34824A00A7E7ED /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64285E4C2C34824A00A7E7ED /* Recipe.swift */; };
 		64285E502C3483A200A7E7ED /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64285E4F2C3483A200A7E7ED /* DataStore.swift */; };
 		64285E522C3483F300A7E7ED /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64285E512C3483F300A7E7ED /* NetworkManager.swift */; };
 		64285E592C34AFC400A7E7ED /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64285E582C34AFC400A7E7ED /* UIImageView+Extension.swift */; };
 		64285E5C2C34AFE200A7E7ED /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 64285E5B2C34AFE200A7E7ED /* Kingfisher */; };
-		160BC2782C34068500944C89 /* RatingFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160BC2772C34068500944C89 /* RatingFactory.swift */; };
 		D998A12B2C3089FB0084F9C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D998A12A2C3089FB0084F9C4 /* AppDelegate.swift */; };
 		D998A12D2C3089FB0084F9C4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D998A12C2C3089FB0084F9C4 /* SceneDelegate.swift */; };
 		D998A12F2C3089FB0084F9C4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D998A12E2C3089FB0084F9C4 /* ViewController.swift */; };
@@ -35,12 +37,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		160BC2772C34068500944C89 /* RatingFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingFactory.swift; sourceTree = "<group>"; };
 		4D15898B2C333276005F4D2E /* LabelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelFactory.swift; sourceTree = "<group>"; };
+		4D4BC28C2C369BBE00564A7A /* RecipeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailViewController.swift; sourceTree = "<group>"; };
+		4D4BC28E2C369BE800564A7A /* RecipeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailView.swift; sourceTree = "<group>"; };
 		64285E4C2C34824A00A7E7ED /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		64285E4F2C3483A200A7E7ED /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		64285E512C3483F300A7E7ED /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		64285E582C34AFC400A7E7ED /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
-		160BC2772C34068500944C89 /* RatingFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingFactory.swift; sourceTree = "<group>"; };
 		D998A1272C3089FB0084F9C4 /* best-recipes-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "best-recipes-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D998A12A2C3089FB0084F9C4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D998A12C2C3089FB0084F9C4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -83,6 +87,15 @@
 				160BC2772C34068500944C89 /* RatingFactory.swift */,
 			);
 			path = Factories;
+			sourceTree = "<group>";
+		};
+		4D4BC28B2C369B6500564A7A /* RecipeDetailScreen */ = {
+			isa = PBXGroup;
+			children = (
+				4D4BC28C2C369BBE00564A7A /* RecipeDetailViewController.swift */,
+				4D4BC28E2C369BE800564A7A /* RecipeDetailView.swift */,
+			);
+			path = RecipeDetailScreen;
 			sourceTree = "<group>";
 		};
 		64285E4B2C34823B00A7E7ED /* Models */ = {
@@ -134,9 +147,9 @@
 				64285E4B2C34823B00A7E7ED /* Models */,
 				D998A1442C345A980084F9C4 /* Components */,
 				4D15898A2C333213005F4D2E /* Factories */,
-				160BC2762C33FA8800944C89 /* Factories */,
 				FA685E6B2C329EEB0028BA17 /* Helpers */,
 				D998A12A2C3089FB0084F9C4 /* AppDelegate.swift */,
+				4D4BC28B2C369B6500564A7A /* RecipeDetailScreen */,
 				D998A12C2C3089FB0084F9C4 /* SceneDelegate.swift */,
 				D998A12E2C3089FB0084F9C4 /* ViewController.swift */,
 				D998A1302C3089FB0084F9C4 /* Main.storyboard */,
@@ -271,6 +284,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				64285E592C34AFC400A7E7ED /* UIImageView+Extension.swift in Sources */,
+				4D4BC28F2C369BE800564A7A /* RecipeDetailView.swift in Sources */,
 				64285E522C3483F300A7E7ED /* NetworkManager.swift in Sources */,
 				DC39DC842C34470600464EBD /* ButtonFactory.swift in Sources */,
 				FA685E732C32A6860028BA17 /* Images.swift in Sources */,
@@ -284,6 +298,7 @@
 				4D15898C2C333276005F4D2E /* LabelFactory.swift in Sources */,
 				D998A12B2C3089FB0084F9C4 /* AppDelegate.swift in Sources */,
 				D998A1522C345FD60084F9C4 /* TabBar.swift in Sources */,
+				4D4BC28D2C369BBE00564A7A /* RecipeDetailViewController.swift in Sources */,
 				D998A12D2C3089FB0084F9C4 /* SceneDelegate.swift in Sources */,
 				64285E4D2C34824A00A7E7ED /* Recipe.swift in Sources */,
 			);
