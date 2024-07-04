@@ -1,5 +1,5 @@
 //
-//  ProfileViewController.swift
+//  ProfileController.swift
 //  best-recipes-ios
 //
 //  Created by Vladimir Dmitriev on 04.07.24.
@@ -7,44 +7,16 @@
 
 import UIKit
 
-class ProfileViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+final class ProfileController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     private let dataStore = DataStore.shared
-    
-    private var profileImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.layer.cornerRadius = 50
-        imageView.clipsToBounds = true
-        imageView.contentMode = .scaleAspectFill
-        imageView.isUserInteractionEnabled = true
-        
-        if let image = UIImage(
-            systemName: "person.circle"
-        )?.withTintColor(.gray, renderingMode: .alwaysOriginal) {
-            imageView.image = image
-        }
-        
-        return imageView
-    }()
+    private let profileView = ProfileView()
     
     private var imagePicker = UIImagePickerController()
     
-    private var myRecipeLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.TextFonts.Home.titleSection
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "My recipes"
-        return label
-    }()
-    
-    init() {
-        let layout = UICollectionViewFlowLayout()
-        super.init(collectionViewLayout: layout)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+    // MARK: - Life Cycle
+    override func loadView() {
+        view = profileView
     }
     
     override func viewDidLoad() {
@@ -52,9 +24,7 @@ class ProfileViewController: UICollectionViewController, UICollectionViewDelegat
         view.backgroundColor = .white
         title = "My Profile"
         
-        addSubviews()
         setupCollectionView()
-        setupLayout()
         setupProfileImageView()
         setupImagePicker()
     }
@@ -63,62 +33,26 @@ class ProfileViewController: UICollectionViewController, UICollectionViewDelegat
         present(imagePicker, animated: true)
     }
     
-    private func addSubviews() {
-        view.addSubview(profileImageView)
-        view.addSubview(myRecipeLabel)
-    }
-    
     private func setupCollectionView() {
-        collectionView.register(RecipeCell.self, forCellWithReuseIdentifier: "RecipeCell")
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        profileView.collectionView.register(
+            RecipeCell.self,
+            forCellWithReuseIdentifier: "RecipeCell"
+        )
+        profileView.collectionView.delegate = self
+        profileView.collectionView.dataSource = self
     }
     
     private func setupProfileImageView() {
-        let gesture = UITapGestureRecognizer(
+        profileView.addProfileImageTapGesture(
             target: self,
             action: #selector(addProfileImage)
         )
-        profileImageView.addGestureRecognizer(gesture)
     }
     
     private func setupImagePicker() {
         imagePicker.delegate = self
         imagePicker.sourceType = .photoLibrary
         imagePicker.allowsEditing = true
-    }
-    
-    private func setupLayout() {
-        NSLayoutConstraint.activate(
-            [
-                profileImageView.topAnchor.constraint(
-                    equalTo: view.safeAreaLayoutGuide.topAnchor,
-                    constant: 16
-                ),
-                profileImageView.leadingAnchor.constraint(
-                    equalTo: view.leadingAnchor,
-                    constant: 16
-                ),
-                profileImageView.widthAnchor.constraint(equalToConstant: 100),
-                profileImageView.heightAnchor.constraint(equalToConstant: 100),
-                
-                myRecipeLabel.topAnchor.constraint(
-                    equalTo: profileImageView.bottomAnchor,
-                    constant: 50
-                ),
-                myRecipeLabel.leadingAnchor.constraint(
-                    equalTo: view.leadingAnchor,
-                    constant: 32
-                ),
-                
-                collectionView.topAnchor.constraint(
-                    equalTo: myRecipeLabel.bottomAnchor,
-                    constant: 16
-                ),
-                collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-                collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-                collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-            ]
-        )
     }
     
     // MARK: - UICollectionViewDataSource
@@ -162,16 +96,16 @@ class ProfileViewController: UICollectionViewController, UICollectionViewDelegat
 }
 
 // MARK: - Image Picker Delegate & Navigation Controller Delegate
-extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension ProfileController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(
         _ picker: UIImagePickerController,
         didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]
     ) {
         if let editedImage = info[.editedImage] as? UIImage {
-            profileImageView.image = editedImage
+            profileView.setProfileImage(editedImage)
         } else if let originalImage = info[.originalImage] as? UIImage {
-            profileImageView.image = originalImage
+            profileView.setProfileImage(originalImage)
         }
         dismiss(animated: true, completion: nil)
     }
