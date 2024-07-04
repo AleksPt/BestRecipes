@@ -82,7 +82,7 @@ final class CategoryRecipeCell: UICollectionViewCell {
     
     // MARK: - Configure Cell
     func configureCell(item: Recipe) {
-        coverImageView.image = Images.Popular.popular2
+        coverImageView.getImage(from: item.imageURL)
         titleLabel.text = item.title
         timeValueLabel.text = item.readyInMinutes.description + " Mins"
     }

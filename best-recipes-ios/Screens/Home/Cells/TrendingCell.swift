@@ -73,7 +73,7 @@ final class TrendingCell: UICollectionViewCell {
     
     // MARK: - Configure Cell
     func configureCell(item: Recipe) {
-        coverImageView.image = Images.Popular.popular1
+        coverImageView.getImage(from: item.imageURL)
         titleLabel.text = item.title
         avatar.image = Images.Avatars.avatar1
         nameAuthor.text = "By "

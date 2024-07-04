@@ -10,7 +10,8 @@ import UIKit
 final class HomeScreen: UIViewController {
     
     private let mainView = HomeView()
-    private var collectionData = CollectionData.getData()
+    private let networkManager = NetworkManager.shared
+    private var dataStore = CollectionData.getData()
     
     // MARK: - Life Cycle
     override func loadView() {
@@ -40,14 +41,14 @@ final class HomeScreen: UIViewController {
     
     /// Фильтр рецептов по категории
     private func filterRecipes(_ indexPath: IndexPath) {
-        let category = collectionData[indexPath.section].categories[indexPath.item]
+        let category = dataStore[indexPath.section].categories[indexPath.item]
         let recipes = CollectionData.getData()[indexPath.section + 1].recipes
         
         let filteredRecipes = recipes.filter {
             $0.dishTypes.contains(category.lowercased())
         }
         
-        collectionData[indexPath.section + 1].recipes = filteredRecipes
+        dataStore[indexPath.section + 1].recipes = filteredRecipes
         
         let indexSet = IndexSet(integer: indexPath.section + 1)
         mainView.collectionView.reloadSections(indexSet)
@@ -74,17 +75,17 @@ extension HomeScreen: UICollectionViewDelegate {
 // MARK: - UICollectionViewDataSource
 extension HomeScreen: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        collectionData.count
+        dataStore.count
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch section {
         case 0, 2, 3:
-            collectionData[section].recipes.count
+            dataStore[section].recipes.count
         case 1:
-            collectionData[section].categories.count
+            dataStore[section].categories.count
         case 4:
-            collectionData[section].cuisines.count
+            dataStore[section].cuisines.count
         default:
             0
         }
@@ -94,7 +95,7 @@ extension HomeScreen: UICollectionViewDataSource {
         
         switch indexPath.section {
         case 0:
-            let recipe = collectionData[indexPath.section].recipes[indexPath.item]
+            let recipe = dataStore[indexPath.section].recipes[indexPath.item]
             guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: TrendingCell.description(),
                 for: indexPath
@@ -106,7 +107,7 @@ extension HomeScreen: UICollectionViewDataSource {
             return cell
             
         case 1:
-            let category = collectionData[indexPath.section].categories[indexPath.item]
+            let category = dataStore[indexPath.section].categories[indexPath.item]
             guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: CategoryCell.description(),
                 for: indexPath
@@ -117,7 +118,7 @@ extension HomeScreen: UICollectionViewDataSource {
             return cell
             
         case 2:
-            let recipe = collectionData[indexPath.section].recipes[indexPath.item]
+            let recipe = dataStore[indexPath.section].recipes[indexPath.item]
             guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: CategoryRecipeCell.description(),
                 for: indexPath
@@ -129,7 +130,7 @@ extension HomeScreen: UICollectionViewDataSource {
             return cell
             
         case 3:
-            let recipe = collectionData[indexPath.section].recipes[indexPath.item]
+            let recipe = dataStore[indexPath.section].recipes[indexPath.item]
             guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: RecentCell.description(),
                 for: indexPath
@@ -141,7 +142,7 @@ extension HomeScreen: UICollectionViewDataSource {
             return cell
             
         case 4:
-            let cuisine = collectionData[indexPath.section].cuisines[indexPath.item]
+            let cuisine = dataStore[indexPath.section].cuisines[indexPath.item]
             guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: WorldCuisineCell.description(),
                 for: indexPath

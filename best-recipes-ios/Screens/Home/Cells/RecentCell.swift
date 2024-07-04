@@ -71,7 +71,7 @@ final class RecentCell: UICollectionViewCell {
 
     // MARK: - Configure Cell
     func configureCell(item: Recipe) {
-        coverImageView.image = Images.Popular.popular3
+        coverImageView.getImage(from: item.imageURL)
         titleLabel.text = replaceFirstSpace(in: item.title, with: "\n")
         nameAuthor.text = "By "
     }

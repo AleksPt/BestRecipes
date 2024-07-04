@@ -97,7 +97,7 @@ struct Metric: Decodable {
 }
 
 enum Cuisine: String, CaseIterable {
-    case frican = "Frican"
+    case african = "African"
     case asian = "Asian"
     case american = "American"
     case british = "British"
