@@ -71,6 +71,7 @@ final class HeaderSupplementaryView: UICollectionReusableView {
             title.text = "Recent recipe"
         case 4:
             title.text = "World cuisine"
+            seeAllButton.isHidden = false
         default:
             break
         }
@@ -90,7 +91,7 @@ private extension HeaderSupplementaryView {
             title.centerYAnchor.constraint(equalTo: centerYAnchor),
             title.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             
-            seeAllButton.centerYAnchor.constraint(equalTo: title.centerYAnchor),
+            seeAllButton.centerYAnchor.constraint(equalTo: centerYAnchor),
             seeAllButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
         ])
     }
