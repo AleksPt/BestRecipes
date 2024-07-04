@@ -36,6 +36,12 @@ final class InstructionsTableViewCell: UITableViewCell {
         addSubview(instructionTextLabel)
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        stepNumberLabel.text = nil
+        instructionTextLabel.text = nil
+    }
+    
     public func configureCell(with instructionStep: Step) {
         stepNumberLabel.text = "\(instructionStep.number)."
         instructionTextLabel.text = instructionStep.step

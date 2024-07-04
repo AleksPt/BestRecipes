@@ -71,6 +71,13 @@ final class IngredientsTableViewCell: UITableViewCell {
         backgroundCellView.addSubview(checkCircleImageView)
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        ingredientNameLabel.text = nil
+        countItemsLabel.text = nil
+        ingredientImageView.image = nil
+    }
+    
     public func configureCell(with ingredient: Ingredient) {
         ingredientNameLabel.text = ingredient.capitalizedName
         let measureUntilShort = ingredient.measures.metric.unitShort

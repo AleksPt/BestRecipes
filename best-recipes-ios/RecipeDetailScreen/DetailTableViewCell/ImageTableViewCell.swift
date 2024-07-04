@@ -56,6 +56,12 @@ final class ImageTableViewCell: UITableViewCell {
         randomReviews()
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        recipeImageView.image = nil
+        titleLabel.text = nil
+    }
+    
     public func configureCell(with recipe: Recipe) {
         recipeImageView.getImage(from: recipe.imageURL)
         titleLabel.text = recipe.title
