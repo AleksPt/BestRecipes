@@ -12,8 +12,8 @@
 		D998A12D2C3089FB0084F9C4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D998A12C2C3089FB0084F9C4 /* SceneDelegate.swift */; };
 		D998A1322C3089FB0084F9C4 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = D998A1312C3089FB0084F9C4 /* Base */; };
 		D998A1342C3089FC0084F9C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D998A1332C3089FC0084F9C4 /* Assets.xcassets */; };
-		D998A1372C3089FC0084F9C4 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = D998A1362C3089FC0084F9C4 /* Base */; };
 		DC39DC842C34470600464EBD /* ButtonFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC39DC832C34470600464EBD /* ButtonFactory.swift */; };
+		DC39DC862C35885F00464EBD /* RecipesType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC39DC852C35885F00464EBD /* RecipesType.swift */; };
 		DC8DE0342C3330CC00964211 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8DE0332C3330CC00964211 /* CustomCell.swift */; };
 		DC8DE0362C33329400964211 /* SeeAllViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8DE0352C33329400964211 /* SeeAllViewController.swift */; };
 		DC8DE0392C33339500964211 /* SeeAllView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8DE0382C33339500964211 /* SeeAllView.swift */; };
@@ -38,7 +38,8 @@
 		D998A1362C3089FC0084F9C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D998A1382C3089FC0084F9C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DC39DC832C34470600464EBD /* ButtonFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonFactory.swift; sourceTree = "<group>"; };
-		DC8DE0332C3330CC00964211 /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomCell.swift; path = View/CustomCell.swift; sourceTree = "<group>"; };
+		DC39DC852C35885F00464EBD /* RecipesType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesType.swift; sourceTree = "<group>"; };
+		DC8DE0332C3330CC00964211 /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		DC8DE0352C33329400964211 /* SeeAllViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeeAllViewController.swift; sourceTree = "<group>"; };
 		DC8DE0382C33339500964211 /* SeeAllView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeAllView.swift; sourceTree = "<group>"; };
 		FA685E6C2C329F0B0028BA17 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
@@ -94,8 +95,6 @@
 			children = (
 				4D15898A2C333213005F4D2E /* Factories */,
 				DC8DE0372C33336400964211 /* SeeAll */,
-				DC8DE0332C3330CC00964211 /* CustomCell.swift */,
-				DC8DE0352C33329400964211 /* SeeAllViewController.swift */,
 				FA685E6B2C329EEB0028BA17 /* Helpers */,
 				D998A12A2C3089FB0084F9C4 /* AppDelegate.swift */,
 				D998A12C2C3089FB0084F9C4 /* SceneDelegate.swift */,
@@ -118,7 +117,10 @@
 		DC8DE0372C33336400964211 /* SeeAll */ = {
 			isa = PBXGroup;
 			children = (
+				DC39DC852C35885F00464EBD /* RecipesType.swift */,
 				DC8DE0382C33339500964211 /* SeeAllView.swift */,
+				DC8DE0332C3330CC00964211 /* CustomCell.swift */,
+				DC8DE0352C33329400964211 /* SeeAllViewController.swift */,
 			);
 			path = SeeAll;
 			sourceTree = "<group>";
@@ -222,6 +224,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC39DC842C34470600464EBD /* ButtonFactory.swift in Sources */,
+				DC39DC862C35885F00464EBD /* RecipesType.swift in Sources */,
 				FA685E732C32A6860028BA17 /* Images.swift in Sources */,
 				FA685E6F2C32A10C0028BA17 /* Fonts.swift in Sources */,
 				DC8DE0342C3330CC00964211 /* CustomCell.swift in Sources */,

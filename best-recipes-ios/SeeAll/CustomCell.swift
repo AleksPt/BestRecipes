@@ -73,6 +73,25 @@ final class CustomCell: UICollectionViewCell {
         contentView.addSubview(titleLabel)
         contentView.addSubview(descriptionLabel)
     }
+    
+    
+    func configure(with type: RecipesType) {
+        switch type {
+        case .tradingNow(let title, let description, let image):
+            titleLabel.text = title
+            descriptionLabel.text = description
+            imageView.image = image
+        case .recentRecipe(let title, let description, let image):
+            titleLabel.text = title
+            descriptionLabel.text = description
+            imageView.image = image
+        case .popularCreators(let title, let description, let image):
+            titleLabel.text = title
+            descriptionLabel.text = description
+            imageView.image = image
+        }
+    }
+    
 }
 
 
