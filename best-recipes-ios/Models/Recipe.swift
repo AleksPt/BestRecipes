@@ -83,7 +83,7 @@ struct Ingredient: Decodable {
     }
     
     var fullImageURL: URL {
-        Link.ingredientImageURL(imageName: image).url
+        APIEndpoint.ingredientImageURL(imageName: image).url
     }
 }
 
