@@ -8,6 +8,12 @@
 import UIKit
 
 class RecipeDetailViewController: UIViewController {
+    
+    private let recipeDetailView = RecipeDetailView()
+    
+    override func loadView() {
+        view = recipeDetailView
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

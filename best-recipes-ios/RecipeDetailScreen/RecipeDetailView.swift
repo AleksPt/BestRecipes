@@ -9,12 +9,50 @@ import UIKit
 
 class RecipeDetailView: UIView {
 
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
+    //MARK: -  UI Elements
+    private let instructionsTableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .grouped)
+        tableView.backgroundColor = .none
+        tableView.bounces = false
+        tableView.separatorStyle = .none
+        tableView.isScrollEnabled = true
+        tableView.showsVerticalScrollIndicator = false
+        
 
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        return tableView
+    }()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupView()
+        setConstraints()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("RecipeDetailView not initialised")
+    }
+    
+    func setupView() {
+        backgroundColor = .white
+        addSubview(instructionsTableView)
+    }
+    
+    //MARK: - Set Delegates
+    func setDelegate(viewController: RecipeDetailViewController) {
+        instructionsTableView.delegate = viewController
+        instructionsTableView.dataSource = viewController
+    }
+    
+    // MARK: - Set Constraints
+    func setConstraints() {
+        NSLayoutConstraint.activate([
+            
+            instructionsTableView.topAnchor.constraint(equalTo: topAnchor),
+            instructionsTableView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            instructionsTableView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            instructionsTableView.bottomAnchor.constraint(equalTo: bottomAnchor),
+        ])
+    }
 }
+
