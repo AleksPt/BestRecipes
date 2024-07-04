@@ -45,9 +45,9 @@ final class WorldCuisineCell: UICollectionViewCell {
     }
     
     // MARK: - Configure Cell
-    func configureCell(item: Item) {
-        coverImageView.image = item.coverImage
-        titleLabel.text = item.worldCuisine.rawValue.capitalized
+    func configureCell(item: String) {
+        coverImageView.image = Images.Popular.popular4
+        titleLabel.text = item
     }
 }
 

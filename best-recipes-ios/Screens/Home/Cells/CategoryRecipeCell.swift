@@ -81,10 +81,10 @@ final class CategoryRecipeCell: UICollectionViewCell {
     }
     
     // MARK: - Configure Cell
-    func configureCell(item: Item) {
-        coverImageView.image = item.coverImage
+    func configureCell(item: Recipe) {
+        coverImageView.image = Images.Popular.popular2
         titleLabel.text = item.title
-        timeValueLabel.text = item.time.description + " Mins"
+        timeValueLabel.text = item.readyInMinutes.description + " Mins"
     }
     
     // MARK: - Actions

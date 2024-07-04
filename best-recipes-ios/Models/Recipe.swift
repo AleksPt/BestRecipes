@@ -96,7 +96,7 @@ struct Metric: Decodable {
     let unitShort: String
 }
 
-enum Сuisine: String {
+enum Cuisine: String, CaseIterable {
     case frican = "Frican"
     case asian = "Asian"
     case american = "American"
@@ -124,6 +124,10 @@ enum Сuisine: String {
     case spanish = "Spanish"
     case thai = "Thai"
     case vietnamese = "Vietnamese"
+    
+    static func getCuisines() -> [String] {
+        return Cuisine.allCases.map { $0.rawValue }
+    }
 }
 
 enum DishTypes: String, CaseIterable {

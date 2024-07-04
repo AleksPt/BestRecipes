@@ -70,10 +70,10 @@ final class RecentCell: UICollectionViewCell {
     }
 
     // MARK: - Configure Cell
-    func configureCell(item: Item) {
-        coverImageView.image = item.coverImage
+    func configureCell(item: Recipe) {
+        coverImageView.image = Images.Popular.popular3
         titleLabel.text = replaceFirstSpace(in: item.title, with: "\n")
-        nameAuthor.text = "By " + item.nameAuthor
+        nameAuthor.text = "By "
     }
 }
 
