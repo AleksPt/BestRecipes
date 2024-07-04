@@ -11,9 +11,10 @@ class RecipeDetailViewController: UIViewController {
     
     private let recipeDetailView = RecipeDetailView()
     
-    private let firstRecipe: Recipe = DataStore.shared.recipes[0] //Recipe
-    private let firstRecipeIngredient = DataStore.shared.recipes[0].extendedIngredients //[ExtendedIngredients]
-    private let firstRecipeSteps = DataStore.shared.recipes[0].analyzedInstructions?.first?.steps //[steps]
+    //Data Store
+    private let firstRecipe: Recipe = DataStore.shared.recipes[0]
+    private var firstRecipeIngredient: [Ingredient]? { firstRecipe.extendedIngredients ?? [] }
+    private var firstRecipeSteps: [Step]? { firstRecipe.analyzedInstructions?.first?.steps ?? [] }
     
     override func loadView() {
         view = recipeDetailView
@@ -93,41 +94,18 @@ extension RecipeDetailViewController: UITableViewDataSource, UITableViewDelegate
         
         switch indexPath.section {
         case 0: guard let cell = tableView.dequeueReusableCell(withIdentifier: ImageTableViewCell.identifier, for: indexPath) as? ImageTableViewCell else { return UITableViewCell()}
-            
-            let text = firstRecipe.title
-            let urlString = firstRecipe.image
-            cell.loadImage(urlString: urlString)
-            cell.configureCell(titleText: text, style: .none)
-            
+            let recipe = firstRecipe
+            cell.configureCell(with: recipe)
             return cell
         case 1:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: InstructionsTableViewCell.identifier, for: indexPath) as? InstructionsTableViewCell else { return UITableViewCell() }
-            
             let instruction = firstRecipeSteps![indexPath.row]
-            let stepNumber = instruction.number
-            let instructionText = instruction.step
-            
-            cell.configureCell(
-                instructionNumber: "\(stepNumber).",
-                instructionText: instructionText,
-                style: .none)
-            
+            cell.configureCell(with: instruction)
             return cell
-            
         case 2:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: IngredientsTableViewCell.identifier, for: indexPath) as? IngredientsTableViewCell else { return UITableViewCell() }
-            
             let ingredient = firstRecipeIngredient![indexPath.row]
-            let nameIngredient = ingredient.capitalizedName
-            let measureUntilShort = ingredient.measures.metric.unitShort
-            let amountIngredient = String(format: "%.1f", ingredient.measures.metric.amount)
-            
-            let ingredientImage = ingredient.image
-            
-            cell.configureCell(ingredientName: nameIngredient,
-                               ingredientMeasure: "\(amountIngredient)" + " " + "\(measureUntilShort)",
-                               image: ingredientImage,
-                               style: .none)
+            cell.configureCell(with: ingredient)
             return cell
         default:
             return UITableViewCell()

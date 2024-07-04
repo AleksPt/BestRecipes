@@ -56,31 +56,16 @@ final class ImageTableViewCell: UITableViewCell {
         randomReviews()
     }
     
-    public func configureCell(titleText: String, style: UITableViewCell.SelectionStyle) {
-        titleLabel.text = titleText
-        selectionStyle = style
+    public func configureCell(with recipe: Recipe) {
+        recipeImageView.getImage(from: recipe.imageURL)
+        titleLabel.text = recipe.title
+        selectionStyle = .none
     }
     
     private func randomReviews() {
         let randomNumber = Int.random(in: 300...5000)
         self.reviewLabel.text = "\(randomNumber) Reviews"
     }
-    
-    func loadImage(urlString: String) {
-        
-        guard let url = URL(string: urlString) else { return }
-        DispatchQueue.global().async {
-            do {
-                let imageData = try Data(contentsOf: url)
-                DispatchQueue.main.async {
-                    self.recipeImageView.image = UIImage(data: imageData)
-                }
-            } catch {
-                print("Error loading image : \(error)")
-            }
-        }
-    }
-    
     
     func setupConstraints() {
         NSLayoutConstraint.activate([

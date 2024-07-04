@@ -29,6 +29,7 @@ final class IngredientsTableViewCell: UITableViewCell {
     
     private let ingredientImageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
         imageView.image = UIImage(named: "Ingredients") //Icons.Ingredients.cucumber
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
@@ -70,11 +71,13 @@ final class IngredientsTableViewCell: UITableViewCell {
         backgroundCellView.addSubview(checkCircleImageView)
     }
     
-    public func configureCell(ingredientName: String, ingredientMeasure: String, image: String, style: UITableViewCell.SelectionStyle) {
-        ingredientNameLabel.text = ingredientName
-        countItemsLabel.text = ingredientMeasure
-        ingredientImageView.image = UIImage(named: image)
-        selectionStyle = style
+    public func configureCell(with ingredient: Ingredient) {
+        ingredientNameLabel.text = ingredient.capitalizedName
+        let measureUntilShort = ingredient.measures.metric.unitShort
+        let amountIngredient = String(format: "%.1f", ingredient.measures.metric.amount)
+        countItemsLabel.text = "\(amountIngredient)" + " " + "\(measureUntilShort)"
+        ingredientImageView.getImage(from: ingredient.fullImageURL)
+        selectionStyle = .none
     }
     
     private func setConstraints() {

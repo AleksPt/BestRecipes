@@ -36,10 +36,10 @@ final class InstructionsTableViewCell: UITableViewCell {
         addSubview(instructionTextLabel)
     }
     
-    public func configureCell(instructionNumber: String, instructionText: String, style: UITableViewCell.SelectionStyle) {
-        stepNumberLabel.text = instructionNumber
-        instructionTextLabel.text = instructionText
-        selectionStyle = style
+    public func configureCell(with instructionStep: Step) {
+        stepNumberLabel.text = "\(instructionStep.number)."
+        instructionTextLabel.text = instructionStep.step
+        selectionStyle = .none
     }
     
     private func setConstraint() {
