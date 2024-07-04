@@ -18,7 +18,10 @@ class RecipeDetailView: UIView {
         tableView.isScrollEnabled = true
         tableView.showsVerticalScrollIndicator = false
         
-
+        tableView.register(ImageTableViewCell.self, forCellReuseIdentifier: ImageTableViewCell.identifier)
+        tableView.register(InstructionsTableViewCell.self, forCellReuseIdentifier: InstructionsTableViewCell.identifier)
+        tableView.register(IngredientsTableViewCell.self, forCellReuseIdentifier: IngredientsTableViewCell.identifier)
+        tableView.register(HeaderTableView.self, forHeaderFooterViewReuseIdentifier: HeaderTableView.identifier)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
