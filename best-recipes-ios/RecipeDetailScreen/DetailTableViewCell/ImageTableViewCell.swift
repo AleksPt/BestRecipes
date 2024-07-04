@@ -11,10 +11,9 @@ final class ImageTableViewCell: UITableViewCell {
 
     static let identifier = "ImageTableViewCell"
     
-    private let titleLabel: UILabel = {
-        let label = LabelFactory.makeScreenTitleLabel(text: "How to make Tasty Fish (point & Kill)")
-        return label
-    }()
+    private let titleLabel = LabelFactory.makeScreenTitleLabel(text: "How to make Tasty Fish (point & Kill)")
+    
+    private let reviewLabel = LabelFactory.createReviewsLabel(text: "(300 Reviews)")
     
     private let recipeImageView: UIImageView = {
         let imageView = UIImageView()
@@ -24,11 +23,6 @@ final class ImageTableViewCell: UITableViewCell {
         imageView.layer.cornerRadius = 12
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
-    }()
-    
-    private let reviewLabel: UILabel = {
-        let label = LabelFactory.createReviewsLabel(text: "(300 Reviews)")
-        return label
     }()
     
     private let ratingView: UIView = {

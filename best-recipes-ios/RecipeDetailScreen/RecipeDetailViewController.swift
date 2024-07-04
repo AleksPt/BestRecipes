@@ -61,10 +61,10 @@ extension RecipeDetailViewController: UITableViewDataSource, UITableViewDelegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) as? IngredientsTableViewCell {
             
-            if cell.checkCircleImageView.image == Icons.checkmark /*UIImage(named: "checkCircle")*/ {
-                cell.checkCircleImageView.image = Icons.uncheckmark  /*UIImage(named: "uncheckCircle")*/
+            if cell.checkCircleImageView.image == Icons.checkmark {
+                cell.checkCircleImageView.image = Icons.uncheckmark
             } else {
-                cell.checkCircleImageView.image = Icons.checkmark /*UIImage(named: "checkCircle")*/
+                cell.checkCircleImageView.image = Icons.checkmark
             }
         }
     }
@@ -111,5 +111,4 @@ extension RecipeDetailViewController: UITableViewDataSource, UITableViewDelegate
             return UITableViewCell()
         }
     }
-    
 }

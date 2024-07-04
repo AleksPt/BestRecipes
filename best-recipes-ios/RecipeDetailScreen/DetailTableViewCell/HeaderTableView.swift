@@ -11,19 +11,9 @@ final class HeaderTableView: UITableViewHeaderFooterView {
 
     static let identifier = "HeaderTableView"
     
-    private let titleLabel: UILabel = {
-        let label = LabelFactory.createInstructionsLabel(text: "Title")
-        return label
-    }()
+    private let titleLabel = LabelFactory.createInstructionsLabel(text: "Title")
     
-    private let countIngredientLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .right
-        label.textColor = .lightGray
-        label.font = UIFont.TextFonts.RecipeDetail.countIngredients
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
+    private let countIngredientLabel = LabelFactory.createReviewsLabel(text: "10 items")
     
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
@@ -51,10 +41,8 @@ final class HeaderTableView: UITableViewHeaderFooterView {
             titleLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
             
             countIngredientLabel.topAnchor.constraint(equalTo: topAnchor, constant: 0),
-            countIngredientLabel.leadingAnchor.constraint(equalTo: titleLabel.trailingAnchor),
             countIngredientLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
             countIngredientLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
         ])
     }
-
 }

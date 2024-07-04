@@ -35,15 +35,10 @@ final class IngredientsTableViewCell: UITableViewCell {
         return imageView
         
     }()
-    private  let ingredientNameLabel: UILabel = {
-        let label = LabelFactory.makeRecipeTitleLabel(text: "Fish")
-        return label
-    }()
     
-    private  let countItemsLabel: UILabel = {
-        let label = LabelFactory.makeValueLabel(text: "250g")
-        return label
-    }()
+    private  let ingredientNameLabel = LabelFactory.makeRecipeTitleLabel(text: "Fish")
+    
+    private  let countItemsLabel = LabelFactory.makeValueLabel(text: "250g")
     
     let checkCircleImageView: UIImageView = {
         let imageView = UIImageView()
@@ -103,10 +98,10 @@ final class IngredientsTableViewCell: UITableViewCell {
             
             ingredientImageView.centerYAnchor.constraint(equalTo: backgroundIngredientView.centerYAnchor),
             ingredientImageView.centerXAnchor.constraint(equalTo: backgroundIngredientView.centerXAnchor),
-            ingredientImageView.topAnchor.constraint(equalTo: backgroundIngredientView.topAnchor, constant: 2),
-            ingredientImageView.leadingAnchor.constraint(equalTo: backgroundIngredientView.leadingAnchor, constant: 2),
-            ingredientImageView.trailingAnchor.constraint(equalTo: backgroundIngredientView.trailingAnchor, constant: -2),
-            ingredientImageView.bottomAnchor.constraint(equalTo: backgroundIngredientView.bottomAnchor, constant: -2),
+            ingredientImageView.topAnchor.constraint(equalTo: backgroundIngredientView.topAnchor, constant: 1),
+            ingredientImageView.leadingAnchor.constraint(equalTo: backgroundIngredientView.leadingAnchor, constant: 1),
+            ingredientImageView.trailingAnchor.constraint(equalTo: backgroundIngredientView.trailingAnchor, constant: -1),
+            ingredientImageView.bottomAnchor.constraint(equalTo: backgroundIngredientView.bottomAnchor, constant: -1),
             
             ingredientNameLabel.centerYAnchor.constraint(equalTo: backgroundIngredientView.centerYAnchor),
             ingredientNameLabel.leadingAnchor.constraint(equalTo: backgroundIngredientView.trailingAnchor, constant: 10),

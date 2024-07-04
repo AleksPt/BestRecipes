@@ -11,15 +11,9 @@ final class InstructionsTableViewCell: UITableViewCell {
 
     static let identifier = "InstructionsTableViewCell"
     
-    private let stepNumberLabel: UILabel = {
-        let label = LabelFactory.makeStepInstructionLabel(text: "10.")
-        return label
-    }()
+    private let stepNumberLabel = LabelFactory.makeStepInstructionLabel(text: "10.")
     
-    private let instructionTextLabel: UILabel = {
-        let label = LabelFactory.makeInstructionTextLabel(text: "instruction text")
-        return label
-    }()
+    private let instructionTextLabel = LabelFactory.makeInstructionTextLabel(text: "instruction text")
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
