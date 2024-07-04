@@ -286,5 +286,29 @@ final class LabelFactory {
         label.text = text
         return label
     }
+    
+    //Instuction text
+    static func makeInstructionTextLabel(text: String) -> UILabel {
+        let label = UILabel()
+        label.textColor = .black
+        label.numberOfLines = 0
+        label.textAlignment = .natural
+        label.font = UIFont.TextFonts.RecipeDetail.instructionText
+        label.text = text
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }
+    
+    //Step number
+    static func makeStepInstructionLabel(text: String) -> UILabel {
+        let label = UILabel()
+        label.textColor = .black
+        label.numberOfLines = 0
+        label.textAlignment = .right
+        label.font = UIFont.TextFonts.RecipeDetail.instructionText
+        label.text = text
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }
 }
 
