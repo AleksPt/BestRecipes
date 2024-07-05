@@ -12,7 +12,6 @@ class RecipeDetailViewController: UIViewController {
     private let recipeDetailView = RecipeDetailView()
     
     //Data Store
-//    var firstRecipe: Recipe = DataStore.shared.recipes[0]
     var firstRecipe: Recipe?
     private var firstRecipeIngredient: [Ingredient]? { firstRecipe?.extendedIngredients ?? [] }
     private var firstRecipeSteps: [Step]? { firstRecipe?.analyzedInstructions?.first?.steps ?? [] }
