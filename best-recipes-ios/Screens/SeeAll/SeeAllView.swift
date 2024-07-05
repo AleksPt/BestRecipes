@@ -9,6 +9,9 @@ import UIKit
 
 final class SeeAllView: UIView {
     
+    private let title = LabelFactory.makeScreenTitleLabel(text: "")
+    
+    
     private var collectionView: UICollectionView = {
         var layout = UICollectionViewFlowLayout()
         
@@ -30,12 +33,22 @@ final class SeeAllView: UIView {
         
         setViews()
         setupConstraint()
-        
     }
     
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setTitle(_ type: RecipesType) {
+        switch type {
+        case .tradingNow:
+            title.text = "tradingNow"
+        case .recentRecipe:
+            title.text = "recentRecipe"
+        case .popularCreators:
+            title.text = "popularCreators"
+        }
     }
     
     
@@ -45,6 +58,9 @@ final class SeeAllView: UIView {
             collectionView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
             collectionView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
+            
+//            title.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor),//
+//            title.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor),//
         ])
     }
     
@@ -59,5 +75,6 @@ final class SeeAllView: UIView {
     private func setViews() {
         
         addSubview(collectionView)
+//        addSubview(title)
     }
 }

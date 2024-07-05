@@ -16,7 +16,6 @@ final class CustomCell: UICollectionViewCell {
         element.backgroundColor = .black
         element.layer.cornerRadius = 10
         element.setTitle("5", for: .normal)
-        //        element.imageView?.image = UIImage(systemName: "star.fill")
         element.alpha = 0.9
         
         element.translatesAutoresizingMaskIntoConstraints = false
@@ -45,7 +44,7 @@ final class CustomCell: UICollectionViewCell {
     lazy var imageView: UIImageView = {
         let element = UIImageView()
         
-        element.contentMode = .scaleAspectFit
+        element.contentMode = .scaleAspectFill
         element.translatesAutoresizingMaskIntoConstraints = false
         return element
     }()
@@ -75,23 +74,11 @@ final class CustomCell: UICollectionViewCell {
     }
     
     
-    func configure(with type: RecipesType) {
-        switch type {
-        case .tradingNow(let title, let description, let image):
-            titleLabel.text = title
-            descriptionLabel.text = description
-            imageView.image = image
-        case .recentRecipe(let title, let description, let image):
-            titleLabel.text = title
-            descriptionLabel.text = description
-            imageView.image = image
-        case .popularCreators(let title, let description, let image):
-            titleLabel.text = title
-            descriptionLabel.text = description
-            imageView.image = image
-        }
+    func configure(with item: Item) {
+        titleLabel.text = item.title
+        imageView.image = item.coverImage
+        descriptionLabel.text = item.nameAuthor
     }
-    
 }
 
 
@@ -113,6 +100,9 @@ extension CustomCell {
             
             imageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             imageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+
+            imageView.heightAnchor.constraint(equalToConstant: 250),
+            imageView.widthAnchor.constraint(equalToConstant: 400),
         ])
     }
 }
