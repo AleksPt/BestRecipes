@@ -40,7 +40,6 @@ final class WelcomeView: UIView {
     private let gradientLayer = CAGradientLayer()
     
     
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setViews()
@@ -50,6 +49,11 @@ final class WelcomeView: UIView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        gradientLayer.frame = gradientView.bounds
     }
     
     func updateGradient() {
@@ -84,8 +88,6 @@ final class WelcomeView: UIView {
     
     
     private func layoutViews() {
-        self.translatesAutoresizingMaskIntoConstraints = false
-        
         NSLayoutConstraint.activate([
             backgroundImage.topAnchor.constraint(equalTo: self.topAnchor),
             backgroundImage.bottomAnchor.constraint(equalTo: self.bottomAnchor),
@@ -130,11 +132,6 @@ final class WelcomeView: UIView {
         
         gradientView.setNeedsLayout()
         gradientView.layoutIfNeeded()
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        gradientLayer.frame = gradientView.bounds
     }
     
     @objc private func getStartedTapped(){

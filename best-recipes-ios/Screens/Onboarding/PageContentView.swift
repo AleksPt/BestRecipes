@@ -60,6 +60,11 @@ class PageContentView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        shadowGradientLayer.frame = shadowGradientView.bounds
+    }
+    
     func updateGradient() {
         if let gradientLayer = self.layer.sublayers?.compactMap({ $0 as? CAGradientLayer }).first {
             gradientLayer.frame = self.bounds
@@ -69,13 +74,7 @@ class PageContentView: UIView {
     func updatePageControl(with currentIndex: Int) {
         for (index, dot) in dots.enumerated() {
             if index == currentIndex {
-                applyGradientToDot(
-                    to: dot,
-                    colors: [
-                        UIColor.Colors.Primary.primary20.cgColor,
-                        UIColor.Colors.Secondary.secondary20.cgColor
-                    ]
-                )
+                dot.backgroundColor = UIColor.Colors.Primary.primary20
             } else {
                 dot.layer.sublayers?.forEach { $0.removeFromSuperlayer() }
                 dot.backgroundColor = UIColor.Colors.Neutral.neutral20
@@ -135,17 +134,7 @@ class PageContentView: UIView {
         }
     }
     
-    private func applyGradientToDot(to view: UIView, colors: [CGColor]) {
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.colors = colors
-        gradientLayer.cornerRadius = 5
-        gradientLayer.startPoint = CGPoint(x: 0, y: 0)
-        gradientLayer.endPoint = CGPoint(x: 1, y: 1)
-        gradientLayer.frame = view.bounds
-        view.layer.insertSublayer(gradientLayer, at: 0)
-    }
-    
-    internal func addShadowGradient() {
+    private func addShadowGradient() {
         shadowGradientLayer.frame = shadowGradientView.bounds
         shadowGradientLayer.colors = [UIColor.black.cgColor, UIColor.clear.cgColor]
         shadowGradientLayer.startPoint = CGPoint(x: 0.5, y: 0.9)
@@ -154,11 +143,6 @@ class PageContentView: UIView {
         
         shadowGradientView.setNeedsLayout()
         shadowGradientView.layoutIfNeeded()
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        shadowGradientLayer.frame = shadowGradientView.bounds
     }
     
     private func setupConstraints() {
