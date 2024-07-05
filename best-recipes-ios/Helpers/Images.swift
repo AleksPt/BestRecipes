@@ -77,5 +77,16 @@ enum Images {
         static let avatar4: UIImage = .author4
         static let avatar5: UIImage = .author5
         static let avatar6: UIImage = .author6
+        
+        static func getAvatar() -> [String: UIImage?] {
+            [
+            "Megan Fox":avatar1,
+            "Scarlett Johansson":avatar2,
+            "Cameron Diaz":avatar3,
+            "Natalie Portman":avatar4,
+            "Charlize Theron":avatar5,
+            "Julia Roberts":avatar6
+            ]
+        }
     }
 }

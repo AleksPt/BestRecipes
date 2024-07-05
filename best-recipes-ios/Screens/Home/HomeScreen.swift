@@ -23,7 +23,6 @@ final class HomeScreen: UIViewController {
         super.viewDidLoad()
         mainView.setDelegates(viewController: self)
         
-        // FIXME: выбери источник данных (mock или network)
 //        dataSource = dataStore.getMockData()
         fetchRecipes(typeUrl: .recipesURL(offset: dataStore.offsetRecipes, query: ""))
         fetchRecipes(typeUrl: .popularRecipesURL(offset: dataStore.offsetPopularResipes))
@@ -79,9 +78,8 @@ final class HomeScreen: UIViewController {
     private func filterRecipes(_ indexPath: IndexPath) {
         let currentCategory = dataSource[indexPath.section].categories[indexPath.item]
         
-        // FIXME: выбери источник данных (mock или network)
-        let recipes = dataStore.getMockData()[indexPath.section + 1].recipes
-//        let recipes = dataStore.getData()[indexPath.section + 1].recipes
+//        let recipes = dataStore.getMockData()[indexPath.section + 1].recipes
+        let recipes = dataStore.getData()[indexPath.section + 1].recipes
         
         let filteredRecipes = recipes.filter {
             $0.dishTypes.contains(currentCategory.lowercased())
@@ -98,12 +96,20 @@ final class HomeScreen: UIViewController {
 extension HomeScreen: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        if indexPath.section != 1 {
-            print("go to Recipe Detail Screen")
-        } else {
-            filterRecipes(indexPath)
-        }
+        let indexSection = indexPath.section
         
+        switch indexSection {
+        case 0, 2, 3:
+            let detailVC = RecipeDetailViewController()
+            detailVC.firstRecipe = dataSource[indexSection].recipes[indexPath.item]
+            navigationController?.pushViewController(detailVC, animated: true)
+        case 1:
+            filterRecipes(indexPath)
+        case 4:
+            print("go to SeeAll")
+        default:
+            break
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, shouldDeselectItemAt indexPath: IndexPath) -> Bool {
