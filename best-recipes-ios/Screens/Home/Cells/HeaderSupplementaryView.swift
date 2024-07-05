@@ -58,19 +58,31 @@ final class HeaderSupplementaryView: UICollectionReusableView {
     }
     
     // MARK: - Configure Header
-    func configureHeader(section: Int) {
+    func configureHeader(section: Int, dataSource: [Section]) {
         switch section {
         case 0:
             title.text = "Trending now 🔥"
+            title.isHidden = false
+            seeAllButton.isHidden = false
         case 1:
             title.text = "Popular category"
+            title.isHidden = false
             seeAllButton.isHidden = true
         case 2:
-            title.text = ""
+            seeAllButton.isHidden = false
         case 3:
             title.text = "Recent recipe"
+            if dataSource[section].recipes.isEmpty {
+                title.isHidden = true
+                seeAllButton.isHidden = true
+            } else {
+                title.isHidden = false
+                seeAllButton.isHidden = false
+            }
         case 4:
             title.text = "World cuisine"
+            title.isHidden = false
+            seeAllButton.isHidden = false
         default:
             break
         }

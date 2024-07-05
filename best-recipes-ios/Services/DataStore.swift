@@ -74,7 +74,7 @@ final class DataStore {
                 
             ],
             id: 716309,
-            title: "Pineapple Glazed Turkey Wings Pineapple Glazed Turkey Wings",
+            title: "Pineapple Glazed Turkey Wings",
             readyInMinutes: 45,
             servings: 2,
             image: "https://img.spoonacular.com/recipes/716309-556x370.jpg",
@@ -434,7 +434,7 @@ final class DataStore {
         
         let sectionPopularRecipe = Section(recipes: DataStore.shared.mockRecipes)
         
-        let sectionRecent = Section(recipes: DataStore.shared.mockRecipes)
+        let sectionRecent = Section(recipes: DataStore.shared.recentRecipes ?? [])
         
         let sectionWorldCuisine = Section(recipes: DataStore.shared.mockRecipes)
         
