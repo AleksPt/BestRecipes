@@ -40,7 +40,7 @@ final class HomeScreen: UIViewController {
 
                 switch typeUrl {
                 case .recipesURL(_, _):
-                    dataStore.recipes = recipes.results
+                    dataStore.trendingRecipes = recipes.results
                 case .popularRecipesURL(_):
                     dataStore.popularRecipes = recipes.results
                 case .cuisineSortedRecipesURL(_, _):

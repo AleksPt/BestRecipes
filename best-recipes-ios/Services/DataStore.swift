@@ -17,7 +17,7 @@ final class DataStore {
     
     static let shared = DataStore()
     
-    var mockRecipes = [
+    var recipes = [
         Recipe(
             sourceName: "Afrolems",
             extendedIngredients: [
@@ -424,7 +424,7 @@ final class DataStore {
     var offsetPopularResipes = 0
     var offsetWorldCuisineRecipes = 0
     
-    var recipes: [Recipe]?
+    var trendingRecipes: [Recipe]?
     var popularRecipes: [Recipe]?
     var recentRecipes: [Recipe]?
     var worlCuisineRecipes: [Recipe]?
@@ -432,15 +432,15 @@ final class DataStore {
     private init() {}
     
     func getMockData() -> [Section] {
-        let sectionTrendingItems = Section(recipes: DataStore.shared.mockRecipes)
+        let sectionTrendingItems = Section(recipes: DataStore.shared.recipes)
         
-        let sectionPopularCategory = Section(recipes: DataStore.shared.mockRecipes)
+        let sectionPopularCategory = Section(recipes: DataStore.shared.recipes)
         
-        let sectionPopularRecipe = Section(recipes: DataStore.shared.mockRecipes)
+        let sectionPopularRecipe = Section(recipes: DataStore.shared.recipes)
         
         let sectionRecent = Section(recipes: DataStore.shared.recentRecipes ?? [])
         
-        let sectionWorldCuisine = Section(recipes: DataStore.shared.mockRecipes)
+        let sectionWorldCuisine = Section(recipes: DataStore.shared.recipes)
         
         return [
             sectionTrendingItems,
@@ -452,9 +452,9 @@ final class DataStore {
     }
     
     func getData() -> [Section] {
-        let sectionTrendingItems = Section(recipes: recipes ?? [])
+        let sectionTrendingItems = Section(recipes: trendingRecipes ?? [])
         
-        let sectionPopularCategory = Section(recipes: recipes ?? [])
+        let sectionPopularCategory = Section(recipes: trendingRecipes ?? [])
         
         let sectionPopularRecipe = Section(recipes: popularRecipes ?? [])
         
