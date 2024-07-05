@@ -416,3 +416,26 @@ final class DataStore {
     
     private init() {}
 }
+
+final class StorageManager {
+    
+    static let shared = StorageManager()
+
+    private let dataStore = DataStore.shared
+
+    private init() {}
+    
+    // MARK: - CRUD
+    
+    func creatRecipe(from recipe: Recipe) {
+        dataStore.recipes.append(recipe)
+    }
+    
+    func fetchRecipe(_ index: Int) -> Recipe {
+        return dataStore.recipes[index]
+    }
+    
+    func deleteRecipe(_ index: Int) {
+        dataStore.recipes.remove(at: index)
+    }
+}
