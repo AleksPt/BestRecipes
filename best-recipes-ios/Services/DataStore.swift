@@ -414,8 +414,6 @@ final class DataStore {
         )
     ]
     
-    var favoriteRecipes: [Recipe] = []
-    
     private init() {}
 }
 
@@ -439,17 +437,5 @@ final class StorageManager {
     
     func deleteRecipe(_ index: Int) {
         dataStore.recipes.remove(at: index)
-    }
-    
-    func creatFavoriteRecipe(from recipe: Recipe) {
-        dataStore.favoriteRecipes.append(recipe)
-    }
-    
-    func fetchFavoriteRecipe(_ index: Int) -> Recipe {
-        return dataStore.favoriteRecipes[index]
-    }
-    
-    func deleteFavoriteRecipe(_ index: Int) {
-        dataStore.favoriteRecipes.remove(at: index)
     }
 }
