@@ -420,6 +420,10 @@ final class DataStore {
         )
     ]
     
+    var offsetRecipes = 0
+    var offsetPopularResipes = 0
+    var offsetWorldCuisineRecipes = 0
+    
     var recipes: [Recipe]?
     var popularRecipes: [Recipe]?
     var recentRecipes: [Recipe]?

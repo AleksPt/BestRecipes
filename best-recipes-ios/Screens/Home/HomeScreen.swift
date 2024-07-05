@@ -24,9 +24,9 @@ final class HomeScreen: UIViewController {
         mainView.setDelegates(viewController: self)
         
         // FIXME: выбери источник данных (mock или network)
-        dataSource = dataStore.getMockData()
-//        fetchRecipes(typeUrl: .recipesURL(offset: 0, query: ""))
-//        fetchRecipes(typeUrl: .popularRecipesURL(offset: 0))
+//        dataSource = dataStore.getMockData()
+        fetchRecipes(typeUrl: .recipesURL(offset: dataStore.offsetRecipes, query: ""))
+        fetchRecipes(typeUrl: .popularRecipesURL(offset: dataStore.offsetPopularResipes))
     }
     
     // MARK: - Private methods
@@ -37,7 +37,7 @@ final class HomeScreen: UIViewController {
             guard let self else { return }
             switch result {
             case .success(let recipes):
-                
+
                 switch typeUrl {
                 case .recipesURL(_, _):
                     dataStore.recipes = recipes.results
@@ -54,6 +54,7 @@ final class HomeScreen: UIViewController {
                 DispatchQueue.main.async { [weak self] in
                     guard let self else { return }
                     mainView.collectionView.reloadData()
+                    selectCategory()
                 }
             case .failure(let error):
                 print(error.localizedDescription)
@@ -70,24 +71,26 @@ final class HomeScreen: UIViewController {
                 animated: false,
                 scrollPosition: .top
             )
+            filterRecipes(IndexPath(item: 0, section: 1))
         }
     }
     
     /// Фильтр рецептов по категории
     private func filterRecipes(_ indexPath: IndexPath) {
-        let category = dataSource[indexPath.section].categories[indexPath.item]
+        let currentCategory = dataSource[indexPath.section].categories[indexPath.item]
+        
         // FIXME: выбери источник данных (mock или network)
-        let recipes = DataStore.shared.getMockData()[indexPath.section + 1].recipes
-//        let recipes = DataStore.shared.getData()[indexPath.section + 1].recipes
+        let recipes = dataStore.getMockData()[indexPath.section + 1].recipes
+//        let recipes = dataStore.getData()[indexPath.section + 1].recipes
         
         let filteredRecipes = recipes.filter {
-            $0.dishTypes.contains(category.lowercased())
+            $0.dishTypes.contains(currentCategory.lowercased())
         }
         
         dataSource[indexPath.section + 1].recipes = filteredRecipes
         
-        let indexSet = IndexSet(integer: indexPath.section + 1)
-        mainView.collectionView.reloadSections(indexSet)
+        let indexSection = IndexSet(integer: indexPath.section + 1)
+        mainView.collectionView.reloadSections(indexSection)
     }
 }
 
