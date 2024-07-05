@@ -10,6 +10,14 @@ import UIKit
 final class WorldCuisineCell: UICollectionViewCell {
     
     // MARK: - UI
+    private lazy var borderCoverView: UIView = {
+        let element = UIView()
+        element.translatesAutoresizingMaskIntoConstraints = false
+        element.layer.borderWidth = 1.5
+        element.layer.borderColor = UIColor.Home.PopularCategory.cellUnselectedTitle.cgColor
+        return element
+    }()
+    
     private let coverImageView = CoverImageFactory.makeCoverImageView(image: Images.Trending.tranding4)
     
     private let titleLabel = LabelFactory.makePopularCreatorNameLabel(text: "Country")
@@ -34,12 +42,16 @@ final class WorldCuisineCell: UICollectionViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        borderCoverView.layer.cornerRadius = borderCoverView.frame.width / 2
         coverImageView.layer.cornerRadius = coverImageView.frame.width / 2
+        
+        borderCoverView.heightAnchor.constraint(equalToConstant: borderCoverView.frame.width).isActive = true
         coverImageView.heightAnchor.constraint(equalToConstant: coverImageView.frame.width).isActive = true
     }
     
     // MARK: - Add subviews
     private func addSubviews() {
+        addSubview(borderCoverView)
         addSubview(coverImageView)
         addSubview(titleLabel)
     }
@@ -55,9 +67,13 @@ final class WorldCuisineCell: UICollectionViewCell {
 private extension WorldCuisineCell {
     func setupConstraints() {
         NSLayoutConstraint.activate([
-            coverImageView.topAnchor.constraint(equalTo: topAnchor),
-            coverImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            coverImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            borderCoverView.topAnchor.constraint(equalTo: topAnchor),
+            borderCoverView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            borderCoverView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            
+            coverImageView.topAnchor.constraint(equalTo: borderCoverView.topAnchor, constant: 5),
+            coverImageView.leadingAnchor.constraint(equalTo: borderCoverView.leadingAnchor, constant: 5),
+            coverImageView.trailingAnchor.constraint(equalTo: borderCoverView.trailingAnchor, constant: -5),
             
             titleLabel.topAnchor.constraint(equalTo: coverImageView.bottomAnchor, constant: 8),
             titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor),

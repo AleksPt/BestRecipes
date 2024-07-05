@@ -7,11 +7,17 @@
 
 import Foundation
 
+struct Section {
+    var recipes: [Recipe]
+    let categories: [String] = DishTypes.getDishTypes()
+    let cuisines: [Cuisine] = Cuisine.getCuisines()
+}
+
 final class DataStore {
     
     static let shared = DataStore()
     
-    var recipes = [
+    var mockRecipes = [
         Recipe(
             sourceName: "Afrolems",
             extendedIngredients: [
@@ -68,7 +74,7 @@ final class DataStore {
                 
             ],
             id: 716309,
-            title: "Pineapple Glazed Turkey Wings",
+            title: "Pineapple Glazed Turkey Wings Pineapple Glazed Turkey Wings",
             readyInMinutes: 45,
             servings: 2,
             image: "https://img.spoonacular.com/recipes/716309-556x370.jpg",
@@ -414,5 +420,52 @@ final class DataStore {
         )
     ]
     
+    var recipes: [Recipe]?
+    var popularRecipes: [Recipe]?
+    var recentRecipes: [Recipe]?
+    var worlCuisineRecipes: [Recipe]?
+    
     private init() {}
+    
+    func getMockData() -> [Section] {
+        let sectionTrendingItems = Section(recipes: DataStore.shared.mockRecipes)
+        
+        let sectionPopularCategory = Section(recipes: DataStore.shared.mockRecipes)
+        
+        let sectionPopularRecipe = Section(recipes: DataStore.shared.mockRecipes)
+        
+        let sectionRecent = Section(recipes: DataStore.shared.mockRecipes)
+        
+        let sectionWorldCuisine = Section(recipes: DataStore.shared.mockRecipes)
+        
+        return [
+            sectionTrendingItems,
+            sectionPopularCategory,
+            sectionPopularRecipe,
+            sectionRecent,
+            sectionWorldCuisine
+        ]
+    }
+    
+    func getData() -> [Section] {
+        let sectionTrendingItems = Section(recipes: recipes ?? [])
+        
+        let sectionPopularCategory = Section(recipes: recipes ?? [])
+        
+        let sectionPopularRecipe = Section(recipes: popularRecipes ?? [])
+        
+        let sectionRecent = Section(recipes: recentRecipes ?? [])
+        
+        let sectionWorldCuisine = Section(recipes: worlCuisineRecipes ?? [])
+        
+        return [
+            sectionTrendingItems,
+            sectionPopularCategory,
+            sectionPopularRecipe,
+            sectionRecent,
+            sectionWorldCuisine
+        ]
+    }
 }
+
+

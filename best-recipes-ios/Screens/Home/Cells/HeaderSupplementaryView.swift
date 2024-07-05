@@ -71,7 +71,6 @@ final class HeaderSupplementaryView: UICollectionReusableView {
             title.text = "Recent recipe"
         case 4:
             title.text = "World cuisine"
-            seeAllButton.isHidden = false
         default:
             break
         }

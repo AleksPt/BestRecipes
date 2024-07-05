@@ -37,7 +37,6 @@
 		FA685E852C32F06A0028BA17 /* СuisineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA685E842C32F06A0028BA17 /* СuisineCell.swift */; };
 		FA685E8E2C3304D20028BA17 /* HeaderSupplementaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA685E8D2C3304D20028BA17 /* HeaderSupplementaryView.swift */; };
 		FA685EAC2C34100C0028BA17 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA685EAB2C34100C0028BA17 /* HomeView.swift */; };
-		FA685EAE2C341BAA0028BA17 /* CollectionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA685EAD2C341BAA0028BA17 /* CollectionData.swift */; };
 		FA685EB22C3490C80028BA17 /* UIView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA685EB12C3490C80028BA17 /* UIView + Extension.swift */; };
 		FA685EB52C3574DF0028BA17 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA685EB42C3574DF0028BA17 /* CategoryCell.swift */; };
 		FA685EB72C358C360028BA17 /* CoverImageFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA685EB62C358C360028BA17 /* CoverImageFactory.swift */; };
@@ -77,7 +76,6 @@
 		FA685E842C32F06A0028BA17 /* СuisineCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "СuisineCell.swift"; sourceTree = "<group>"; };
 		FA685E8D2C3304D20028BA17 /* HeaderSupplementaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderSupplementaryView.swift; sourceTree = "<group>"; };
 		FA685EAB2C34100C0028BA17 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		FA685EAD2C341BAA0028BA17 /* CollectionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionData.swift; sourceTree = "<group>"; };
 		FA685EB12C3490C80028BA17 /* UIView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Extension.swift"; sourceTree = "<group>"; };
 		FA685EB42C3574DF0028BA17 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		FA685EB62C358C360028BA17 /* CoverImageFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverImageFactory.swift; sourceTree = "<group>"; };
@@ -216,7 +214,6 @@
 		FA685EA92C340FB30028BA17 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				FA685EAD2C341BAA0028BA17 /* CollectionData.swift */,
 				FA685EAB2C34100C0028BA17 /* HomeView.swift */,
 				FA685E7A2C32EB770028BA17 /* HomeScreen.swift */,
 				FA685E862C32F1520028BA17 /* Cells */,
@@ -351,7 +348,6 @@
 				D998A12D2C3089FB0084F9C4 /* SceneDelegate.swift in Sources */,
 				FA685EB72C358C360028BA17 /* CoverImageFactory.swift in Sources */,
 				FA685E7D2C32EEB30028BA17 /* TrendingCell.swift in Sources */,
-				FA685EAE2C341BAA0028BA17 /* CollectionData.swift in Sources */,
 				64285E4D2C34824A00A7E7ED /* Recipe.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

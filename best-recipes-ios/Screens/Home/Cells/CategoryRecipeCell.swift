@@ -67,6 +67,10 @@ final class CategoryRecipeCell: UICollectionViewCell {
             radius: 25,
             opacity: 0.25
         )
+
+        let titleLabelBottomConstraint = titleLabel.bottomAnchor.constraint(equalTo: timeSubtitleLabel.topAnchor, constant: -5)
+        titleLabelBottomConstraint.priority = .defaultHigh
+        titleLabelBottomConstraint.isActive = true
     }
     
     // MARK: - Add subviews
@@ -101,6 +105,7 @@ final class CategoryRecipeCell: UICollectionViewCell {
 // MARK: - Setup Constraints
 private extension CategoryRecipeCell {
     func setupConstraints() {
+        
         NSLayoutConstraint.activate([
             shadowView.topAnchor.constraint(equalTo: topAnchor),
             shadowView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 22),
