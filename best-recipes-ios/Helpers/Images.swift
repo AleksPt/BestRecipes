@@ -40,13 +40,34 @@ enum Images {
         static let tranding4: UIImage = .trending4
     }
     
-    enum Kitchens {
-        static let kitchen1: UIImage = .kitchen1
-        static let kitchen2: UIImage = .kitchen2
-        static let kitchen3: UIImage = .kitchen3
-        static let kitchen4: UIImage = .kitchen4
-        static let kitchen5: UIImage = .kitchen5
-        static let kitchen6: UIImage = .kitchen6
+    enum Cuisine {
+        static let african: UIImage = .african
+        static let asian: UIImage = .asian
+        static let american: UIImage = .american
+        static let british: UIImage = .british
+        static let cajun: UIImage = .cajun
+        static let caribbean: UIImage = .caribbean
+        static let chinese: UIImage = .chinese
+        static let easternEuropean: UIImage = .easternEuropean
+        static let european: UIImage = .european
+        static let french: UIImage = .french
+        static let german: UIImage = .german
+        static let greek: UIImage = .greek
+        static let indian: UIImage = .indian
+        static let irish: UIImage = .irish
+        static let italian: UIImage = .italian
+        static let japanese: UIImage = .japanese
+        static let jewish: UIImage = .jewish
+        static let korean: UIImage = .korean
+        static let latinAmerican: UIImage = .latinAmerican
+        static let mediterranean: UIImage = .mediterranean
+        static let mexican: UIImage = .mexican
+        static let middleEastern: UIImage = .middleEastern
+        static let nordic: UIImage = .nordic
+        static let southern: UIImage = .southern
+        static let spanish: UIImage = .spanish
+        static let thai: UIImage = .thai
+        static let vietnamese: UIImage = .vietnamese
     }
     
     enum Avatars {
@@ -56,5 +77,16 @@ enum Images {
         static let avatar4: UIImage = .author4
         static let avatar5: UIImage = .author5
         static let avatar6: UIImage = .author6
+        
+        static func getAvatar() -> [String: UIImage?] {
+            [
+            "Megan Fox":avatar1,
+            "Scarlett Johansson":avatar2,
+            "Cameron Diaz":avatar3,
+            "Natalie Portman":avatar4,
+            "Charlize Theron":avatar5,
+            "Julia Roberts":avatar6
+            ]
+        }
     }
 }

@@ -26,7 +26,7 @@ final class ImageTableViewCell: UITableViewCell {
     }()
     
     private let ratingView: UIView = {
-        let view = RatingFactory.makeSavedTrandingRating(image: UIImageView(image: UIImage(systemName: "star")), ratingLabel: "4,5")
+        let view = RatingFactory.makeSavedTrandingRating(image: UIImageView(image: Icons.star), ratingLabel: "4,5", blur: false)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -56,9 +56,11 @@ final class ImageTableViewCell: UITableViewCell {
         titleLabel.text = nil
     }
     
-    public func configureCell(with recipe: Recipe) {
-        recipeImageView.getImage(from: recipe.imageURL)
-        titleLabel.text = recipe.title
+    public func configureCell(with recipe: Recipe?) {
+        if let image = recipe?.imageURL {
+            recipeImageView.getImage(from: image)
+        }
+        titleLabel.text = recipe?.title
         selectionStyle = .none
     }
     
