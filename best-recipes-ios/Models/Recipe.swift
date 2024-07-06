@@ -16,7 +16,7 @@ struct ComplexSearch: Decodable {
 
 struct Recipe: Decodable {
     let sourceName: String
-    let extendedIngredients: [Ingredient]?
+    let extendedIngredients: [Ingredient]
     let id: Int
     let title: String
     let readyInMinutes: Int
@@ -24,7 +24,7 @@ struct Recipe: Decodable {
     let image: String
     let cuisines: [String]
     let dishTypes: [String]
-    let analyzedInstructions: [AnalyzedInstruction]?
+    let analyzedInstructions: [AnalyzedInstruction]
     let aggregateLikes: Int
     let spoonacularScore: Double
     var isFavorite: Bool?
