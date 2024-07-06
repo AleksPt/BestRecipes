@@ -9,21 +9,6 @@ import UIKit
 
 final class RecentCell: UICollectionViewCell {
     
-    /// Выравнивает текст по верхнему краю
-    final class CustomTitleLabel: UILabel {
-        override func drawText(in rect: CGRect) {
-            super.drawText(
-                in: .init(
-                    origin: .zero,
-                    size: textRect(
-                        forBounds: rect,
-                        limitedToNumberOfLines: numberOfLines
-                    ).size
-                )
-            )
-        }
-    }
-    
     // MARK: - UI
     private let coverImageView = CoverImageFactory.makeCoverImageView(image: Images.Trending.tranding4)
     
@@ -70,10 +55,10 @@ final class RecentCell: UICollectionViewCell {
     }
 
     // MARK: - Configure Cell
-    func configureCell(item: Item) {
-        coverImageView.image = item.coverImage
+    func configureCell(item: Recipe) {
+        coverImageView.getImage(from: item.imageURL)
         titleLabel.text = replaceFirstSpace(in: item.title, with: "\n")
-        nameAuthor.text = "By " + item.nameAuthor
+        nameAuthor.text = "By "
     }
 }
 

@@ -72,12 +72,13 @@ final class TrendingCell: UICollectionViewCell {
     }
     
     // MARK: - Configure Cell
-    func configureCell(item: Item) {
-        coverImageView.image = item.coverImage
+    func configureCell(item: Recipe) {
+        coverImageView.getImage(from: item.imageURL)
         titleLabel.text = item.title
-        avatar.image = item.avatar
-        nameAuthor.text = "By " + item.nameAuthor
-        ratingValue = item.rating.description
+        if let author = Images.Avatars.getAvatar().randomElement() {
+            avatar.image = author.value
+            nameAuthor.text = "By \(author.key)"
+        }
     }
     
     // MARK: - Add subviews
