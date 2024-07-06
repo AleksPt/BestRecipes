@@ -35,6 +35,7 @@ final class RatingFactory {
             label.textColor = UIColor.Colors.Neutral.neutral100
             ratingView.addSubview(localImage)
             ratingView.addSubview(label)
+            blurEffectView.effect = nil
         }
         ratingView.translatesAutoresizingMaskIntoConstraints = false
         

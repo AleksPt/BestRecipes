@@ -67,6 +67,10 @@ final class CategoryRecipeCell: UICollectionViewCell {
             radius: 25,
             opacity: 0.25
         )
+
+        let titleLabelBottomConstraint = titleLabel.bottomAnchor.constraint(equalTo: timeSubtitleLabel.topAnchor, constant: -5)
+        titleLabelBottomConstraint.priority = .defaultHigh
+        titleLabelBottomConstraint.isActive = true
     }
     
     // MARK: - Add subviews
@@ -81,10 +85,10 @@ final class CategoryRecipeCell: UICollectionViewCell {
     }
     
     // MARK: - Configure Cell
-    func configureCell(item: Item) {
-        coverImageView.image = item.coverImage
+    func configureCell(item: Recipe) {
+        coverImageView.getImage(from: item.imageURL)
         titleLabel.text = item.title
-        timeValueLabel.text = item.time.description + " Mins"
+        timeValueLabel.text = item.readyInMinutes.description + " Mins"
     }
     
     // MARK: - Actions
@@ -101,6 +105,7 @@ final class CategoryRecipeCell: UICollectionViewCell {
 // MARK: - Setup Constraints
 private extension CategoryRecipeCell {
     func setupConstraints() {
+        
         NSLayoutConstraint.activate([
             shadowView.topAnchor.constraint(equalTo: topAnchor),
             shadowView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 22),

@@ -9,38 +9,34 @@ final class LabelFactory {
     //Best Recipe
     static func makeOnboardingScreenLabel(text: String) -> UILabel {
         let label = UILabel()
-        label.font = UIFont.TextFonts.Onboarding.StartPage.title
-        label.textAlignment = .center
-        label.numberOfLines = 0
+        label.numberOfLines = 2
         label.textColor = .white
-        label.text = text
         label.translatesAutoresizingMaskIntoConstraints = false
+        
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineHeightMultiple = 0.8
+        paragraphStyle.alignment = .center
+        
+        let attributedText = NSAttributedString(string: text,
+                                                attributes: [
+                                                    .font: UIFont.TextFonts.Onboarding.StartPage.title,
+                                                    .foregroundColor: UIColor.white,
+                                                    .paragraphStyle: paragraphStyle
+                                                ])
+        label.attributedText = attributedText
         return label
     }
     
     //Recipes from all over the World
     //Recipes with each and every detail
     //Cook it now or save it for later
-    static func makeOnboardingPageLabel(text: String) -> UILabel {
+    static func makeOnboardingPageLabel() -> UILabel {
         let label = UILabel()
         label.font = UIFont.TextFonts.Onboarding.title
         label.textAlignment = .center
-        label.numberOfLines = 0
+        label.numberOfLines = 3
         label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
-        
-        let attributedText = NSMutableAttributedString(string: text)
-        
-        let rangeFirstPage: NSRange = attributedText.mutableString.range(of: "over the World", options: .caseInsensitive)
-        attributedText.addAttribute(.foregroundColor, value: #colorLiteral(red: 0.9732453227, green: 0.7861489654, blue: 0.6039040685, alpha: 1), range: rangeFirstPage)
-        
-        let rangeSecondPage:NSRange = attributedText.mutableString.range(of: "each and every detail", options: .caseInsensitive)
-        attributedText.addAttribute(.foregroundColor, value: #colorLiteral(red: 0.9732453227, green: 0.7861489654, blue: 0.6039040685, alpha: 1), range: rangeSecondPage)
-        
-        let rangeThirdPage:NSRange = attributedText.mutableString.range(of: "save it for later", options: .caseInsensitive)
-        attributedText.addAttribute(.foregroundColor, value: #colorLiteral(red: 0.9732453227, green: 0.7861489654, blue: 0.6039040685, alpha: 1), range: rangeThirdPage)
-        
-        label.attributedText = attributedText
         
         return label
     }
@@ -284,6 +280,30 @@ final class LabelFactory {
         label.font = UIFont.TextFonts.RecipeDetail.countIngredients
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = text
+        return label
+    }
+    
+    //Instuction text
+    static func makeInstructionTextLabel(text: String) -> UILabel {
+        let label = UILabel()
+        label.textColor = .black
+        label.numberOfLines = 0
+        label.textAlignment = .natural
+        label.font = UIFont.TextFonts.RecipeDetail.instructionText
+        label.text = text
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }
+    
+    //Step number
+    static func makeStepInstructionLabel(text: String) -> UILabel {
+        let label = UILabel()
+        label.textColor = .black
+        label.numberOfLines = 0
+        label.textAlignment = .right
+        label.font = UIFont.TextFonts.RecipeDetail.instructionText
+        label.text = text
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }
 }

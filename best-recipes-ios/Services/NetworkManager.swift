@@ -67,7 +67,10 @@ struct NetworkManager {
     
     private init() {}
     
-    func fetchImage(from url: URL, completion: @escaping(Result<Data, NetworkError>) -> Void) {
+    func fetchImage(
+        from url: URL,
+        completion: @escaping(Result<Data, NetworkError>) -> Void
+    ) {
         DispatchQueue.global().async {
             guard let imageData = try? Data(contentsOf: url) else {
                 completion(.failure(.noData))
@@ -79,7 +82,11 @@ struct NetworkManager {
         }
     }
     
-    func fetch<T: Decodable>(_ type: T.Type, from url: URL, completion: @escaping(Result<T, NetworkError>) -> Void) {
+    func fetch<T: Decodable>(
+        _ type: T.Type,
+        from url: URL,
+        completion: @escaping(Result<T, NetworkError>) -> Void
+    ) {
         URLSession.shared.dataTask(with: url) { data, _, error in
             guard let data else {
                 print(error?.localizedDescription ?? "No error description")
