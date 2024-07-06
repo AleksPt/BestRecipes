@@ -12,7 +12,6 @@ final class SavedRecipesViewController: UIViewController {
     // MARK: - Variables
     
     private let savedRecipesView = SavedRecipesView()
-    private var collectionData = CollectionData.getData()
     var collectionDataArray : [Recipe] = []
     
     //MARK: - Lifecycle
