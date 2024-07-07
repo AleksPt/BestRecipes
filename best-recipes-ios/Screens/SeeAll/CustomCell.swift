@@ -11,35 +11,15 @@ import UIKit
 final class CustomCell: UICollectionViewCell {
     
     //MARK: - Setup UI
-    lazy var ratingButton: UIButton = {
-        let element = UIButton(type: .system)
-        element.backgroundColor = .black
-        element.layer.cornerRadius = 10
-        element.setTitle("5", for: .normal)
-        element.alpha = 0.9
-        
-        element.translatesAutoresizingMaskIntoConstraints = false
-        return element
-    }()
+    private let ratingLabel = RatingFactory.makeSavedTrandingRating(
+        image: UIImageView(image: UIImage(resource: .star)),
+        ratingLabel: "5,0",
+        blur: true
+    )
     
-    lazy var titleLabel: UILabel = {
-        let element = UILabel()
-        element.textAlignment = .left
-        element.numberOfLines = 0
-        element.textColor = .white
-        element.font = UIFont.systemFont(ofSize: 20, weight: .bold)
-        element.translatesAutoresizingMaskIntoConstraints = false
-        return element
-    }()
+    private let titleLabel = LabelFactory.makeTrendScreenRecipeTitleLabel(text: "")
     
-    lazy var descriptionLabel: UILabel = {
-        let element = UILabel()
-        element.textAlignment = .left
-        element.textColor = .white
-        element.font = UIFont.systemFont(ofSize: 14)
-        element.translatesAutoresizingMaskIntoConstraints = false
-        return element
-    }()
+    private let descriptionLabel = LabelFactory.maketTrendScreenValueLabel(text: "")
     
     lazy var imageView: UIImageView = {
         let element = UIImageView()
@@ -68,7 +48,7 @@ final class CustomCell: UICollectionViewCell {
         contentView.layer.masksToBounds = true
         
         contentView.addSubview(imageView)
-        contentView.addSubview(ratingButton)
+        contentView.addSubview(ratingLabel)
         contentView.addSubview(titleLabel)
         contentView.addSubview(descriptionLabel)
     }
@@ -77,7 +57,7 @@ final class CustomCell: UICollectionViewCell {
     func configure(with item: Item) {
         titleLabel.text = item.title
         imageView.image = item.coverImage
-        descriptionLabel.text = item.nameAuthor
+        descriptionLabel.text = "\(item.category.rawValue.count) ingradients | \(item.time) min"
     }
 }
 
@@ -87,8 +67,8 @@ extension CustomCell {
     
     private func setupConstraint() {
         NSLayoutConstraint.activate([
-            ratingButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-            ratingButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            ratingLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            ratingLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             
             titleLabel.bottomAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: -20),
             titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
