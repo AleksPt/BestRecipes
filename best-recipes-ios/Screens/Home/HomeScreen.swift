@@ -7,10 +7,6 @@
 
 import UIKit
 
-protocol HomeScreenDelegate: AnyObject {
-    func reloadRecentRecipeSection()
-}
-
 final class HomeScreen: UIViewController {
     
     private let mainView = HomeView()
@@ -124,9 +120,13 @@ extension HomeScreen: UICollectionViewDelegateFlowLayout {
             let detailVC = RecipeDetailViewController()
             let recipe = dataSource[indexSection].recipes[indexPath.item]
             detailVC.firstRecipe = recipe
-            detailVC.delegate = self
             addRecentRecipe(recipe: recipe)
             navigationController?.pushViewController(detailVC, animated: true)
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+                guard let self else { return }
+                mainView.collectionView.reloadData()
+            }
         case 1:
             filterRecipes(indexPath)
         case 4:
@@ -242,12 +242,5 @@ extension HomeScreen: UICollectionViewDataSource {
         default:
             return UICollectionReusableView()
         }
-    }
-}
-
-// MARK: - HomeScreenDelegate
-extension HomeScreen: HomeScreenDelegate {
-    func reloadRecentRecipeSection() {
-        mainView.collectionView.reloadData()
     }
 }

@@ -9,7 +9,6 @@ import UIKit
 
 class RecipeDetailViewController: UIViewController {
     
-    weak var delegate: HomeScreenDelegate?
     private let recipeDetailView = RecipeDetailView()
     
     //Data Store
@@ -25,10 +24,6 @@ class RecipeDetailViewController: UIViewController {
         super.viewDidLoad()
         
         recipeDetailView.setDelegate(viewController: self)
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        delegate?.reloadRecentRecipeSection()
     }
 }
 
