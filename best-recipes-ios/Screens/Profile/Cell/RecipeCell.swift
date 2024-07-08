@@ -14,7 +14,7 @@ final class RecipeCell: UICollectionViewCell {
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.layer.cornerRadius = 15
+        imageView.layer.cornerRadius = 12
         return imageView
     }()
     

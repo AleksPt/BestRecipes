@@ -25,7 +25,6 @@ final class ProfileController: UICollectionViewController, UICollectionViewDeleg
         title = "My Profile"
         
         setupCollectionView()
-        setupProfileImageView()
         setupImagePicker()
     }
     
@@ -33,20 +32,24 @@ final class ProfileController: UICollectionViewController, UICollectionViewDeleg
         present(imagePicker, animated: true)
     }
     
+    // MARK: - Private Methods
     private func setupCollectionView() {
+        profileView.collectionView.register(
+            ProfileCell.self,
+            forCellWithReuseIdentifier: "ProfileCell"
+        )
         profileView.collectionView.register(
             RecipeCell.self,
             forCellWithReuseIdentifier: "RecipeCell"
         )
+        profileView.collectionView.register(
+            ProfileSectionHeaderView.self,
+            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+            withReuseIdentifier: "ProfileSectionHeaderView"
+        )
+        
         profileView.collectionView.delegate = self
         profileView.collectionView.dataSource = self
-    }
-    
-    private func setupProfileImageView() {
-        profileView.addProfileImageTapGesture(
-            target: self,
-            action: #selector(addProfileImage)
-        )
     }
     
     private func setupImagePicker() {
@@ -56,25 +59,69 @@ final class ProfileController: UICollectionViewController, UICollectionViewDeleg
     }
     
     // MARK: - UICollectionViewDataSource
+    override func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 2
+    }
+    
     override func collectionView(
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int
     ) -> Int {
-        return dataStore.recipes.count
+        if section == 0 {
+            return 1
+        } else {
+            return dataStore.recipes.count
+        }
     }
     
     override func collectionView(
         _ collectionView: UICollectionView,
         cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: "RecipeCell",
-            for: indexPath
-        ) as! RecipeCell
         
-        let recipe = dataStore.recipes[indexPath.item]
-        cell.configure(with: recipe)
-        return cell
+        if indexPath.section == 0 {
+            let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: "ProfileCell",
+                for: indexPath
+            ) as! ProfileCell
+            cell.addProfileImageTapGesture(target: self, action: #selector(addProfileImage))
+            return cell
+        } else {
+            let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: "RecipeCell",
+                for: indexPath
+            ) as! RecipeCell
+            
+            let recipe = dataStore.recipes[indexPath.item]
+            cell.configure(with: recipe)
+            return cell
+        }
+    }
+    
+    override func collectionView(
+        _ collectionView: UICollectionView,
+        viewForSupplementaryElementOfKind kind: String,
+        at indexPath: IndexPath
+    ) -> UICollectionReusableView {
+        if kind == UICollectionView.elementKindSectionHeader {
+            let headerView = collectionView.dequeueReusableSupplementaryView(
+                ofKind: kind,
+                withReuseIdentifier: "ProfileSectionHeaderView",
+                for: indexPath
+            ) as! ProfileSectionHeaderView
+            if indexPath.section == 1 {
+                headerView.configure(with: "My Recipes")
+            }
+            return headerView
+        }
+        return UICollectionReusableView()
+    }
+    
+    // MARK: - UICollectionViewDelegate
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let detailVC = RecipeDetailViewController()
+        detailVC.firstRecipe = dataStore.recipes[indexPath.item]
+        navigationController?.pushViewController(detailVC, animated: true)
     }
     
     // MARK: - UICollectionViewDelegateFlowLayout
@@ -83,6 +130,9 @@ final class ProfileController: UICollectionViewController, UICollectionViewDeleg
         layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAt indexPath: IndexPath
     ) -> CGSize {
+        if indexPath.section == 0 {
+            return CGSize(width: collectionView.frame.width - 32, height: 150)
+        }
         return CGSize(width: collectionView.frame.width - 32, height: 200)
     }
     
@@ -92,6 +142,17 @@ final class ProfileController: UICollectionViewController, UICollectionViewDeleg
         minimumLineSpacingForSectionAt section: Int
     ) -> CGFloat {
         return 25
+    }
+    
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        referenceSizeForHeaderInSection section: Int
+    ) -> CGSize {
+        if section == 1 {
+            return CGSize(width: collectionView.frame.width, height: 50)
+        }
+        return .zero
     }
 }
 
@@ -103,9 +164,17 @@ extension ProfileController: UIImagePickerControllerDelegate, UINavigationContro
         didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]
     ) {
         if let editedImage = info[.editedImage] as? UIImage {
-            profileView.setProfileImage(editedImage)
+            if let cell = profileView.collectionView.cellForItem(
+                at: IndexPath(item: 0, section: 0)
+            ) as? ProfileCell {
+                cell.setProfileImage(editedImage)
+            }
         } else if let originalImage = info[.originalImage] as? UIImage {
-            profileView.setProfileImage(originalImage)
+            if let cell = profileView.collectionView.cellForItem(
+                at: IndexPath(item: 0, section: 0)
+            ) as? ProfileCell {
+                cell.setProfileImage(originalImage)
+            }
         }
         dismiss(animated: true, completion: nil)
     }
