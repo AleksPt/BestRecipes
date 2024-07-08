@@ -9,12 +9,13 @@ import UIKit
 
 class RecipeDetailViewController: UIViewController {
     
+    weak var delegate: HomeScreenDelegate?
     private let recipeDetailView = RecipeDetailView()
     
     //Data Store
     var firstRecipe: Recipe?
     private var firstRecipeIngredient: [Ingredient]? { firstRecipe?.extendedIngredients ?? [] }
-    private var firstRecipeSteps: [Step]? { firstRecipe?.analyzedInstructions?.first?.steps ?? [] }
+    private var firstRecipeSteps: [Step]? { firstRecipe?.analyzedInstructions.first?.steps ?? [] }
     
     override func loadView() {
         view = recipeDetailView
@@ -24,6 +25,10 @@ class RecipeDetailViewController: UIViewController {
         super.viewDidLoad()
         
         recipeDetailView.setDelegate(viewController: self)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        delegate?.reloadRecentRecipeSection()
     }
 }
 
