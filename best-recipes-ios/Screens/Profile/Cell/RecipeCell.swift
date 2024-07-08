@@ -14,7 +14,7 @@ final class RecipeCell: UICollectionViewCell {
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.layer.cornerRadius = 15
+        imageView.layer.cornerRadius = 12
         return imageView
     }()
     
@@ -98,7 +98,7 @@ final class RecipeCell: UICollectionViewCell {
     func configure(with recipe: Recipe) {
         imageView.getImage(from: recipe.imageURL) // если image будет типа Data - проблемы
         recipeTitleLabel.text = recipe.title
-        ingredientsLabel.text = "\(recipe.extendedIngredients?.count ?? 0) ingredients"
+        ingredientsLabel.text = "\(recipe.extendedIngredients.count) ingredients"
         timeLabel.text = "\(recipe.readyInMinutes) mins"
     }
     
