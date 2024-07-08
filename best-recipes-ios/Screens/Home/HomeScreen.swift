@@ -90,6 +90,23 @@ final class HomeScreen: UIViewController {
         let indexSection = IndexSet(integer: indexPath.section + 1)
         mainView.collectionView.reloadSections(indexSection)
     }
+    
+    /// Проверяет просмотренный рецепт, если ранее не был просмотрен - добавляет в секцию
+    private func addRecentRecipe(recipe: Recipe) {
+        if let recentRecipes = dataStore.recentRecipes {
+            if !recentRecipes.isEmpty {
+                let result = recentRecipes.contains { recentRecipe in
+                    recentRecipe.id == recipe.id
+                }
+                if !result {
+                    dataStore.recentRecipes?.append(recipe)
+                }
+            } else {
+                dataStore.recentRecipes?.append(recipe)
+            }
+        }
+        dataSource = dataStore.getData()
+    }
 }
 
 // MARK: - UICollectionViewDelegate
@@ -101,8 +118,15 @@ extension HomeScreen: UICollectionViewDelegateFlowLayout {
         switch indexSection {
         case 0, 2, 3:
             let detailVC = RecipeDetailViewController()
-            detailVC.firstRecipe = dataSource[indexSection].recipes[indexPath.item]
+            let recipe = dataSource[indexSection].recipes[indexPath.item]
+            detailVC.firstRecipe = recipe
+            addRecentRecipe(recipe: recipe)
             navigationController?.pushViewController(detailVC, animated: true)
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+                guard let self else { return }
+                mainView.collectionView.reloadData()
+            }
         case 1:
             filterRecipes(indexPath)
         case 4:
@@ -220,4 +244,3 @@ extension HomeScreen: UICollectionViewDataSource {
         }
     }
 }
-

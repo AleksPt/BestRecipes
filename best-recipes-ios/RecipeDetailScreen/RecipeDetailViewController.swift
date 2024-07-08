@@ -13,8 +13,8 @@ class RecipeDetailViewController: UIViewController {
     
     //Data Store
     var firstRecipe: Recipe?
-    private var firstRecipeIngredient: [Ingredient]? { firstRecipe?.extendedIngredients ?? [] }
-    private var firstRecipeSteps: [Step]? { firstRecipe?.analyzedInstructions?.first?.steps ?? [] }
+    private var firstRecipeIngredient: [Ingredient]? { firstRecipe?.extendedIngredients }
+    private var firstRecipeSteps: [Step]? { firstRecipe?.analyzedInstructions.first?.steps }
     
     override func loadView() {
         view = recipeDetailView
