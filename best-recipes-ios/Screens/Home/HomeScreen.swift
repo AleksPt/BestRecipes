@@ -69,7 +69,7 @@ final class HomeScreen: UIViewController {
             mainView.collectionView.selectItem(
                 at: indexPath,
                 animated: false,
-                scrollPosition: .top
+                scrollPosition: []
             )
             filterRecipes(IndexPath(item: 0, section: 1))
         }
