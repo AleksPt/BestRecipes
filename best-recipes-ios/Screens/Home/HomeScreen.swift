@@ -22,7 +22,7 @@ final class HomeScreen: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         mainView.setDelegates(viewController: self)
-        
+        mainView.activityIndicator.startAnimation(delay: 0.0075, replicates: 120)
 //        dataSource = dataStore.getMockData()
         fetchRecipes(typeUrl: .recipesURL(offset: dataStore.offsetRecipes, query: ""))
         fetchRecipes(typeUrl: .popularRecipesURL(offset: dataStore.offsetPopularResipes))
@@ -54,6 +54,7 @@ final class HomeScreen: UIViewController {
                     guard let self else { return }
                     mainView.collectionView.reloadData()
                     selectCategory()
+                    mainView.activityIndicator.stopAnimation()
                 }
             case .failure(let error):
                 print(error.localizedDescription)
@@ -105,6 +106,7 @@ final class HomeScreen: UIViewController {
                 dataStore.recentRecipes?.append(recipe)
             }
         }
+//         dataSource = dataStore.getMockData()
         dataSource = dataStore.getData()
     }
 }

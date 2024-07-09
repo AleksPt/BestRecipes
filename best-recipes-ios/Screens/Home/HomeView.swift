@@ -47,6 +47,11 @@ final class HomeView: UIView {
         return collectionView
     }()
     
+    lazy var activityIndicator: CustomSpinner = {
+       let element = CustomSpinner(squareLength: 50)
+        return element
+    }()
+    
     private lazy var titleScreen: UILabel = {
         let element = UILabel()
         element.text = "Get amazing recipes for cooking"
@@ -85,6 +90,7 @@ final class HomeView: UIView {
     private func addSubviews() {
         addSubview(collectionView)
         addSubview(titleScreen)
+        addSubview(activityIndicator)
     }
     
     // MARK: - Setup Constraint
