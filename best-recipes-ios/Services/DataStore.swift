@@ -7,6 +7,12 @@
 
 import Foundation
 
+struct Section {
+    var recipes: [Recipe]
+    let categories: [String] = DishTypes.getDishTypes()
+    let cuisines: [Cuisine] = Cuisine.getCuisines()
+}
+
 final class DataStore {
     
     static let shared = DataStore()
@@ -414,5 +420,79 @@ final class DataStore {
         )
     ]
     
+    var offsetRecipes = 0
+    var offsetPopularResipes = 0
+    var offsetWorldCuisineRecipes = 0
+    
+    var trendingRecipes: [Recipe]?
+    var popularRecipes: [Recipe]?
+    var recentRecipes: [Recipe]? = []
+    var worlCuisineRecipes: [Recipe]?
+    
     private init() {}
+    
+    func getMockData() -> [Section] {
+        let sectionTrendingItems = Section(recipes: DataStore.shared.recipes)
+        
+        let sectionPopularCategory = Section(recipes: DataStore.shared.recipes)
+        
+        let sectionPopularRecipe = Section(recipes: DataStore.shared.recipes)
+        
+        let sectionRecent = Section(recipes: DataStore.shared.recentRecipes ?? [])
+        
+        let sectionWorldCuisine = Section(recipes: DataStore.shared.recipes)
+        
+        return [
+            sectionTrendingItems,
+            sectionPopularCategory,
+            sectionPopularRecipe,
+            sectionRecent,
+            sectionWorldCuisine
+        ]
+    }
+    
+    func getData() -> [Section] {
+        let sectionTrendingItems = Section(recipes: trendingRecipes ?? [])
+        
+        let sectionPopularCategory = Section(recipes: trendingRecipes ?? [])
+        
+        let sectionPopularRecipe = Section(recipes: popularRecipes ?? [])
+        
+        let sectionRecent = Section(recipes: recentRecipes ?? [])
+        
+        let sectionWorldCuisine = Section(recipes: worlCuisineRecipes ?? [])
+        
+        return [
+            sectionTrendingItems,
+            sectionPopularCategory,
+            sectionPopularRecipe,
+            sectionRecent,
+            sectionWorldCuisine
+        ]
+    }
 }
+
+
+final class StorageManager {
+    
+    static let shared = StorageManager()
+
+    private let dataStore = DataStore.shared
+
+    private init() {}
+    
+    // MARK: - CRUD
+    
+    func creatRecipe(from recipe: Recipe) {
+        dataStore.recipes.append(recipe)
+    }
+    
+    func fetchRecipe(_ index: Int) -> Recipe {
+        return dataStore.recipes[index]
+    }
+    
+    func deleteRecipe(_ index: Int) {
+        dataStore.recipes.remove(at: index)
+    }
+}
+

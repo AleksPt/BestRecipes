@@ -1,6 +1,8 @@
 # Created by https://www.toptal.com/developers/gitignore/api/osx,swift,xcode
 # Edit at https://www.toptal.com/developers/gitignore?templates=osx,swift,xcode
 
+
+
 ### OSX ###
 # General
 .DS_Store
@@ -119,6 +121,7 @@ iOSInjectionProject/
 ## Xcode 8 and earlier
 
 ### Xcode Patch ###
+*best-recipes-ios.xcodeproj/xcshareddata/xcschemes/best-recipes-ios.xcscheme
 *.xcodeproj/*
 !*.xcodeproj/project.pbxproj
 !*.xcodeproj/xcshareddata/
