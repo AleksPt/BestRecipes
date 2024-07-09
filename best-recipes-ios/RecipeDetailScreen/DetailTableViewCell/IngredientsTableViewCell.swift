@@ -73,6 +73,13 @@ final class IngredientsTableViewCell: UITableViewCell {
         ingredientImageView.image = nil
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        let ingredientNameLabelConstraint = ingredientNameLabel.trailingAnchor.constraint(equalTo: countItemsLabel.leadingAnchor, constant: -10)
+        ingredientNameLabelConstraint.priority = .defaultHigh
+        ingredientNameLabelConstraint.isActive = true
+    }
+    
     public func configureCell(with ingredient: Ingredient) {
         ingredientNameLabel.text = ingredient.capitalizedName
         let measureUntilShort = ingredient.measures.metric.unitShort
@@ -107,10 +114,9 @@ final class IngredientsTableViewCell: UITableViewCell {
             ingredientNameLabel.leadingAnchor.constraint(equalTo: backgroundIngredientView.trailingAnchor, constant: 10),
             
             countItemsLabel.centerYAnchor.constraint(equalTo: backgroundIngredientView.centerYAnchor),
-            countItemsLabel.leadingAnchor.constraint(equalTo: ingredientNameLabel.trailingAnchor, constant: -20),
+            countItemsLabel.trailingAnchor.constraint(equalTo: checkCircleImageView.leadingAnchor, constant: -10),
             
             checkCircleImageView.centerYAnchor.constraint(equalTo: backgroundIngredientView.centerYAnchor),
-            checkCircleImageView.leadingAnchor.constraint(equalTo: countItemsLabel.trailingAnchor, constant: 10),
             checkCircleImageView.trailingAnchor.constraint(equalTo: backgroundCellView.trailingAnchor, constant: -16),
             checkCircleImageView.heightAnchor.constraint(equalToConstant: 23.08),
             checkCircleImageView.widthAnchor.constraint(equalToConstant: 23.08),

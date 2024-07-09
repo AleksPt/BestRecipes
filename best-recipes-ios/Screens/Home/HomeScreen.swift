@@ -22,10 +22,10 @@ final class HomeScreen: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         mainView.setDelegates(viewController: self)
-        mainView.activityIndicator.startAnimation(delay: 0.0075, replicates: 120)
-//        dataSource = dataStore.getMockData()
-        fetchRecipes(typeUrl: .recipesURL(offset: dataStore.offsetRecipes, query: ""))
-        fetchRecipes(typeUrl: .popularRecipesURL(offset: dataStore.offsetPopularResipes))
+//        mainView.activityIndicator.startAnimation(delay: 0.0075, replicates: 120)
+        dataSource = dataStore.getMockData()
+//        fetchRecipes(typeUrl: .recipesURL(offset: dataStore.offsetRecipes, query: ""))
+//        fetchRecipes(typeUrl: .popularRecipesURL(offset: dataStore.offsetPopularResipes))
     }
     
     // MARK: - Private methods
