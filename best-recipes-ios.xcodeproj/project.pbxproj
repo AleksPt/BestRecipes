@@ -60,6 +60,7 @@
 		FA685EB72C358C360028BA17 /* CoverImageFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA685EB62C358C360028BA17 /* CoverImageFactory.swift */; };
 		FA6ED7B22C328DD4004F1B10 /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FA6ED7B12C328DD4004F1B10 /* Poppins-Bold.ttf */; };
 		FA6ED7B42C328DDF004F1B10 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FA6ED7B32C328DDF004F1B10 /* Poppins-Regular.ttf */; };
+		FA9D2FA22C3D35060074E04E /* CustomSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9D2FA12C3D35060074E04E /* CustomSpinner.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -117,6 +118,7 @@
 		FA685EB62C358C360028BA17 /* CoverImageFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverImageFactory.swift; sourceTree = "<group>"; };
 		FA6ED7B12C328DD4004F1B10 /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
 		FA6ED7B32C328DDF004F1B10 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
+		FA9D2FA12C3D35060074E04E /* CustomSpinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSpinner.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -273,6 +275,7 @@
 			isa = PBXGroup;
 			children = (
 				D998A1452C345A9E0084F9C4 /* TabBar */,
+				FA9D2FA32C3D3EAC0074E04E /* Spinner */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -341,6 +344,14 @@
 				FA685E782C32B2EF0028BA17 /* Inter-Medium.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		FA9D2FA32C3D3EAC0074E04E /* Spinner */ = {
+			isa = PBXGroup;
+			children = (
+				FA9D2FA12C3D35060074E04E /* CustomSpinner.swift */,
+			);
+			path = Spinner;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -429,6 +440,7 @@
 				64285E592C34AFC400A7E7ED /* UIImageView+Extension.swift in Sources */,
 				4D4BC28F2C369BE800564A7A /* RecipeDetailView.swift in Sources */,
 				FA685E7B2C32EB770028BA17 /* HomeScreen.swift in Sources */,
+				FA9D2FA22C3D35060074E04E /* CustomSpinner.swift in Sources */,
 				FA685EAC2C34100C0028BA17 /* HomeView.swift in Sources */,
 				64285E592C34AFC400A7E7ED /* UIImageView+Extension.swift in Sources */,
 				640BFA522C372F5A00BB4923 /* RecipeCell.swift in Sources */,

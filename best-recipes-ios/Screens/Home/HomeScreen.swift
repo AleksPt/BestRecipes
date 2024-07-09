@@ -22,7 +22,7 @@ final class HomeScreen: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         mainView.setDelegates(viewController: self)
-        
+        mainView.activityIndicator.startAnimation(delay: 0.0075, replicates: 120)
 //        dataSource = dataStore.getMockData()
         fetchRecipes(typeUrl: .recipesURL(offset: dataStore.offsetRecipes, query: ""))
         fetchRecipes(typeUrl: .popularRecipesURL(offset: dataStore.offsetPopularResipes))
@@ -54,9 +54,11 @@ final class HomeScreen: UIViewController {
                     guard let self else { return }
                     mainView.collectionView.reloadData()
                     selectCategory()
+                    mainView.activityIndicator.stopAnimation()
                 }
             case .failure(let error):
                 print(error.localizedDescription)
+                mainView.activityIndicator.stopAnimation()
             }
         }
     }
@@ -67,8 +69,8 @@ final class HomeScreen: UIViewController {
             let indexPath = IndexPath(item: 0, section: 1)
             mainView.collectionView.selectItem(
                 at: indexPath,
-                animated: false,
-                scrollPosition: .top
+                animated: true,
+                scrollPosition: []
             )
             filterRecipes(IndexPath(item: 0, section: 1))
         }
@@ -99,12 +101,13 @@ final class HomeScreen: UIViewController {
                     recentRecipe.id == recipe.id
                 }
                 if !result {
-                    dataStore.recentRecipes?.append(recipe)
+                    dataStore.recentRecipes?.insert(recipe, at: 0)
                 }
             } else {
-                dataStore.recentRecipes?.append(recipe)
+                dataStore.recentRecipes?.insert(recipe, at: 0)
             }
         }
+//         dataSource = dataStore.getMockData()
         dataSource = dataStore.getData()
     }
 }
