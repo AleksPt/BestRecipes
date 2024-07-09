@@ -100,10 +100,10 @@ final class HomeScreen: UIViewController {
                     recentRecipe.id == recipe.id
                 }
                 if !result {
-                    dataStore.recentRecipes?.append(recipe)
+                    dataStore.recentRecipes?.insert(recipe, at: 0)
                 }
             } else {
-                dataStore.recentRecipes?.append(recipe)
+                dataStore.recentRecipes?.insert(recipe, at: 0)
             }
         }
 //         dataSource = dataStore.getMockData()
