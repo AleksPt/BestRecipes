@@ -275,7 +275,7 @@
 			isa = PBXGroup;
 			children = (
 				D998A1452C345A9E0084F9C4 /* TabBar */,
-				FA9D2FA12C3D35060074E04E /* CustomSpinner.swift */,
+				FA9D2FA32C3D3EAC0074E04E /* Spinner */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -344,6 +344,14 @@
 				FA685E782C32B2EF0028BA17 /* Inter-Medium.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		FA9D2FA32C3D3EAC0074E04E /* Spinner */ = {
+			isa = PBXGroup;
+			children = (
+				FA9D2FA12C3D35060074E04E /* CustomSpinner.swift */,
+			);
+			path = Spinner;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
