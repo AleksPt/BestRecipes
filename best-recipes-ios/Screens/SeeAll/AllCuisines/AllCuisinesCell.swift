@@ -8,7 +8,6 @@
 import UIKit
 
 final class AllCuisinesCell: UITableViewCell {
-    var lol = 0
     // MARK: - UI
     private let backgroundCellView: UIView = {
         let view = UIView()
