@@ -9,6 +9,8 @@ import UIKit
 
 final class HeaderSupplementaryView: UICollectionReusableView {
     
+    var completionHandler: (()->())?
+    
     // MARK: - UI
     private let title = LabelFactory.makeCollectionHeaderLabel(text: "")
     
@@ -91,7 +93,7 @@ final class HeaderSupplementaryView: UICollectionReusableView {
     // MARK: - Actions
     @objc
     private func didTapSeeAll() {
-        print("go to See All Screen")
+        completionHandler?()
     }
 }
 
