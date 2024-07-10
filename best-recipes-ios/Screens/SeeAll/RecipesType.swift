@@ -8,7 +8,7 @@
 import UIKit
 
 enum RecipesType {
-    case tradingNow
+    case trendingNow
     case recentRecipe
-    case popularCreators
+    case worldCuisine
 }

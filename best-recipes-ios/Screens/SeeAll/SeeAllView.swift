@@ -9,72 +9,68 @@ import UIKit
 
 final class SeeAllView: UIView {
     
+    // MARK: - UI
     private let title = LabelFactory.makeScreenTitleLabel(text: "")
     
-    
-    private var collectionView: UICollectionView = {
+    let collectionView: UICollectionView = {
         var layout = UICollectionViewFlowLayout()
-        
-        layout.itemSize = CGSize(width: 340, height: 200)
+        layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         layout.minimumLineSpacing = 24
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = .white
-        collectionView.layer.cornerRadius = 15
-        
         collectionView.register(CustomCell.self, forCellWithReuseIdentifier: "CustomCell")
         collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.delaysContentTouches = false
         return collectionView
     }()
     
+    lazy var activityIndicator: CustomSpinner = {
+       let element = CustomSpinner(squareLength: 50)
+        return element
+    }()
     
+    // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         setViews()
         setupConstraint()
     }
-    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Public methods
     func setTitle(_ type: RecipesType) {
         switch type {
-        case .tradingNow:
-            title.text = "tradingNow"
+        case .trendingNow:
+            title.text = "Trending now"
         case .recentRecipe:
-            title.text = "recentRecipe"
-        case .popularCreators:
-            title.text = "popularCreators"
+            title.text = "Recent recipe"
+        case .worldCuisine:
+            title.text = "World cuisine"
         }
     }
-    
-    
-    private func setupConstraint() {
-        NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
-            collectionView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
-            
-//            title.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor),//
-//            title.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor),//
-        ])
-    }
-    
     
     func setDelegates(value: SeeAllViewController) {
         collectionView.delegate = value
         collectionView.dataSource = value
     }
     
-
-    //MARK: - setup Views
+    // MARK: - Private methods
     private func setViews() {
-        
+        backgroundColor = UIColor.GlobalBackground.light
         addSubview(collectionView)
-//        addSubview(title)
+        addSubview(activityIndicator)
+    }
+    
+    private func setupConstraint() {
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            collectionView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
+        ])
     }
 }

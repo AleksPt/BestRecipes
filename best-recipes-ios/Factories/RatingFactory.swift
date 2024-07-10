@@ -9,12 +9,12 @@ import UIKit
 
 final class RatingFactory {
     static func makeSavedTrandingRating(image:UIImageView, ratingLabel:String, blur:Bool = true) -> UIView {
-        let ratingView = UIView(frame: CGRect(origin: .zero, size: CGSize(width: 58, height: 28)))
-        ratingView.layer.cornerRadius = 10
+        let ratingView = UIView(frame: CGRect(origin: .zero, size: CGSize(width: 58, height: 27.6)))
+        ratingView.layer.cornerRadius = 8
         
         let blurEffect = UIBlurEffect(style: .dark)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.layer.cornerRadius = 10
+        blurEffectView.layer.cornerRadius = 8
         blurEffectView.clipsToBounds = true
         blurEffectView.frame = ratingView.frame
         
