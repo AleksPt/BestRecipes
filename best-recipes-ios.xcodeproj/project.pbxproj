@@ -10,6 +10,8 @@
 		160BC2782C34068500944C89 /* RatingFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160BC2772C34068500944C89 /* RatingFactory.swift */; };
 		4D15898C2C333276005F4D2E /* LabelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D15898B2C333276005F4D2E /* LabelFactory.swift */; };
 		4D16C4882C3F4E8100F8BCC7 /* UIViewController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D16C4872C3F4E8100F8BCC7 /* UIViewController + Extension.swift */; };
+		4D16C48F2C3F51B500F8BCC7 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D16C48E2C3F51B500F8BCC7 /* SearchViewController.swift */; };
+		4D16C4912C3F51F500F8BCC7 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D16C4902C3F51F500F8BCC7 /* SearchBar.swift */; };
 		4D4BC28D2C369BBE00564A7A /* RecipeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4BC28C2C369BBE00564A7A /* RecipeDetailViewController.swift */; };
 		4D4BC28F2C369BE800564A7A /* RecipeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4BC28E2C369BE800564A7A /* RecipeDetailView.swift */; };
 		4D4BC2922C369FBF00564A7A /* IngredientsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4BC2912C369FBF00564A7A /* IngredientsTableViewCell.swift */; };
@@ -74,6 +76,8 @@
 		160BC2772C34068500944C89 /* RatingFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingFactory.swift; sourceTree = "<group>"; };
 		4D15898B2C333276005F4D2E /* LabelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelFactory.swift; sourceTree = "<group>"; };
 		4D16C4872C3F4E8100F8BCC7 /* UIViewController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extension.swift"; sourceTree = "<group>"; };
+		4D16C48E2C3F51B500F8BCC7 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		4D16C4902C3F51F500F8BCC7 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		4D4BC28C2C369BBE00564A7A /* RecipeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailViewController.swift; sourceTree = "<group>"; };
 		4D4BC28E2C369BE800564A7A /* RecipeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailView.swift; sourceTree = "<group>"; };
 		4D4BC2912C369FBF00564A7A /* IngredientsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsTableViewCell.swift; sourceTree = "<group>"; };
@@ -158,6 +162,15 @@
 				FA685EB62C358C360028BA17 /* CoverImageFactory.swift */,
 			);
 			path = Factories;
+			sourceTree = "<group>";
+		};
+		4D16C4892C3F505600F8BCC7 /* SearchBar */ = {
+			isa = PBXGroup;
+			children = (
+				4D16C48E2C3F51B500F8BCC7 /* SearchViewController.swift */,
+				4D16C4902C3F51F500F8BCC7 /* SearchBar.swift */,
+			);
+			path = SearchBar;
 			sourceTree = "<group>";
 		};
 		4D4BC28B2C369B6500564A7A /* RecipeDetailScreen */ = {
@@ -290,6 +303,7 @@
 		D998A1442C345A980084F9C4 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				4D16C4892C3F505600F8BCC7 /* SearchBar */,
 				D998A1452C345A9E0084F9C4 /* TabBar */,
 				FA9D2FA32C3D3EAC0074E04E /* Spinner */,
 			);
@@ -516,10 +530,12 @@
 				640BFA592C373ED100BB4923 /* ProfileView.swift in Sources */,
 				D998A12B2C3089FB0084F9C4 /* AppDelegate.swift in Sources */,
 				D998A1522C345FD60084F9C4 /* TabBar.swift in Sources */,
+				4D16C48F2C3F51B500F8BCC7 /* SearchViewController.swift in Sources */,
 				4D4BC2922C369FBF00564A7A /* IngredientsTableViewCell.swift in Sources */,
 				4D4BC28D2C369BBE00564A7A /* RecipeDetailViewController.swift in Sources */,
 				4D4BC2982C36A01A00564A7A /* HeaderTableView.swift in Sources */,
 				D998A12D2C3089FB0084F9C4 /* SceneDelegate.swift in Sources */,
+				4D16C4912C3F51F500F8BCC7 /* SearchBar.swift in Sources */,
 				4D4BC2942C369FDB00564A7A /* InstructionsTableViewCell.swift in Sources */,
 				FA9D2FA52C3DEC1F0074E04E /* ReadyInMinutesFactory.swift in Sources */,
 				DCE1D6482C37060E00CAEAB2 /* RecipesType.swift in Sources */,
