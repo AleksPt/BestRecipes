@@ -34,13 +34,15 @@
 		D993B9CC2C35CBF7001E6F10 /* WelcomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D993B9CB2C35CBF7001E6F10 /* WelcomeController.swift */; };
 		D998A12B2C3089FB0084F9C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D998A12A2C3089FB0084F9C4 /* AppDelegate.swift */; };
 		D998A12D2C3089FB0084F9C4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D998A12C2C3089FB0084F9C4 /* SceneDelegate.swift */; };
-		D998A12F2C3089FB0084F9C4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D998A12E2C3089FB0084F9C4 /* ViewController.swift */; };
 		D998A1322C3089FB0084F9C4 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = D998A1312C3089FB0084F9C4 /* Base */; };
 		D998A1342C3089FC0084F9C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D998A1332C3089FC0084F9C4 /* Assets.xcassets */; };
-		D998A1372C3089FC0084F9C4 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = D998A1362C3089FC0084F9C4 /* Base */; };
 		D998A1472C345ACB0084F9C4 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D998A1462C345ACB0084F9C4 /* TabBarController.swift */; };
 		D998A1522C345FD60084F9C4 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D998A1512C345FD60084F9C4 /* TabBar.swift */; };
 		DC39DC842C34470600464EBD /* ButtonFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC39DC832C34470600464EBD /* ButtonFactory.swift */; };
+		DCE1D6472C37060E00CAEAB2 /* SeeAllViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE1D6432C37060E00CAEAB2 /* SeeAllViewController.swift */; };
+		DCE1D6482C37060E00CAEAB2 /* RecipesType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE1D6442C37060E00CAEAB2 /* RecipesType.swift */; };
+		DCE1D6492C37060E00CAEAB2 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE1D6452C37060E00CAEAB2 /* CustomCell.swift */; };
+		DCE1D64A2C37060E00CAEAB2 /* SeeAllView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE1D6462C37060E00CAEAB2 /* SeeAllView.swift */; };
 		FA685E6D2C329F0B0028BA17 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA685E6C2C329F0B0028BA17 /* Colors.swift */; };
 		FA685E6F2C32A10C0028BA17 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA685E6E2C32A10C0028BA17 /* Fonts.swift */; };
 		FA685E712C32A3310028BA17 /* Icons.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA685E702C32A3310028BA17 /* Icons.swift */; };
@@ -61,6 +63,7 @@
 		FA6ED7B22C328DD4004F1B10 /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FA6ED7B12C328DD4004F1B10 /* Poppins-Bold.ttf */; };
 		FA6ED7B42C328DDF004F1B10 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FA6ED7B32C328DDF004F1B10 /* Poppins-Regular.ttf */; };
 		FA9D2FA22C3D35060074E04E /* CustomSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9D2FA12C3D35060074E04E /* CustomSpinner.swift */; };
+
 		FAFBF5A92C3F0A0000FBD8A3 /* RoundedTextFieldFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFBF5A82C3F0A0000FBD8A3 /* RoundedTextFieldFactory.swift */; };
 		FAFBF5AB2C3F0A0A00FBD8A3 /* CreateRecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFBF5AA2C3F0A0A00FBD8A3 /* CreateRecipeView.swift */; };
 		FAFBF5AD2C3F0A0E00FBD8A3 /* CreateRecipeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFBF5AC2C3F0A0E00FBD8A3 /* CreateRecipeController.swift */; };
@@ -72,6 +75,12 @@
 		FAFBF5B92C3F0A4100FBD8A3 /* CreateInstructionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFBF5B32C3F0A4000FBD8A3 /* CreateInstructionCell.swift */; };
 		FAFBF5BB2C3F202200FBD8A3 /* UIViewController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFBF5BA2C3F202200FBD8A3 /* UIViewController + Extension.swift */; };
 		FAFBF5BD2C400A0500FBD8A3 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFBF5BC2C400A0500FBD8A3 /* StorageManager.swift */; };
+
+		FA9D2FA52C3DEC1F0074E04E /* ReadyInMinutesFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9D2FA42C3DEC1F0074E04E /* ReadyInMinutesFactory.swift */; };
+		FA9D2FA72C3EB2750074E04E /* AllCuisinesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9D2FA62C3EB2750074E04E /* AllCuisinesVC.swift */; };
+		FA9D2FAA2C3EB3510074E04E /* AllCuisinesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9D2FA92C3EB3510074E04E /* AllCuisinesView.swift */; };
+		FA9D2FAC2C3EB50A0074E04E /* AllCuisinesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9D2FAB2C3EB50A0074E04E /* AllCuisinesCell.swift */; };
+
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -102,7 +111,6 @@
 		D998A1272C3089FB0084F9C4 /* best-recipes-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "best-recipes-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D998A12A2C3089FB0084F9C4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D998A12C2C3089FB0084F9C4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		D998A12E2C3089FB0084F9C4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D998A1312C3089FB0084F9C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D998A1332C3089FC0084F9C4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D998A1362C3089FC0084F9C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -110,6 +118,10 @@
 		D998A1462C345ACB0084F9C4 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		D998A1512C345FD60084F9C4 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		DC39DC832C34470600464EBD /* ButtonFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonFactory.swift; sourceTree = "<group>"; };
+		DCE1D6432C37060E00CAEAB2 /* SeeAllViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeeAllViewController.swift; sourceTree = "<group>"; };
+		DCE1D6442C37060E00CAEAB2 /* RecipesType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipesType.swift; sourceTree = "<group>"; };
+		DCE1D6452C37060E00CAEAB2 /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
+		DCE1D6462C37060E00CAEAB2 /* SeeAllView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeeAllView.swift; sourceTree = "<group>"; };
 		FA685E6C2C329F0B0028BA17 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		FA685E6E2C32A10C0028BA17 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		FA685E702C32A3310028BA17 /* Icons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icons.swift; sourceTree = "<group>"; };
@@ -130,6 +142,7 @@
 		FA6ED7B12C328DD4004F1B10 /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
 		FA6ED7B32C328DDF004F1B10 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
 		FA9D2FA12C3D35060074E04E /* CustomSpinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSpinner.swift; sourceTree = "<group>"; };
+
 		FAFBF5A82C3F0A0000FBD8A3 /* RoundedTextFieldFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedTextFieldFactory.swift; sourceTree = "<group>"; };
 		FAFBF5AA2C3F0A0A00FBD8A3 /* CreateRecipeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateRecipeView.swift; sourceTree = "<group>"; };
 		FAFBF5AC2C3F0A0E00FBD8A3 /* CreateRecipeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateRecipeController.swift; sourceTree = "<group>"; };
@@ -141,6 +154,12 @@
 		FAFBF5B32C3F0A4000FBD8A3 /* CreateInstructionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateInstructionCell.swift; sourceTree = "<group>"; };
 		FAFBF5BA2C3F202200FBD8A3 /* UIViewController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extension.swift"; sourceTree = "<group>"; };
 		FAFBF5BC2C400A0500FBD8A3 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
+
+		FA9D2FA42C3DEC1F0074E04E /* ReadyInMinutesFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadyInMinutesFactory.swift; sourceTree = "<group>"; };
+		FA9D2FA62C3EB2750074E04E /* AllCuisinesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCuisinesVC.swift; sourceTree = "<group>"; };
+		FA9D2FA92C3EB3510074E04E /* AllCuisinesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCuisinesView.swift; sourceTree = "<group>"; };
+		FA9D2FAB2C3EB50A0074E04E /* AllCuisinesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCuisinesCell.swift; sourceTree = "<group>"; };
+
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +180,7 @@
 				4D15898B2C333276005F4D2E /* LabelFactory.swift */,
 				DC39DC832C34470600464EBD /* ButtonFactory.swift */,
 				160BC2772C34068500944C89 /* RatingFactory.swift */,
+				FA9D2FA42C3DEC1F0074E04E /* ReadyInMinutesFactory.swift */,
 				FA685EB62C358C360028BA17 /* CoverImageFactory.swift */,
 				FAFBF5A82C3F0A0000FBD8A3 /* RoundedTextFieldFactory.swift */,
 			);
@@ -308,7 +328,6 @@
 				D998A12A2C3089FB0084F9C4 /* AppDelegate.swift */,
 				4D4BC28B2C369B6500564A7A /* RecipeDetailScreen */,
 				D998A12C2C3089FB0084F9C4 /* SceneDelegate.swift */,
-				D998A12E2C3089FB0084F9C4 /* ViewController.swift */,
 				FA685EB32C356F980028BA17 /* Screens */,
 				D998A1302C3089FB0084F9C4 /* Main.storyboard */,
 				D998A1332C3089FC0084F9C4 /* Assets.xcassets */,
@@ -335,6 +354,18 @@
 				D998A1512C345FD60084F9C4 /* TabBar.swift */,
 			);
 			path = TabBar;
+			sourceTree = "<group>";
+		};
+		DCE1D63A2C37050D00CAEAB2 /* SeeAll */ = {
+			isa = PBXGroup;
+			children = (
+				DCE1D6452C37060E00CAEAB2 /* CustomCell.swift */,
+				DCE1D6442C37060E00CAEAB2 /* RecipesType.swift */,
+				DCE1D6462C37060E00CAEAB2 /* SeeAllView.swift */,
+				DCE1D6432C37060E00CAEAB2 /* SeeAllViewController.swift */,
+				FA9D2FA82C3EB2B20074E04E /* AllCuisines */,
+			);
+			path = SeeAll;
 			sourceTree = "<group>";
 		};
 		FA685E6B2C329EEB0028BA17 /* Helpers */ = {
@@ -378,6 +409,7 @@
 				D993B9C32C35C947001E6F10 /* Onboarding */,
 				D993B9C82C35CBDD001E6F10 /* Welcome */,
 				640BFA502C372EF200BB4923 /* Profile */,
+				DCE1D63A2C37050D00CAEAB2 /* SeeAll */,
 				FA685EA92C340FB30028BA17 /* Home */,
 			);
 			path = Screens;
@@ -401,6 +433,16 @@
 				FA9D2FA12C3D35060074E04E /* CustomSpinner.swift */,
 			);
 			path = Spinner;
+			sourceTree = "<group>";
+		};
+		FA9D2FA82C3EB2B20074E04E /* AllCuisines */ = {
+			isa = PBXGroup;
+			children = (
+				FA9D2FA62C3EB2750074E04E /* AllCuisinesVC.swift */,
+				FA9D2FA92C3EB3510074E04E /* AllCuisinesView.swift */,
+				FA9D2FAB2C3EB50A0074E04E /* AllCuisinesCell.swift */,
+			);
+			path = AllCuisines;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -469,7 +511,6 @@
 			files = (
 				D998A1342C3089FC0084F9C4 /* Assets.xcassets in Resources */,
 				FA685E772C32B1F90028BA17 /* Poppins-Medium.ttf in Resources */,
-				D998A1372C3089FC0084F9C4 /* Base in Resources */,
 				D998A1322C3089FB0084F9C4 /* Base in Resources */,
 				FA685E792C32B2EF0028BA17 /* Inter-Medium.ttf in Resources */,
 				FA685E752C32ACF60028BA17 /* Poppins-SemiBold.ttf in Resources */,
@@ -485,6 +526,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA9D2FA72C3EB2750074E04E /* AllCuisinesVC.swift in Sources */,
 				4D4BC2962C369FFD00564A7A /* ImageTableViewCell.swift in Sources */,
 				64285E592C34AFC400A7E7ED /* UIImageView+Extension.swift in Sources */,
 				4D4BC28F2C369BE800564A7A /* RecipeDetailView.swift in Sources */,
@@ -500,15 +542,17 @@
 				FAFBF5AB2C3F0A0A00FBD8A3 /* CreateRecipeView.swift in Sources */,
 				FAFBF5B42C3F0A4100FBD8A3 /* CreateIngredientCell.swift in Sources */,
 				FA685E732C32A6860028BA17 /* Images.swift in Sources */,
-				D998A12F2C3089FB0084F9C4 /* ViewController.swift in Sources */,
 				FA685E812C32EFF60028BA17 /* CategoryRecipeCell.swift in Sources */,
 				FA685E852C32F06A0028BA17 /* СuisineCell.swift in Sources */,
 				FA685E832C32F0240028BA17 /* RecentCell.swift in Sources */,
 				FA685E6F2C32A10C0028BA17 /* Fonts.swift in Sources */,
+				DCE1D6492C37060E00CAEAB2 /* CustomCell.swift in Sources */,
 				FA685EB22C3490C80028BA17 /* UIView + Extension.swift in Sources */,
+				FA9D2FAC2C3EB50A0074E04E /* AllCuisinesCell.swift in Sources */,
 				640BFA552C37305300BB4923 /* ProfileController.swift in Sources */,
 				FA685E6D2C329F0B0028BA17 /* Colors.swift in Sources */,
 				FA685EB52C3574DF0028BA17 /* CategoryCell.swift in Sources */,
+				DCE1D6472C37060E00CAEAB2 /* SeeAllViewController.swift in Sources */,
 				FA685E8E2C3304D20028BA17 /* HeaderSupplementaryView.swift in Sources */,
 				D993B9CC2C35CBF7001E6F10 /* WelcomeController.swift in Sources */,
 				64285E502C3483A200A7E7ED /* DataStore.swift in Sources */,
@@ -524,7 +568,11 @@
 				D9628C3A2C37339B00E1DF5E /* PageContentView.swift in Sources */,
 				D9628C3C2C37442D00E1DF5E /* OnboardingData.swift in Sources */,
 				FA685E6D2C329F0B0028BA17 /* Colors.swift in Sources */,
+
 				FAFBF5B62C3F0A4100FBD8A3 /* RecipeTitleCell.swift in Sources */,
+
+				FA9D2FAA2C3EB3510074E04E /* AllCuisinesView.swift in Sources */,
+
 				4D15898C2C333276005F4D2E /* LabelFactory.swift in Sources */,
 				640BFA592C373ED100BB4923 /* ProfileView.swift in Sources */,
 				D998A12B2C3089FB0084F9C4 /* AppDelegate.swift in Sources */,
@@ -538,6 +586,10 @@
 				4D4BC2982C36A01A00564A7A /* HeaderTableView.swift in Sources */,
 				D998A12D2C3089FB0084F9C4 /* SceneDelegate.swift in Sources */,
 				4D4BC2942C369FDB00564A7A /* InstructionsTableViewCell.swift in Sources */,
+				FA9D2FA52C3DEC1F0074E04E /* ReadyInMinutesFactory.swift in Sources */,
+				DCE1D6482C37060E00CAEAB2 /* RecipesType.swift in Sources */,
+				D998A12D2C3089FB0084F9C4 /* SceneDelegate.swift in Sources */,
+				DCE1D64A2C37060E00CAEAB2 /* SeeAllView.swift in Sources */,
 				FA685EB72C358C360028BA17 /* CoverImageFactory.swift in Sources */,
 				FA685E7D2C32EEB30028BA17 /* TrendingCell.swift in Sources */,
 				D993B9C52C35C95A001E6F10 /* OnboardingView.swift in Sources */,
@@ -698,7 +750,6 @@
 				INFOPLIST_FILE = "best-recipes-ios/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -730,7 +781,6 @@
 				INFOPLIST_FILE = "best-recipes-ios/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
