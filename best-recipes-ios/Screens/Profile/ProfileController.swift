@@ -120,8 +120,7 @@ final class ProfileController: UICollectionViewController, UICollectionViewDeleg
     
     // MARK: - UICollectionViewDelegate
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let detailVC = RecipeDetailViewController()
-        detailVC.firstRecipe = dataStore.recipes[indexPath.item]
+        let detailVC = RecipeDetailViewController(recipe: dataStore.recipes[indexPath.item])
         navigationController?.pushViewController(detailVC, animated: true)
     }
     

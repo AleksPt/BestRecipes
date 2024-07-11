@@ -100,9 +100,8 @@ extension SeeAllViewController: UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let detailVC = RecipeDetailViewController()
         if let recipe = recipes?[indexPath.item] {
-            detailVC.firstRecipe = recipe
+            let detailVC = RecipeDetailViewController(recipe: recipe)
             delegate?.addRecentRecipe(recipe: recipe)
             navigationController?.pushViewController(detailVC, animated: true)
         }

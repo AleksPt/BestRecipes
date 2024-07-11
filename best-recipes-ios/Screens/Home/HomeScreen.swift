@@ -124,9 +124,8 @@ extension HomeScreen: UICollectionViewDelegateFlowLayout {
         
         switch indexSection {
         case 0, 2, 3:
-            let detailVC = RecipeDetailViewController()
             let recipe = dataSource[indexSection].recipes[indexPath.item]
-            detailVC.firstRecipe = recipe
+            let detailVC = RecipeDetailViewController(recipe: recipe)
             addRecentRecipe(recipe: recipe)
             detailVC.hidesBottomBarWhenPushed = true
             navigationController?.pushViewController(detailVC, animated: true)
@@ -309,8 +308,7 @@ extension HomeScreen {
 extension HomeScreen: SearchResultViewControllerDelegate {
 
     func didTapResult(_ result: Recipe) {
-        let detail = RecipeDetailViewController()
-        detail.firstRecipe = result
+        let detail = RecipeDetailViewController(recipe: result)
         addRecentRecipe(recipe: result)
         navigationController?.pushViewController(detail, animated: true)
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
