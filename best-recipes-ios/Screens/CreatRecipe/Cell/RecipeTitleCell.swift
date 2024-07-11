@@ -7,10 +7,12 @@
 
 import UIKit
 
-final class RecipeTitleCell: UICollectionViewCell, UITextFieldDelegate {
+final class RecipeTitleCell: UICollectionViewCell {
+    
+    var completionHandler: ((String)->())?
     
     private var titleTextField: UITextField = {
-        let textField = RoundedTextFieldFactory(placeholderText: "recipe name")
+        let textField = RoundedTextFieldFactory(placeholderText: "Enter recipe name")
         return textField.createTextField()
     }()
     
@@ -26,17 +28,6 @@ final class RecipeTitleCell: UICollectionViewCell, UITextFieldDelegate {
         fatalError()
     }
     
-    // MARK: - UITextFieldDelegate
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        titleTextField.layer.borderColor = UIColor.CreateRecipe.selectedBorderField.cgColor
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        titleTextField.layer.borderColor = UIColor.CreateRecipe.unselectedBorderField.cgColor
-    }
-    
-    // MARK: - Public Methods
-    
     
     // MARK: - Private Methods
     private func addSubviews() {
@@ -50,5 +41,21 @@ final class RecipeTitleCell: UICollectionViewCell, UITextFieldDelegate {
             titleTextField.trailingAnchor.constraint(equalTo: trailingAnchor),
             titleTextField.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
+    }
+}
+
+// MARK: - UITextFieldDelegate
+extension RecipeTitleCell: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        titleTextField.layer.borderColor = UIColor.CreateRecipe.selectedBorderField.cgColor
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        titleTextField.layer.borderColor = UIColor.CreateRecipe.unselectedBorderField.cgColor
+        
+        guard let text = textField.text, !text.isEmpty else {
+            return
+        }
+        completionHandler?(text)
     }
 }

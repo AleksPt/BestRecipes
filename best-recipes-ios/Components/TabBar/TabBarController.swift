@@ -30,27 +30,28 @@ final class TabBarController: UITabBarController, UITabBarControllerDelegate {
         homeVC.tabBarItem.tag = 1
         
         // Saved Recipes
-//        let secondVC = UIViewController()
-//        secondVC.tabBarItem = UITabBarItem(title: nil, image: Icons.TabBar.bookmarkInactive, selectedImage: Icons.TabBar.bookmarkActive.withRenderingMode(UIImage.RenderingMode.alwaysOriginal))
-//        secondVC.tabBarItem.tag = 2
+        let favoriteRecipesVC = UIViewController()
+        favoriteRecipesVC.tabBarItem = UITabBarItem(title: nil, image: Icons.TabBar.bookmarkInactive, selectedImage: Icons.TabBar.bookmarkActive.withRenderingMode(UIImage.RenderingMode.alwaysOriginal))
+        favoriteRecipesVC.tabBarItem.tag = 2
         
         // Recipe Add
-//        let thirdVC = UIViewController()
-//        thirdVC.view.backgroundColor = .white
-//        thirdVC.tabBarItem = UITabBarItem(title: nil, image: nil, selectedImage: nil)
-//        thirdVC.tabBarItem.tag = 3
+        let addRecipeVC = UINavigationController(rootViewController: CreateRecipeController())
+        addRecipeVC.view.backgroundColor = .white
+        addRecipeVC.tabBarItem = UITabBarItem(title: nil, image: nil, selectedImage: nil)
+        addRecipeVC.tabBarItem.tag = 3
+        
         // Empty notifications
-//        let fourthVC = UIViewController()
-//        fourthVC.tabBarItem = UITabBarItem(title: nil, image: Icons.TabBar.notificationInactive, selectedImage: Icons.TabBar.notificationActive.withRenderingMode(UIImage.RenderingMode.alwaysOriginal))
-//        fourthVC.tabBarItem.accessibilityRespondsToUserInteraction = false
-//        fourthVC.tabBarItem.tag = 4
+        let notifyVC = UIViewController()
+        notifyVC.tabBarItem = UITabBarItem(title: nil, image: Icons.TabBar.notificationInactive, selectedImage: Icons.TabBar.notificationActive.withRenderingMode(UIImage.RenderingMode.alwaysOriginal))
+        notifyVC.tabBarItem.accessibilityRespondsToUserInteraction = false
+        notifyVC.tabBarItem.tag = 4
         
         // Profile
         let profileVC = UINavigationController(rootViewController: ProfileController())
         profileVC.tabBarItem = UITabBarItem(title: nil, image: Icons.TabBar.profileInactive, selectedImage: Icons.TabBar.profileActive.withRenderingMode(UIImage.RenderingMode.alwaysOriginal))
         profileVC.tabBarItem.tag = 5
         
-        self.viewControllers = [homeVC, profileVC] //[firstVC, secondVC, thirdVC, fourthVC, fifththVC]
+        self.viewControllers = [homeVC, favoriteRecipesVC, addRecipeVC, notifyVC, profileVC]
     }
     
     private func setupTabBar() {
@@ -95,7 +96,6 @@ final class TabBarController: UITabBarController, UITabBarControllerDelegate {
     
     
     @objc func menuButtonAction(sender: UIButton) {
-        // Select RecipeAddController manualy, because it is hidden
-        self.selectedIndex = 2
+        present(CreateRecipeController(), animated: true)
     }
 }

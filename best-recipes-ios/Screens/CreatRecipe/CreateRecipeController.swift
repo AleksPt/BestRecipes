@@ -7,11 +7,10 @@
 
 import UIKit
 
-final class CreateRecipeController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
-    
+final class CreateRecipeController: UIViewController {
     private let dataStore = DataStore.shared
+    private let storageManager = StorageManager.shared
     private let createRecipeView = CreateRecipeView()
-    
     private var imagePicker = UIImagePickerController()
     
     // MARK: - Life Cycle
@@ -22,72 +21,88 @@ final class CreateRecipeController: UICollectionViewController, UICollectionView
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        title = "Create recipe"
-        
-        setupCollectionView()
+        createRecipeView.createRecipeButton.addTarget(
+            self,
+            action: #selector(createRecipe),
+            for: .touchUpInside
+        )
+        addTapGestureToHideKeyboard()
+        createRecipeView.setDelegates(self)
         setupImagePicker()
     }
     
-    @objc func addRecipeImage() {
-        present(imagePicker, animated: true)
-    }
-    
     // MARK: - Private Methods
-    private func setupCollectionView() {
-        createRecipeView.collectionView.register(
-            RecipeImageCell.self,
-            forCellWithReuseIdentifier: "RecipeImageCell"
-        )
-        createRecipeView.collectionView.register(
-            RecipeTitleCell.self,
-            forCellWithReuseIdentifier: "RecipeTitleCell"
-        )
-        createRecipeView.collectionView.register(
-            ServesAndTimeCell.self,
-            forCellWithReuseIdentifier: "ServesAndTimeCell"
-        )
-        createRecipeView.collectionView.register(
-            CreateIngredientCell.self,
-            forCellWithReuseIdentifier: "CreateIngredientCell"
-        )
-        createRecipeView.collectionView.register(
-            CreateInstructionCell.self,
-            forCellWithReuseIdentifier: "CreateInstructionCell"
-        )
-        
-        createRecipeView.collectionView.register(
-            CreateRecipeHeaderView.self,
-            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-            withReuseIdentifier: "CreateRecipeHeaderView"
-        )
-        
-        createRecipeView.collectionView.delegate = self
-        createRecipeView.collectionView.dataSource = self
-    }
-    
     private func setupImagePicker() {
         imagePicker.delegate = self
         imagePicker.sourceType = .photoLibrary
         imagePicker.allowsEditing = true
     }
     
-    // MARK: - UICollectionViewDataSource
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
+    // MARK: - Actions
+    @objc private func createRecipe() {
+        guard !storageManager.title.isEmpty else {
+            showAlert(message: "Enter recipe name")
+            return
+        }
+        storageManager.creatRecipe()
+        storageManager.imageData = nil
+        NotificationCenter.default.post(
+            name: Notification.Name("reloadCollection"),
+            object: nil,
+            userInfo: nil
+        )
+        dismiss(animated: true)
+    }
+}
+
+// MARK: - Image Picker Delegate & Navigation Controller Delegate
+extension CreateRecipeController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(
+        _ picker: UIImagePickerController,
+        didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]
+    ) {
+        if let editedImage = info[.editedImage] as? UIImage {
+            if let cell = createRecipeView.collectionView.cellForItem(
+                at: IndexPath(item: 0, section: 0)
+            ) as? RecipeImageCell {
+                cell.setRecipeImage(editedImage)
+                storageManager.imageData = editedImage.pngData()
+            }
+        } else if let originalImage = info[.originalImage] as? UIImage {
+            if let cell = createRecipeView.collectionView.cellForItem(
+                at: IndexPath(item: 0, section: 0)
+            ) as? RecipeImageCell {
+                cell.setRecipeImage(originalImage)
+                storageManager.imageData = originalImage.pngData()
+            }
+        }
+        dismiss(animated: true, completion: nil)
+    }
+}
+
+// MARK: - UICollectionViewDataSource
+extension CreateRecipeController: UICollectionViewDataSource {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 6
     }
     
-    override func collectionView(
+    func collectionView(
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int
     ) -> Int {
-        if section == 0 {
+        switch section {
+        case 0, 1, 2, 3:
             return 1
-        } else {
+        case 4:
+            return storageManager.instructions.count + 1
+        case 5:
+            return storageManager.ingredientsTuple.count + 1
+        default:
             return 1
         }
     }
     
-    override func collectionView(
+    func collectionView(
         _ collectionView: UICollectionView,
         cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
@@ -97,7 +112,10 @@ final class CreateRecipeController: UICollectionViewController, UICollectionView
                 withReuseIdentifier: "RecipeImageCell",
                 for: indexPath
             ) as! RecipeImageCell
-            cell.addRecipeImageTapGesture(target: self, action: #selector(addRecipeImage))
+            cell.completionHandler = { [weak self] in
+                guard let self else { return }
+                present(imagePicker, animated: true)
+            }
             return cell
 
         case 1:
@@ -105,6 +123,10 @@ final class CreateRecipeController: UICollectionViewController, UICollectionView
                 withReuseIdentifier: "RecipeTitleCell",
                 for: indexPath
             ) as! RecipeTitleCell
+            cell.completionHandler = { [weak self] titleRecipe in
+                guard let self else { return }
+                storageManager.title = titleRecipe
+            }
             return cell
 
         case 2:
@@ -128,6 +150,28 @@ final class CreateRecipeController: UICollectionViewController, UICollectionView
                 withReuseIdentifier: "CreateInstructionCell",
                 for: indexPath
             ) as! CreateInstructionCell
+            cell.configureCell(index: indexPath.item + 1)
+            
+            cell.completionHandlerAdd = { [weak self] text in
+                guard let self else { return }
+                storageManager.instructions.append(text)
+                collectionView.insertItems(
+                    at: [IndexPath(row: storageManager.instructions.count, section: 4)]
+                )
+                collectionView.scrollToItem(
+                    at: IndexPath(row: indexPath.item + 1, section: 4),
+                    at: .bottom,
+                    animated: true
+                )
+            }
+            
+            cell.completionHandlerDelete = { [weak self] in
+                guard let self else { return }
+                storageManager.instructions.remove(at: indexPath.item)
+                collectionView.deleteItems(
+                    at: [IndexPath(row: indexPath.item, section: 4)]
+                )
+            }
             return cell
 
         default:
@@ -135,11 +179,33 @@ final class CreateRecipeController: UICollectionViewController, UICollectionView
                 withReuseIdentifier: "CreateIngredientCell",
                 for: indexPath
             ) as! CreateIngredientCell
+            
+            cell.completionHandlerAdd = { [weak self] ingredient in
+                guard let self else { return }
+                storageManager.ingredientsTuple.append(ingredient)
+                collectionView.insertItems(
+                    at: [IndexPath(row: storageManager.ingredientsTuple.count, section: 5)]
+                )
+                collectionView.scrollToItem(
+                    at: IndexPath(row: indexPath.item + 1, section: 5),
+                    at: .bottom,
+                    animated: true
+                )
+            }
+            
+            cell.completionHandlerDelete = { [weak self] in
+                guard let self else { return }
+                storageManager.ingredientsTuple.remove(at: indexPath.item)
+                collectionView.deleteItems(
+                    at: [IndexPath(row: indexPath.item, section: 5)]
+                )
+            }
+            
             return cell
         }
     }
     
-    override func collectionView(
+    func collectionView(
         _ collectionView: UICollectionView,
         viewForSupplementaryElementOfKind kind: String,
         at indexPath: IndexPath
@@ -163,8 +229,10 @@ final class CreateRecipeController: UICollectionViewController, UICollectionView
         }
         return UICollectionReusableView()
     }
-    
-    // MARK: - UICollectionViewDelegateFlowLayout
+}
+
+// MARK: - UICollectionViewDelegateFlowLayout
+extension CreateRecipeController: UICollectionViewDelegateFlowLayout {
     func collectionView(
         _ collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
@@ -198,27 +266,26 @@ final class CreateRecipeController: UICollectionViewController, UICollectionView
         }
         return .zero
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    }
 }
 
-// MARK: - Image Picker Delegate & Navigation Controller Delegate
-extension CreateRecipeController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    func imagePickerController(
-        _ picker: UIImagePickerController,
-        didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]
-    ) {
-        if let editedImage = info[.editedImage] as? UIImage {
-            if let cell = createRecipeView.collectionView.cellForItem(
-                at: IndexPath(item: 0, section: 0)
-            ) as? RecipeImageCell {
-                cell.setRecipeImage(editedImage)
-            }
-        } else if let originalImage = info[.originalImage] as? UIImage {
-            if let cell = createRecipeView.collectionView.cellForItem(
-                at: IndexPath(item: 0, section: 0)
-            ) as? RecipeImageCell {
-                cell.setRecipeImage(originalImage)
-            }
-        }
-        dismiss(animated: true, completion: nil)
+// MARK: - Alert Controller
+extension CreateRecipeController {
+    func showAlert(message: String) {
+        let alert = UIAlertController(
+            title: "Ooops!",
+            message: message,
+            preferredStyle: .alert
+        )
+        
+        let okAction = UIAlertAction(
+            title: "Ok",
+            style: .default
+        )
+        
+        alert.addAction(okAction)
+        present(alert, animated: true)
     }
 }

@@ -9,24 +9,19 @@ import UIKit
 
 final class RecipeImageCell: UICollectionViewCell {
     
-    private var recipeImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
-        imageView.clipsToBounds = true
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.layer.cornerRadius = 12
-        imageView.image = UIImage(named: "recipe-image")
-        return imageView
-    }()
+    var completionHandler: (()->())?
     
-    private var editButton: UIButton = {
-        let button = UIButton()
+    // MARK: - UI
+    private let recipeImageView = CoverImageFactory.makeCoverImageView(image: .defaultCover)
+    
+    private lazy var editButton: UIButton = {
+        let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.layer.cornerRadius = 16
-        button.clipsToBounds = true
         button.backgroundColor = .white
-        button.setImage(UIImage(named: "Edit-Stroke"), for: .normal)
-        button.addShadow(offset: CGSize(width: 0, height: 0), color: .black, radius: 25, opacity: 0.15)
+        button.setImage(Icons.edit.withRenderingMode(UIImage.RenderingMode.alwaysOriginal), for: .normal)
+        button.addShadow(offset: CGSize(width: 0, height: 8), color: .black, radius: 25, opacity: 0.15)
+        button.addTarget(self, action: #selector(addImage), for: .touchUpInside)
         return button
     }()
     
@@ -42,19 +37,19 @@ final class RecipeImageCell: UICollectionViewCell {
     }
     
     // MARK: - Public Methods
-    func addRecipeImageTapGesture(target: Any, action: Selector) {
-        let gesture = UITapGestureRecognizer(target: target, action: action)
-        editButton.addGestureRecognizer(gesture)
-    }
-    
     func setRecipeImage(_ image: UIImage?) {
         recipeImageView.image = image
+    }
+    
+    // MARK: - Actions
+    @objc private func addImage() {
+        completionHandler?()
     }
     
     // MARK: - Private Methods
     private func addSubviews() {
         addSubview(recipeImageView)
-        addSubview(editButton)
+        recipeImageView.addSubview(editButton)
     }
     
     private func setupLayout() {

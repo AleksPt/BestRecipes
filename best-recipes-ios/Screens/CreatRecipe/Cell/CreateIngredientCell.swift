@@ -7,38 +7,29 @@
 
 import UIKit
 
-final class CreateIngredientCell: UICollectionViewCell, UITextFieldDelegate {
+final class CreateIngredientCell: UICollectionViewCell {
     
-    private var ingredientNameTextField: UITextField = {
-        let textField = RoundedTextFieldFactory(placeholderText: "Item name")
-        return textField.createTextField()
-    }()
+    var completionHandlerAdd: (((String, Double, String))->())?
+    var completionHandlerDelete: (()->())?
     
-    private var quantityTextField: UITextField = {
-        let textField = RoundedTextFieldFactory(placeholderText: "Quantity")
-        return textField.createTextField()
-    }()
+    private var ingredientNameTextField = RoundedTextFieldFactory(placeholderText: "Item name").createTextField()
     
-    private var unitTextField: UITextField = {
-        let textField = RoundedTextFieldFactory(placeholderText: "Unit")
-        return textField.createTextField()
-    }()
+    private var quantityTextField = RoundedTextFieldFactory(placeholderText: "Quantity").createTextField()
     
-    private var button: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(named: "Plus-Border"), for: .normal)
+    private let unitTextField = RoundedTextFieldFactory(placeholderText: "Unit").createTextField()
+    
+    private lazy var button: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(Icons.plus.withRenderingMode(UIImage.RenderingMode.alwaysOriginal), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(addIngredient), for: .touchUpInside)
         return button
     }()
     
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        ingredientNameTextField.delegate = self
-        quantityTextField.delegate = self
-        unitTextField.delegate = self
-        
+        quantityTextField.keyboardType = .decimalPad
         addSubviews()
         setupLayout()
     }
@@ -47,13 +38,11 @@ final class CreateIngredientCell: UICollectionViewCell, UITextFieldDelegate {
         fatalError()
     }
     
-    // MARK: - UITextFieldDelegate
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        textField.layer.borderColor = UIColor.CreateRecipe.selectedBorderField.cgColor
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        textField.layer.borderColor = UIColor.CreateRecipe.unselectedBorderField.cgColor
+    // MARK: - Set delegates
+    private func setDelegates() {
+        ingredientNameTextField.delegate = self
+        quantityTextField.delegate = self
+        unitTextField.delegate = self
     }
     
     // MARK: - Private Methods
@@ -85,5 +74,52 @@ final class CreateIngredientCell: UICollectionViewCell, UITextFieldDelegate {
             button.widthAnchor.constraint(equalToConstant: 24)
         ])
     }
+    
+    private func verifyTextFields() -> (String, Double, String)? {
+        var name: String
+        var quantity: Double
+        var unit: String
+        guard let nameValue = ingredientNameTextField.text, !nameValue.isEmpty else {
+            return nil
+        }
+        guard let quantityValue = quantityTextField.text, !quantityValue.isEmpty else {
+            return nil
+        }
+        guard let unitValue = unitTextField.text, !unitValue.isEmpty else {
+            return nil
+        }
+        if let quantityDouble = Double(quantityValue) {
+            name = nameValue
+            quantity = quantityDouble
+            unit = unitValue
+            return (name, quantity, unit)
+        } else {
+            return nil
+        }
+        
+    }
+    
+    // MARK: - Actions
+    @objc private func addIngredient(_ sender: UIButton) {        
+        if sender.currentImage == Icons.plus.withRenderingMode(UIImage.RenderingMode.alwaysOriginal) {
+            guard let ingredient = verifyTextFields() else {
+                return
+            }
+            completionHandlerAdd?(ingredient)
+            sender.setImage(Icons.minus.withRenderingMode(UIImage.RenderingMode.alwaysOriginal), for: .normal)
+        } else {
+            completionHandlerDelete?()
+        }
+    }
 }
 
+// MARK: - UITextFieldDelegate
+extension CreateIngredientCell: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.layer.borderColor = UIColor.CreateRecipe.selectedBorderField.cgColor
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        textField.layer.borderColor = UIColor.CreateRecipe.unselectedBorderField.cgColor
+    }
+}

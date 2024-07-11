@@ -61,6 +61,17 @@
 		FA6ED7B22C328DD4004F1B10 /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FA6ED7B12C328DD4004F1B10 /* Poppins-Bold.ttf */; };
 		FA6ED7B42C328DDF004F1B10 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FA6ED7B32C328DDF004F1B10 /* Poppins-Regular.ttf */; };
 		FA9D2FA22C3D35060074E04E /* CustomSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9D2FA12C3D35060074E04E /* CustomSpinner.swift */; };
+		FAFBF5A92C3F0A0000FBD8A3 /* RoundedTextFieldFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFBF5A82C3F0A0000FBD8A3 /* RoundedTextFieldFactory.swift */; };
+		FAFBF5AB2C3F0A0A00FBD8A3 /* CreateRecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFBF5AA2C3F0A0A00FBD8A3 /* CreateRecipeView.swift */; };
+		FAFBF5AD2C3F0A0E00FBD8A3 /* CreateRecipeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFBF5AC2C3F0A0E00FBD8A3 /* CreateRecipeController.swift */; };
+		FAFBF5B42C3F0A4100FBD8A3 /* CreateIngredientCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFBF5AE2C3F0A4000FBD8A3 /* CreateIngredientCell.swift */; };
+		FAFBF5B52C3F0A4100FBD8A3 /* RecipeImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFBF5AF2C3F0A4000FBD8A3 /* RecipeImageCell.swift */; };
+		FAFBF5B62C3F0A4100FBD8A3 /* RecipeTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFBF5B02C3F0A4000FBD8A3 /* RecipeTitleCell.swift */; };
+		FAFBF5B72C3F0A4100FBD8A3 /* ServesAndTimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFBF5B12C3F0A4000FBD8A3 /* ServesAndTimeCell.swift */; };
+		FAFBF5B82C3F0A4100FBD8A3 /* CreateRecipeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFBF5B22C3F0A4000FBD8A3 /* CreateRecipeHeaderView.swift */; };
+		FAFBF5B92C3F0A4100FBD8A3 /* CreateInstructionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFBF5B32C3F0A4000FBD8A3 /* CreateInstructionCell.swift */; };
+		FAFBF5BB2C3F202200FBD8A3 /* UIViewController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFBF5BA2C3F202200FBD8A3 /* UIViewController + Extension.swift */; };
+		FAFBF5BD2C400A0500FBD8A3 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFBF5BC2C400A0500FBD8A3 /* StorageManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -79,15 +90,6 @@
 		64285E4F2C3483A200A7E7ED /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		64285E512C3483F300A7E7ED /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		64285E582C34AFC400A7E7ED /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
-		6497E0152C3DB9D300CCE015 /* CreateRecipeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateRecipeController.swift; sourceTree = "<group>"; };
-		6497E0162C3DB9D300CCE015 /* CreateRecipeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateRecipeView.swift; sourceTree = "<group>"; };
-		6497E0192C3DB9E400CCE015 /* RecipeTitleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeTitleCell.swift; sourceTree = "<group>"; };
-		6497E01A2C3DB9E500CCE015 /* CreateRecipeHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateRecipeHeaderView.swift; sourceTree = "<group>"; };
-		6497E01B2C3DB9E500CCE015 /* ServesAndTimeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServesAndTimeCell.swift; sourceTree = "<group>"; };
-		6497E01C2C3DB9E500CCE015 /* CreateInstructionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateInstructionCell.swift; sourceTree = "<group>"; };
-		6497E01D2C3DB9E500CCE015 /* CreateIngredientCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateIngredientCell.swift; sourceTree = "<group>"; };
-		6497E01E2C3DB9E500CCE015 /* RecipeImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeImageCell.swift; sourceTree = "<group>"; };
-		6497E0252C3DBA1200CCE015 /* RoundedTextFieldFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedTextFieldFactory.swift; sourceTree = "<group>"; };
 		64CD25B12C3BDDC9000FF2C8 /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
 		64CD25B32C3BE2E9000FF2C8 /* ProfileSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSectionHeaderView.swift; sourceTree = "<group>"; };
 		D9628C372C372F5200E1DF5E /* PageContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageContentViewController.swift; sourceTree = "<group>"; };
@@ -128,6 +130,17 @@
 		FA6ED7B12C328DD4004F1B10 /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
 		FA6ED7B32C328DDF004F1B10 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
 		FA9D2FA12C3D35060074E04E /* CustomSpinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSpinner.swift; sourceTree = "<group>"; };
+		FAFBF5A82C3F0A0000FBD8A3 /* RoundedTextFieldFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedTextFieldFactory.swift; sourceTree = "<group>"; };
+		FAFBF5AA2C3F0A0A00FBD8A3 /* CreateRecipeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateRecipeView.swift; sourceTree = "<group>"; };
+		FAFBF5AC2C3F0A0E00FBD8A3 /* CreateRecipeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateRecipeController.swift; sourceTree = "<group>"; };
+		FAFBF5AE2C3F0A4000FBD8A3 /* CreateIngredientCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateIngredientCell.swift; sourceTree = "<group>"; };
+		FAFBF5AF2C3F0A4000FBD8A3 /* RecipeImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeImageCell.swift; sourceTree = "<group>"; };
+		FAFBF5B02C3F0A4000FBD8A3 /* RecipeTitleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeTitleCell.swift; sourceTree = "<group>"; };
+		FAFBF5B12C3F0A4000FBD8A3 /* ServesAndTimeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServesAndTimeCell.swift; sourceTree = "<group>"; };
+		FAFBF5B22C3F0A4000FBD8A3 /* CreateRecipeHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateRecipeHeaderView.swift; sourceTree = "<group>"; };
+		FAFBF5B32C3F0A4000FBD8A3 /* CreateInstructionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateInstructionCell.swift; sourceTree = "<group>"; };
+		FAFBF5BA2C3F202200FBD8A3 /* UIViewController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extension.swift"; sourceTree = "<group>"; };
+		FAFBF5BC2C400A0500FBD8A3 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,7 +162,7 @@
 				DC39DC832C34470600464EBD /* ButtonFactory.swift */,
 				160BC2772C34068500944C89 /* RatingFactory.swift */,
 				FA685EB62C358C360028BA17 /* CoverImageFactory.swift */,
-				6497E0252C3DBA1200CCE015 /* RoundedTextFieldFactory.swift */,
+				FAFBF5A82C3F0A0000FBD8A3 /* RoundedTextFieldFactory.swift */,
 			);
 			path = Factories;
 			sourceTree = "<group>";
@@ -208,6 +221,7 @@
 			children = (
 				64285E4F2C3483A200A7E7ED /* DataStore.swift */,
 				64285E512C3483F300A7E7ED /* NetworkManager.swift */,
+				FAFBF5BC2C400A0500FBD8A3 /* StorageManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -217,6 +231,7 @@
 			children = (
 				64285E582C34AFC400A7E7ED /* UIImageView+Extension.swift */,
 				FA685EB12C3490C80028BA17 /* UIView + Extension.swift */,
+				FAFBF5BA2C3F202200FBD8A3 /* UIViewController + Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -224,8 +239,8 @@
 		6497E0132C3DB7E400CCE015 /* CreatRecipe */ = {
 			isa = PBXGroup;
 			children = (
-				6497E0152C3DB9D300CCE015 /* CreateRecipeController.swift */,
-				6497E0162C3DB9D300CCE015 /* CreateRecipeView.swift */,
+				FAFBF5AA2C3F0A0A00FBD8A3 /* CreateRecipeView.swift */,
+				FAFBF5AC2C3F0A0E00FBD8A3 /* CreateRecipeController.swift */,
 				6497E0142C3DB7EB00CCE015 /* Cell */,
 			);
 			path = CreatRecipe;
@@ -234,12 +249,12 @@
 		6497E0142C3DB7EB00CCE015 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				6497E01D2C3DB9E500CCE015 /* CreateIngredientCell.swift */,
-				6497E01C2C3DB9E500CCE015 /* CreateInstructionCell.swift */,
-				6497E01A2C3DB9E500CCE015 /* CreateRecipeHeaderView.swift */,
-				6497E01E2C3DB9E500CCE015 /* RecipeImageCell.swift */,
-				6497E0192C3DB9E400CCE015 /* RecipeTitleCell.swift */,
-				6497E01B2C3DB9E500CCE015 /* ServesAndTimeCell.swift */,
+				FAFBF5B22C3F0A4000FBD8A3 /* CreateRecipeHeaderView.swift */,
+				FAFBF5AF2C3F0A4000FBD8A3 /* RecipeImageCell.swift */,
+				FAFBF5B02C3F0A4000FBD8A3 /* RecipeTitleCell.swift */,
+				FAFBF5B12C3F0A4000FBD8A3 /* ServesAndTimeCell.swift */,
+				FAFBF5B32C3F0A4000FBD8A3 /* CreateInstructionCell.swift */,
+				FAFBF5AE2C3F0A4000FBD8A3 /* CreateIngredientCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -475,14 +490,15 @@
 				4D4BC28F2C369BE800564A7A /* RecipeDetailView.swift in Sources */,
 				FA685E7B2C32EB770028BA17 /* HomeScreen.swift in Sources */,
 				FA9D2FA22C3D35060074E04E /* CustomSpinner.swift in Sources */,
+				FAFBF5BD2C400A0500FBD8A3 /* StorageManager.swift in Sources */,
 				FA685EAC2C34100C0028BA17 /* HomeView.swift in Sources */,
 				64285E592C34AFC400A7E7ED /* UIImageView+Extension.swift in Sources */,
 				640BFA522C372F5A00BB4923 /* RecipeCell.swift in Sources */,
 				64285E522C3483F300A7E7ED /* NetworkManager.swift in Sources */,
 				DC39DC842C34470600464EBD /* ButtonFactory.swift in Sources */,
-				6497E0262C3DBA1200CCE015 /* RoundedTextFieldFactory.swift in Sources */,
 				D9628C382C372F5200E1DF5E /* PageContentViewController.swift in Sources */,
-				6497E0182C3DB9D300CCE015 /* CreateRecipeView.swift in Sources */,
+				FAFBF5AB2C3F0A0A00FBD8A3 /* CreateRecipeView.swift in Sources */,
+				FAFBF5B42C3F0A4100FBD8A3 /* CreateIngredientCell.swift in Sources */,
 				FA685E732C32A6860028BA17 /* Images.swift in Sources */,
 				D998A12F2C3089FB0084F9C4 /* ViewController.swift in Sources */,
 				FA685E812C32EFF60028BA17 /* CategoryRecipeCell.swift in Sources */,
@@ -498,33 +514,34 @@
 				64285E502C3483A200A7E7ED /* DataStore.swift in Sources */,
 				D998A1472C345ACB0084F9C4 /* TabBarController.swift in Sources */,
 				64CD25B22C3BDDC9000FF2C8 /* ProfileCell.swift in Sources */,
-				6497E0242C3DB9E500CCE015 /* RecipeImageCell.swift in Sources */,
+				FAFBF5A92C3F0A0000FBD8A3 /* RoundedTextFieldFactory.swift in Sources */,
 				64CD25B42C3BE2E9000FF2C8 /* ProfileSectionHeaderView.swift in Sources */,
+				FAFBF5B72C3F0A4100FBD8A3 /* ServesAndTimeCell.swift in Sources */,
 				D993B9C72C35C966001E6F10 /* OnboardingController.swift in Sources */,
 				160BC2782C34068500944C89 /* RatingFactory.swift in Sources */,
 				FA685E712C32A3310028BA17 /* Icons.swift in Sources */,
+				FAFBF5BB2C3F202200FBD8A3 /* UIViewController + Extension.swift in Sources */,
 				D9628C3A2C37339B00E1DF5E /* PageContentView.swift in Sources */,
 				D9628C3C2C37442D00E1DF5E /* OnboardingData.swift in Sources */,
 				FA685E6D2C329F0B0028BA17 /* Colors.swift in Sources */,
+				FAFBF5B62C3F0A4100FBD8A3 /* RecipeTitleCell.swift in Sources */,
 				4D15898C2C333276005F4D2E /* LabelFactory.swift in Sources */,
 				640BFA592C373ED100BB4923 /* ProfileView.swift in Sources */,
-				6497E0212C3DB9E500CCE015 /* ServesAndTimeCell.swift in Sources */,
-				6497E0202C3DB9E500CCE015 /* CreateRecipeHeaderView.swift in Sources */,
 				D998A12B2C3089FB0084F9C4 /* AppDelegate.swift in Sources */,
 				D998A1522C345FD60084F9C4 /* TabBar.swift in Sources */,
+				FAFBF5B82C3F0A4100FBD8A3 /* CreateRecipeHeaderView.swift in Sources */,
+				FAFBF5AD2C3F0A0E00FBD8A3 /* CreateRecipeController.swift in Sources */,
+				FAFBF5B92C3F0A4100FBD8A3 /* CreateInstructionCell.swift in Sources */,
 				4D4BC2922C369FBF00564A7A /* IngredientsTableViewCell.swift in Sources */,
-				6497E0222C3DB9E500CCE015 /* CreateInstructionCell.swift in Sources */,
 				4D4BC28D2C369BBE00564A7A /* RecipeDetailViewController.swift in Sources */,
-				6497E0172C3DB9D300CCE015 /* CreateRecipeController.swift in Sources */,
+				FAFBF5B52C3F0A4100FBD8A3 /* RecipeImageCell.swift in Sources */,
 				4D4BC2982C36A01A00564A7A /* HeaderTableView.swift in Sources */,
 				D998A12D2C3089FB0084F9C4 /* SceneDelegate.swift in Sources */,
 				4D4BC2942C369FDB00564A7A /* InstructionsTableViewCell.swift in Sources */,
 				FA685EB72C358C360028BA17 /* CoverImageFactory.swift in Sources */,
-				6497E0232C3DB9E500CCE015 /* CreateIngredientCell.swift in Sources */,
 				FA685E7D2C32EEB30028BA17 /* TrendingCell.swift in Sources */,
 				D993B9C52C35C95A001E6F10 /* OnboardingView.swift in Sources */,
 				64285E4D2C34824A00A7E7ED /* Recipe.swift in Sources */,
-				6497E01F2C3DB9E500CCE015 /* RecipeTitleCell.swift in Sources */,
 				D993B9CA2C35CBEC001E6F10 /* WelcomeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

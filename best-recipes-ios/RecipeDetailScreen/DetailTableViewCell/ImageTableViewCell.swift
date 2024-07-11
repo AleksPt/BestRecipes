@@ -57,8 +57,19 @@ final class ImageTableViewCell: UITableViewCell {
     }
     
     public func configureCell(with recipe: Recipe?) {
-        if let image = recipe?.imageURL {
-            recipeImageView.getImage(from: image)
+        switch recipe?.isUserCreated {
+        case true:
+            if let imageData = recipe?.userImage {
+                recipeImageView.image = UIImage(data: imageData)
+            } else {
+                recipeImageView.image = UIImage(named: "defaultCover")
+            }
+        case false:
+            if let image = recipe?.imageURL {
+                recipeImageView.getImage(from: image)
+            }
+        default:
+            break
         }
         titleLabel.text = recipe?.title
         selectionStyle = .none

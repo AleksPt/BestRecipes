@@ -94,9 +94,21 @@ final class RecipeCell: UICollectionViewCell {
         imageView.addGradient()
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        imageView.image = nil
+        recipeTitleLabel.text = nil
+        ingredientsLabel.text = nil
+        timeLabel.text = nil
+    }
+    
     // MARK: - Public Methods
     func configure(with recipe: Recipe) {
-        imageView.getImage(from: recipe.imageURL) // если image будет типа Data - проблемы
+        if let imageData = recipe.userImage {
+            imageView.image = UIImage(data: imageData)
+        } else {
+            imageView.image = UIImage(named: recipe.image)
+        }
         recipeTitleLabel.text = recipe.title
         ingredientsLabel.text = "\(recipe.extendedIngredients.count) ingredients"
         timeLabel.text = "\(recipe.readyInMinutes) mins"
@@ -137,28 +149,4 @@ final class RecipeCell: UICollectionViewCell {
         ])
     }
     
-}
-
-extension UIView {
-    func addGradient() {
-        let gradient = CAGradientLayer()
-        gradient.frame = bounds
-        
-        gradient.colors = [
-            UIColor.black.withAlphaComponent(0.4).cgColor,
-            UIColor.clear.cgColor
-        ]
-        
-        gradient.locations = [0.0, 0.7]
-        gradient.startPoint = CGPoint(x: 0.5, y: 1.0)
-        gradient.endPoint = CGPoint(x: 0.5, y: 0.0)
-        
-        if let sublayers = layer.sublayers {
-            for layer in sublayers where layer is CAGradientLayer {
-                layer.removeFromSuperlayer()
-            }
-        }
-        
-        layer.insertSublayer(gradient, at: 0)
-    }
 }

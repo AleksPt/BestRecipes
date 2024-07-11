@@ -26,7 +26,7 @@ final class RoundedTextFieldFactory: TextFieldFactory {
         textField.placeholder = placeholderText
         textField.borderStyle = .none
         textField.font = UIFont.TextFonts.CreateRecipe.ingredientsField
-        textField.layer.cornerRadius = 12
+        textField.layer.cornerRadius = 10
         textField.layer.borderWidth = 1
         textField.layer.borderColor = UIColor.Colors.Neutral.neutral20.cgColor
         textField.translatesAutoresizingMaskIntoConstraints = false
