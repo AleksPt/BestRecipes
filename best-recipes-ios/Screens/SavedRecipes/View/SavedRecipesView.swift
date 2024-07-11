@@ -65,9 +65,6 @@ final class SavedRecipesView:UIView {
             collectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
             collectionView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor,constant: 20),
             collectionView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
-            
-           
-            
         ])
     }
 }

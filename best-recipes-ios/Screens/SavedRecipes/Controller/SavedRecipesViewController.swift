@@ -12,7 +12,6 @@ final class SavedRecipesViewController: UIViewController {
     // MARK: - Variables
     
     private let savedRecipesView = SavedRecipesView()
-    private var collectionData = CollectionData.getData()
     var collectionDataArray : [Recipe] = []
     
     //MARK: - Lifecycle
@@ -30,7 +29,9 @@ final class SavedRecipesViewController: UIViewController {
     //MARK: - UICollectionViewDelegate
 extension SavedRecipesViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("detail screen")
+        let detailViewController = RecipeDetailViewController()
+        detailViewController.firstRecipe = DataStore.shared.recipes[indexPath.item]
+        navigationController?.pushViewController(detailViewController, animated: true)
     }
     
 }
