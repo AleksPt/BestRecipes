@@ -34,11 +34,23 @@ final class SeeAllViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupNavBar(type)
         customView.setTitle(type)
         customView.setDelegates(value: self)
         
         if type == .worldCuisine {
             fetchRecipes()
+        }
+    }
+    
+    private func setupNavBar(_ type: RecipesType) {
+        switch type {
+        case .trendingNow:
+            setupNavBarWithButtons(on: self, text: "Trending now")
+        case .recentRecipe:
+            setupNavBarWithButtons(on: self, text: "Recent recipe")
+        case .worldCuisine:
+            setupNavBarWithButtons(on: self, text: "World cuisine")
         }
     }
     

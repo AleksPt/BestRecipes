@@ -26,6 +26,7 @@ final class ProfileController: UICollectionViewController, UICollectionViewDeleg
         
         setupCollectionView()
         setupImagePicker()
+        setupNavBarWithoutButtons(on: self, with: "My Profile")
     }
     
     @objc func addProfileImage() {

@@ -20,6 +20,7 @@ final class AllCuisinesVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         allCuisinesView.setDelegates(self)
+        setupNavBarWithButtons(on: self, text: "World cuisine")
     }
 }
 

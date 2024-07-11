@@ -24,6 +24,7 @@ class RecipeDetailViewController: UIViewController {
         super.viewDidLoad()
         
         recipeDetailView.setDelegate(viewController: self)
+        setupNavBarWithButtons(on: self, text: "")
     }
 }
 
