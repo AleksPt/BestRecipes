@@ -321,7 +321,7 @@ extension HomeScreen: SearchResultViewControllerDelegate {
 }
 
 //MARK: - UISearchResultsUpdating
-extension HomeScreen: UISearchResultsUpdating /*, UISearchBarDelegate */ {
+extension HomeScreen: UISearchResultsUpdating, UISearchBarDelegate {
     
     func updateSearchResults(for searchController: UISearchController) {
         guard let query = searchController.searchBar.text,
@@ -348,5 +348,13 @@ extension HomeScreen: UISearchResultsUpdating /*, UISearchBarDelegate */ {
             resultController.filteredRecipe = filterAllSections
             resultController.resultView.searchResultCollectionView.reloadData()
         }
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.searchTextField.layer.borderColor = UIColor.Search.borderSelectedField.cgColor
+    }
+
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        searchBar.searchTextField.layer.borderColor = UIColor.Search.borderField.cgColor
     }
 }

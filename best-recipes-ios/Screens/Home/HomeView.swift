@@ -72,6 +72,7 @@ final class HomeView: UIView {
         collectionView.dataSource = viewController
         searchResultController.resultDelegate = viewController
         searchController.searchResultsUpdater = viewController
+        searchController.searchBar.delegate = viewController
     }
     
     // MARK: - Setup View
