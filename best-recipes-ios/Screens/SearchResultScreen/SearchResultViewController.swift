@@ -28,37 +28,50 @@ final class SearchResultViewController: UIViewController {
         resultView.setDelegate(viewController: self)
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-    }
-    
     func update(with results: [Recipe]) {
         self.filteredRecipe = results
-        resultView.searchResultTableView.isHidden = results.isEmpty
-        resultView.searchResultTableView.reloadData()
-        
+        resultView.searchResultCollectionView.reloadData()
     }
 }
 
-//MARK: - UITableViewDataSource
+//MARK: - UICollectionViewDataSource
 
-extension SearchResultViewController: UITableViewDataSource, UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+extension SearchResultViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
         guard let resultDelegate = resultDelegate else { return }
         let result = filteredRecipe[indexPath.row]
         resultDelegate.didTapResult(result)
         print("go to Recipe Detail Screen")
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return filteredRecipe.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchResultTableViewCell.identifier, for: indexPath) as? SearchResultTableViewCell else { return UITableViewCell() }
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchResultCollectionViewCell.identifier, for: indexPath) as? SearchResultCollectionViewCell else { return UICollectionViewCell() }
         cell.configureCell(with: filteredRecipe[indexPath.item])
         return cell
     }
 }
+
+//MARK: - UICollectionViewDelegateFlowLayout
+extension SearchResultViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.frame.width - 32, height: 200)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 24
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int
+    ) -> CGSize {
+        return .zero
+    }
+}
+
+
 

@@ -10,14 +10,17 @@ import UIKit
 final class SearchResultView: UIView {
     
     //MARK: -  UI Elements
-    let searchResultTableView: UITableView = {
-        let tableView = UITableView()
-        tableView.backgroundColor = .none
-        tableView.bounces = false
-        tableView.separatorStyle = .none
-        tableView.register(SearchResultTableViewCell.self, forCellReuseIdentifier: SearchResultTableViewCell.identifier)
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        return tableView
+    let searchResultCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        layout.minimumLineSpacing = 10
+        let collectionView = UICollectionView(frame: .zero,
+                                              collectionViewLayout: layout)
+        collectionView.backgroundColor = .white
+        collectionView.bounces = false
+        collectionView.register(SearchResultCollectionViewCell.self, forCellWithReuseIdentifier: SearchResultCollectionViewCell.identifier)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        return collectionView
     }()
     
     override init(frame: CGRect) {
@@ -32,20 +35,20 @@ final class SearchResultView: UIView {
     
     //MARK: - Set Delegates
     func setDelegate(viewController: SearchResultViewController) {
-        searchResultTableView.delegate = viewController
-        searchResultTableView.dataSource = viewController
+        searchResultCollectionView.delegate = viewController
+        searchResultCollectionView.dataSource = viewController
     }
     
     private func setupView() {
-        addSubview(searchResultTableView)
+        addSubview(searchResultCollectionView)
     }
     
     private func setConstraints() {
         NSLayoutConstraint.activate([
-            searchResultTableView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
-            searchResultTableView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            searchResultTableView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            searchResultTableView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            searchResultCollectionView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 10),
+            searchResultCollectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            searchResultCollectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            searchResultCollectionView.bottomAnchor.constraint(equalTo: bottomAnchor),
         ])
     }
 }

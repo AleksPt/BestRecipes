@@ -346,7 +346,7 @@ extension HomeScreen: UISearchResultsUpdating /*, UISearchBarDelegate */ {
 
         if let resultController = mainView.searchController.searchResultsController as? SearchResultViewController {
             resultController.filteredRecipe = filterAllSections
-            resultController.resultView.searchResultTableView.reloadData()
+            resultController.resultView.searchResultCollectionView.reloadData()
         }
     }
 }
