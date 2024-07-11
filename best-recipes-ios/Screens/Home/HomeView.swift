@@ -10,6 +10,8 @@ import UIKit
 final class HomeView: UIView {
     
     // MARK: - UI
+    let searchResultController = SearchResultViewController()
+    var searchController = SearchController()
     let collectionView: UICollectionView = {
         let collectionViewLayout = UICollectionViewLayout()
         let collectionView = UICollectionView(
@@ -52,16 +54,6 @@ final class HomeView: UIView {
         return element
     }()
     
-    private lazy var titleScreen: UILabel = {
-        let element = UILabel()
-        element.text = "Get amazing recipes for cooking"
-        element.font = UIFont.TextFonts.NavigationBar.title
-        element.textColor = UIColor.Home.title
-        element.numberOfLines = 0
-        element.translatesAutoresizingMaskIntoConstraints = false
-        return element
-    }()
-    
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -78,29 +70,28 @@ final class HomeView: UIView {
     func setDelegates(viewController: HomeScreen) {
         collectionView.delegate = viewController
         collectionView.dataSource = viewController
+        searchResultController.resultDelegate = viewController
+        searchController.searchResultsUpdater = viewController
     }
     
     // MARK: - Setup View
     private func setupView() {
         backgroundColor = UIColor.GlobalBackground.light
         collectionView.collectionViewLayout = createLayout()
+        searchController = SearchController(searchResultsController: searchResultController)
+        searchController.hidesNavigationBarDuringPresentation = false
     }
     
     // MARK: - Add subviews
     private func addSubviews() {
         addSubview(collectionView)
-        addSubview(titleScreen)
         addSubview(activityIndicator)
     }
     
     // MARK: - Setup Constraint
     func setupConstraints() {
         NSLayoutConstraint.activate([
-            titleScreen.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            titleScreen.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            titleScreen.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
-            
-            collectionView.topAnchor.constraint(equalTo: titleScreen.bottomAnchor, constant: 20),
+            collectionView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
             collectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
