@@ -31,6 +31,12 @@ final class CreateRecipeController: UIViewController {
         setupImagePicker()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        storageManager.instructions = []
+        storageManager.ingredientsTuple = []
+    }
+    
     // MARK: - Private Methods
     private func setupImagePicker() {
         imagePicker.delegate = self
