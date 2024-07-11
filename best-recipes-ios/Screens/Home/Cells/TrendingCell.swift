@@ -77,8 +77,8 @@ final class TrendingCell: UICollectionViewCell {
         titleLabel.text = item.title
         if let author = Images.Avatars.getAvatar().randomElement() {
             avatar.image = author.value
-            nameAuthor.text = "By \(author.key)"
         }
+        nameAuthor.text = item.sourceName
     }
     
     // MARK: - Add subviews
