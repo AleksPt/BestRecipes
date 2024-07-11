@@ -66,7 +66,7 @@ final class ImageTableViewCell: UITableViewCell {
     
     private func randomReviews() {
         let randomNumber = Int.random(in: 300...5000)
-        self.reviewLabel.text = "\(randomNumber) Reviews"
+        self.reviewLabel.text = "(\(randomNumber) Reviews)"
     }
     
     func setupConstraints() {

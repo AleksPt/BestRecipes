@@ -137,7 +137,7 @@ final class LabelFactory {
     //Fish(Detail Screen)
     static func makeRecipeTitleLabel(text: String) -> UILabel {
         let label = UILabel()
-        label.numberOfLines = 0
+        label.numberOfLines = 3
         label.textAlignment = .left
         label.textColor = UIColor.Colors.Neutral.neutral100
         label.font = UIFont.TextFonts.Home.Trending.titleTrendingCell

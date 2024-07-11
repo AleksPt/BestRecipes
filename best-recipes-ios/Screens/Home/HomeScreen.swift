@@ -7,7 +7,11 @@
 
 import UIKit
 
-final class HomeScreen: UIViewController {
+protocol HomeScreenDelegate: AnyObject {
+    func addRecentRecipe(recipe: Recipe)
+}
+
+final class HomeScreen: UIViewController, HomeScreenDelegate {
     
     private let mainView = HomeView()
     private let networkManager = NetworkManager.shared
@@ -22,8 +26,6 @@ final class HomeScreen: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         mainView.setDelegates(viewController: self)
-        
-//        dataSource = dataStore.getMockData()
         fetchRecipes(typeUrl: .recipesURL(offset: dataStore.offsetRecipes, query: ""))
         fetchRecipes(typeUrl: .popularRecipesURL(offset: dataStore.offsetPopularResipes))
     }
@@ -31,6 +33,7 @@ final class HomeScreen: UIViewController {
     // MARK: - Private methods
     /// Сетевой запрос рецептов
     private func fetchRecipes(typeUrl: APIEndpoint) {
+        mainView.activityIndicator.startAnimation(delay: 0.0075, replicates: 120)
         let url = typeUrl.url
         networkManager.fetch(ComplexSearch.self, from: url) { [weak self] result in
             guard let self else { return }
@@ -54,9 +57,11 @@ final class HomeScreen: UIViewController {
                     guard let self else { return }
                     mainView.collectionView.reloadData()
                     selectCategory()
+                    mainView.activityIndicator.stopAnimation()
                 }
             case .failure(let error):
                 print(error.localizedDescription)
+                mainView.activityIndicator.stopAnimation()
             }
         }
     }
@@ -67,8 +72,8 @@ final class HomeScreen: UIViewController {
             let indexPath = IndexPath(item: 0, section: 1)
             mainView.collectionView.selectItem(
                 at: indexPath,
-                animated: false,
-                scrollPosition: .top
+                animated: true,
+                scrollPosition: []
             )
             filterRecipes(IndexPath(item: 0, section: 1))
         }
@@ -78,7 +83,6 @@ final class HomeScreen: UIViewController {
     private func filterRecipes(_ indexPath: IndexPath) {
         let currentCategory = dataSource[indexPath.section].categories[indexPath.item]
         
-//        let recipes = dataStore.getMockData()[indexPath.section + 1].recipes
         let recipes = dataStore.getData()[indexPath.section + 1].recipes
         
         let filteredRecipes = recipes.filter {
@@ -101,12 +105,24 @@ extension HomeScreen: UICollectionViewDelegateFlowLayout {
         switch indexSection {
         case 0, 2, 3:
             let detailVC = RecipeDetailViewController()
-            detailVC.firstRecipe = dataSource[indexSection].recipes[indexPath.item]
+            let recipe = dataSource[indexSection].recipes[indexPath.item]
+            detailVC.firstRecipe = recipe
+            addRecentRecipe(recipe: recipe)
+            detailVC.hidesBottomBarWhenPushed = true
             navigationController?.pushViewController(detailVC, animated: true)
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+                guard let self else { return }
+                mainView.collectionView.reloadData()
+            }
         case 1:
             filterRecipes(indexPath)
         case 4:
-            print("go to SeeAll")
+            let seeAllVC = SeeAllViewController(type: .worldCuisine)
+            seeAllVC.nameCuisine = dataSource[4].cuisines[indexPath.item].rawValue
+            seeAllVC.delegate = self
+            seeAllVC.hidesBottomBarWhenPushed = true
+            navigationController?.pushViewController(seeAllVC, animated: true)
         default:
             break
         }
@@ -213,7 +229,34 @@ extension HomeScreen: UICollectionViewDataSource {
             ) as? HeaderSupplementaryView else {
                 return UICollectionReusableView()
             }
+            
             header.configureHeader(section: indexPath.section, dataSource: dataSource)
+            
+            header.completionHandler = { [weak self] in
+                guard let self else { return }
+                
+                switch indexPath.section {
+                case 0:
+                    let vc = SeeAllViewController(type: .trendingNow)
+                    vc.delegate = self
+                    vc.recipes = dataStore.trendingRecipes
+                    vc.hidesBottomBarWhenPushed = true
+                    navigationController?.pushViewController(vc, animated: true)
+                case 3:
+                    let vc = SeeAllViewController(type: .recentRecipe)
+                    vc.delegate = self
+                    vc.recipes = dataStore.recentRecipes
+                    vc.hidesBottomBarWhenPushed = true
+                    navigationController?.pushViewController(vc, animated: true)
+                case 4:
+                    let vc = AllCuisinesVC()
+                    vc.hidesBottomBarWhenPushed = true
+                    navigationController?.pushViewController(vc, animated: true)
+                default:
+                    break
+                }
+            }
+            
             return header
         default:
             return UICollectionReusableView()
@@ -221,3 +264,23 @@ extension HomeScreen: UICollectionViewDataSource {
     }
 }
 
+// MARK: - HomeScreenDelegate
+extension HomeScreen {
+    /// Проверяет просмотренный рецепт, если ранее не был просмотрен - добавляет в секцию
+    func addRecentRecipe(recipe: Recipe) {
+        if let recentRecipes = dataStore.recentRecipes {
+            if !recentRecipes.isEmpty {
+                let result = recentRecipes.contains { recentRecipe in
+                    recentRecipe.id == recipe.id
+                }
+                if !result {
+                    dataStore.recentRecipes?.insert(recipe, at: 0)
+                }
+            } else {
+                dataStore.recentRecipes?.insert(recipe, at: 0)
+            }
+        }
+        dataSource = dataStore.getData()
+        mainView.collectionView.reloadData()
+    }
+}

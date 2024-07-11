@@ -58,7 +58,9 @@ final class RecentCell: UICollectionViewCell {
     func configureCell(item: Recipe) {
         coverImageView.getImage(from: item.imageURL)
         titleLabel.text = replaceFirstSpace(in: item.title, with: "\n")
-        nameAuthor.text = "By "
+        if let author = Images.Avatars.getAvatar().randomElement() {
+            nameAuthor.text = "By \(author.key)"
+        }
     }
 }
 
