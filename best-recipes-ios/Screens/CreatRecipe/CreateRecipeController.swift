@@ -45,7 +45,7 @@ final class CreateRecipeController: UIViewController {
             return
         }
         storageManager.creatRecipe()
-        storageManager.imageData = nil
+        storageManager.image = nil
         NotificationCenter.default.post(
             name: Notification.Name("reloadCollection"),
             object: nil,
@@ -66,14 +66,22 @@ extension CreateRecipeController: UIImagePickerControllerDelegate, UINavigationC
                 at: IndexPath(item: 0, section: 0)
             ) as? RecipeImageCell {
                 cell.setRecipeImage(editedImage)
-                storageManager.imageData = editedImage.pngData()
+                
+                if let imageData = editedImage.pngData() {
+                    storageManager.image = UUID().uuidString
+                    storageManager.saveImage(data: imageData, name: storageManager.image)
+                }
             }
         } else if let originalImage = info[.originalImage] as? UIImage {
             if let cell = createRecipeView.collectionView.cellForItem(
                 at: IndexPath(item: 0, section: 0)
             ) as? RecipeImageCell {
                 cell.setRecipeImage(originalImage)
-                storageManager.imageData = originalImage.pngData()
+                
+                if let imageData = originalImage.pngData() {
+                    storageManager.image = UUID().uuidString
+                    storageManager.saveImage(data: imageData, name: storageManager.image)
+                }
             }
         }
         dismiss(animated: true, completion: nil)

@@ -56,23 +56,16 @@ final class ImageTableViewCell: UITableViewCell {
         titleLabel.text = nil
     }
     
-    public func configureCell(with recipe: Recipe?) {
-        switch recipe?.isUserCreated {
-        case true:
-            if let imageData = recipe?.userImage {
-                recipeImageView.image = UIImage(data: imageData)
-            } else {
-                recipeImageView.image = UIImage(named: "defaultCover")
-            }
-        case false:
+    public func configureCell(with recipe: Recipe?, imageData: Data? = nil) {
+        titleLabel.text = recipe?.title
+        selectionStyle = .none
+        guard let image = imageData else {
             if let image = recipe?.imageURL {
                 recipeImageView.getImage(from: image)
             }
-        default:
-            break
+            return
         }
-        titleLabel.text = recipe?.title
-        selectionStyle = .none
+        recipeImageView.image = UIImage(data: image)
     }
     
     private func randomReviews() {

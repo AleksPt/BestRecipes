@@ -103,15 +103,15 @@ final class RecipeCell: UICollectionViewCell {
     }
     
     // MARK: - Public Methods
-    func configure(with recipe: Recipe) {
-        if let imageData = recipe.userImage {
-            imageView.image = UIImage(data: imageData)
-        } else {
-            imageView.image = UIImage(named: recipe.image)
-        }
+    func configure(with recipe: Recipe, imageData: Data?) {
         recipeTitleLabel.text = recipe.title
         ingredientsLabel.text = "\(recipe.extendedIngredients.count) ingredients"
         timeLabel.text = "\(recipe.readyInMinutes) mins"
+        guard let image = imageData else {
+            imageView.image = UIImage(named: "defaultCover")
+            return
+        }
+        imageView.image = UIImage(data: image)
     }
     
     // MARK: - Private Methods

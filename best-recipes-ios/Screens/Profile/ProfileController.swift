@@ -10,6 +10,7 @@ import UIKit
 final class ProfileController: UIViewController {
     
     private var dataStore = DataStore.shared
+    private let storageManager = StorageManager.shared
     private let profileView = ProfileView()
     
     private var imagePicker = UIImagePickerController()
@@ -100,7 +101,8 @@ extension ProfileController: UICollectionViewDataSource {
             ) as! RecipeCell
             
             let recipe = dataStore.userRecipes[indexPath.item]
-            cell.configure(with: recipe)
+            let imageData = storageManager.getImage(imgName: recipe.image)
+            cell.configure(with: recipe, imageData: imageData)
             return cell
         }
     }
