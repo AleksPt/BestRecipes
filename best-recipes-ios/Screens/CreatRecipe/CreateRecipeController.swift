@@ -29,6 +29,7 @@ final class CreateRecipeController: UIViewController {
         addTapGestureToHideKeyboard()
         createRecipeView.setDelegates(self)
         setupImagePicker()
+        addNotifications()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -58,6 +59,21 @@ final class CreateRecipeController: UIViewController {
             userInfo: nil
         )
         dismiss(animated: true)
+    }
+    
+    @objc func keyboardWillShow(_ notification: Notification) {
+        guard let userInfo = notification.userInfo,
+              let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else {
+            return
+        }
+        let keyboardHeight = keyboardFrame.height
+        var contentInset = createRecipeView.collectionView.contentInset
+        contentInset.bottom = keyboardHeight
+        createRecipeView.collectionView.contentInset = contentInset
+    }
+    
+    @objc func keyboardWillHide(_ notification: Notification) {
+        createRecipeView.collectionView.contentInset = .zero
     }
 }
 
@@ -301,5 +317,23 @@ extension CreateRecipeController {
         
         alert.addAction(okAction)
         present(alert, animated: true)
+    }
+}
+
+// MARK: - Notifications
+extension CreateRecipeController {
+    func addNotifications() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillShow(_:)),
+            name: UIResponder.keyboardWillShowNotification,
+            object: nil
+        )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillHide(_:)),
+            name: UIResponder.keyboardWillHideNotification,
+            object: nil
+        )
     }
 }
