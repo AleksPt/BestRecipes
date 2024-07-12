@@ -65,7 +65,7 @@ final class ServesAndTimeCell: UICollectionViewCell {
         
     var valueServes = 0 {
         didSet {
-            subtitleServesLabel.text = "\(valueCookTime)"
+            subtitleServesLabel.text = "\(valueServes)"
         }
     }
     var valueCookTime = 0 {
