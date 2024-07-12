@@ -55,16 +55,7 @@ class OnboardingViewController: UIPageViewController {
     
     private func goToMainScreen() {
         UserDefaults.standard.set(true, forKey: "isOnboardingCompleted")
-        if let windowScene = view.window?.windowScene {
-            let tabBarController = TabBarController()
-            UIView.transition(with: windowScene.windows.first!,
-                              duration: 0.5,
-                              options: .transitionCrossDissolve,
-                              animations: {
-                                  windowScene.windows.first?.rootViewController = tabBarController
-                              },
-                              completion: nil)
-        }
+        navigationController?.popToRootViewController(animated: true)
     }
 }
 

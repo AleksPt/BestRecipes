@@ -19,6 +19,11 @@ final class WelcomeController: UIViewController {
         welcomeView.delegate = self
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = true
+    }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         welcomeView.updateGradient()
