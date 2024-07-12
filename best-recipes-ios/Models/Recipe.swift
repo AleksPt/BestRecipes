@@ -14,6 +14,15 @@ struct ComplexSearch: Decodable {
     let totalResults: Int
 }
 
+struct UserRecipe {
+    let extendedIngredients: [Ingredient]
+    let title: String
+    let readyInMinutes: Int
+    let servings: Int
+    let analyzedInstructions: [AnalyzedInstruction]
+    let image: Data?
+}
+
 struct Recipe: Decodable {
     let sourceName: String
     let extendedIngredients: [Ingredient]

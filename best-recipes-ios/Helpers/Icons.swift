@@ -29,12 +29,20 @@ enum Icons {
     static let bookmarkActiveSmall: UIImage = .bookmarkActiveSmall
     static let bookmarkInactiveSmall: UIImage = .bookmarkInactiveSmall
     
-    enum Ingredients {
-        static let cucumber: UIImage = .cucumber
-        static let fish: UIImage = .fish
-        static let ginger: UIImage = .ginger
-        static let oil: UIImage = .oil
-        static let salt: UIImage = .salt
+    enum Ingredients: String, CaseIterable {
+        case cucumber = "Cucumber"
+        case curry = "Curry"
+        case fish = "Fish"
+        case ginger = "Ginger"
+        case oil = "Oil"
+        case salt = "Salt"
+        case garlic = "Garlic"
+        case pinapple = "Pineapple"
+        case seasoning = "Seasoning"
+        
+        static func getIngredient() -> [Ingredients] {
+            Ingredients.allCases
+        }
     }
     
     enum TabBar {

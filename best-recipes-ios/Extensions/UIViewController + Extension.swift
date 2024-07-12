@@ -2,13 +2,22 @@
 //  UIViewController + Extension.swift
 //  best-recipes-ios
 //
-//  Created by Елена Логинова on 11.07.2024.
+//  Created by Алексей on 10.07.2024.
 //
 
 import UIKit
 
 extension UIViewController {
+    func addTapGestureToHideKeyboard() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tapGesture.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapGesture)
+    }
     
+    @objc private func dismissKeyboard() {
+        view.endEditing(true)
+    }
+
     func setupHomeScreenNavBar(on viewController: UIViewController,
                                with text: String,
                                searchController: UISearchController) {

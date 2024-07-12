@@ -9,6 +9,7 @@ import UIKit
 
 class RecipeDetailViewController: UIViewController {
     
+    private let storageManager = StorageManager.shared
     private let recipeDetailView = RecipeDetailView()
     
     private var recipe: Recipe
@@ -105,6 +106,9 @@ extension RecipeDetailViewController: UITableViewDataSource, UITableViewDelegate
         
         switch indexPath.section {
         case 0: guard let cell = tableView.dequeueReusableCell(withIdentifier: ImageTableViewCell.identifier, for: indexPath) as? ImageTableViewCell else { return UITableViewCell()}
+            let recipe = firstRecipe
+            let imageData = storageManager.getImage(imgName: recipe?.image ?? "")
+            cell.configureCell(with: recipe, imageData: imageData)
             cell.configureCell(with: recipe)
             return cell
         case 1:

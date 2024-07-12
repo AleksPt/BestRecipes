@@ -7,9 +7,10 @@
 
 import UIKit
 
-final class ProfileController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+final class ProfileController: UIViewController {
     
-    private let dataStore = DataStore.shared
+    private var dataStore = DataStore.shared
+    private let storageManager = StorageManager.shared
     private let profileView = ProfileView()
     
     private var imagePicker = UIImagePickerController()
@@ -22,16 +23,12 @@ final class ProfileController: UICollectionViewController, UICollectionViewDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        title = "My Profile"
-        
         setupCollectionView()
         setupImagePicker()
         setupNavBarWithoutButtons(on: self, with: "My Profile")
-    }
-    
-    @objc func addProfileImage() {
-        present(imagePicker, animated: true)
-    }
+		addNotifications()    
+	}
+        
     
     // MARK: - Private Methods
     private func setupCollectionView() {
@@ -59,23 +56,35 @@ final class ProfileController: UICollectionViewController, UICollectionViewDeleg
         imagePicker.allowsEditing = true
     }
     
-    // MARK: - UICollectionViewDataSource
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
+    // MARK: - Actions
+    @objc private func reloadCollection() {
+        profileView.collectionView.reloadData()
+    }
+    
+    @objc func addProfileImage() {
+        present(imagePicker, animated: true)
+    }
+    
+}
+
+// MARK: - UICollectionViewDataSource
+extension ProfileController: UICollectionViewDataSource {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 2
     }
     
-    override func collectionView(
+    func collectionView(
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int
     ) -> Int {
         if section == 0 {
             return 1
         } else {
-            return dataStore.recipes.count
+            return dataStore.userRecipes.count
         }
     }
     
-    override func collectionView(
+    func collectionView(
         _ collectionView: UICollectionView,
         cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
@@ -93,13 +102,14 @@ final class ProfileController: UICollectionViewController, UICollectionViewDeleg
                 for: indexPath
             ) as! RecipeCell
             
-            let recipe = dataStore.recipes[indexPath.item]
-            cell.configure(with: recipe)
+            let recipe = dataStore.userRecipes[indexPath.item]
+            let imageData = storageManager.getImage(imgName: recipe.image)
+            cell.configure(with: recipe, imageData: imageData)
             return cell
         }
     }
     
-    override func collectionView(
+    func collectionView(
         _ collectionView: UICollectionView,
         viewForSupplementaryElementOfKind kind: String,
         at indexPath: IndexPath
@@ -117,14 +127,15 @@ final class ProfileController: UICollectionViewController, UICollectionViewDeleg
         }
         return UICollectionReusableView()
     }
-    
-    // MARK: - UICollectionViewDelegate
-    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let detailVC = RecipeDetailViewController(recipe: dataStore.recipes[indexPath.item])
+}
+
+// MARK: - UICollectionViewDelegate
+extension ProfileController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let detailVC = RecipeDetailViewController(recipe = dataStore.userRecipes[indexPath.item]
         navigationController?.pushViewController(detailVC, animated: true)
     }
     
-    // MARK: - UICollectionViewDelegateFlowLayout
     func collectionView(
         _ collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
@@ -177,5 +188,17 @@ extension ProfileController: UIImagePickerControllerDelegate, UINavigationContro
             }
         }
         dismiss(animated: true, completion: nil)
+    }
+}
+
+// MARK: - Notifications
+extension ProfileController {
+    func addNotifications() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(reloadCollection),
+            name: NSNotification.Name("reloadCollection"),
+            object: nil
+        )
     }
 }

@@ -19,4 +19,26 @@ extension UIView {
         backgroundColor = nil
         layer.backgroundColor =  backgroundCGColor
     }
+    
+    func addGradient() {
+        let gradient = CAGradientLayer()
+        gradient.frame = bounds
+        
+        gradient.colors = [
+            UIColor.black.withAlphaComponent(0.4).cgColor,
+            UIColor.clear.cgColor
+        ]
+        
+        gradient.locations = [0.0, 0.7]
+        gradient.startPoint = CGPoint(x: 0.5, y: 1.0)
+        gradient.endPoint = CGPoint(x: 0.5, y: 0.0)
+        
+        if let sublayers = layer.sublayers {
+            for layer in sublayers where layer is CAGradientLayer {
+                layer.removeFromSuperlayer()
+            }
+        }
+        
+        layer.insertSublayer(gradient, at: 0)
+    }
 }
