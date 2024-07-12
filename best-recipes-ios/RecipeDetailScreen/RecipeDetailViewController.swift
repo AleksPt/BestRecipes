@@ -37,6 +37,22 @@ class RecipeDetailViewController: UIViewController {
         recipeDetailView.setDelegate(viewController: self)
         setupNavBarWithButtons(on: self, text: "")
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let tabBarController = self.tabBarController as? TabBarController {
+            tabBarController.toggleMiddleButtonVisability(true)
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        if let tabBarController = self.tabBarController as? TabBarController {
+            tabBarController.toggleMiddleButtonVisability(false)
+        }
+    }
 }
 
 //MARK: - UITableViewDataSource

@@ -31,6 +31,7 @@
 		64285E5C2C34AFE200A7E7ED /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 64285E5B2C34AFE200A7E7ED /* Kingfisher */; };
 		64CD25B22C3BDDC9000FF2C8 /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CD25B12C3BDDC9000FF2C8 /* ProfileCell.swift */; };
 		64CD25B42C3BE2E9000FF2C8 /* ProfileSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64CD25B32C3BE2E9000FF2C8 /* ProfileSectionHeaderView.swift */; };
+		D91A32302C4174C50026A597 /* String + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91A322F2C4174C50026A597 /* String + Extension.swift */; };
 		D9628C382C372F5200E1DF5E /* PageContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9628C372C372F5200E1DF5E /* PageContentViewController.swift */; };
 		D9628C3A2C37339B00E1DF5E /* PageContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9628C392C37339B00E1DF5E /* PageContentView.swift */; };
 		D9628C3C2C37442D00E1DF5E /* OnboardingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9628C3B2C37442D00E1DF5E /* OnboardingData.swift */; };
@@ -85,6 +86,7 @@
 		FAFBF5BB2C3F202200FBD8A3 /* UIViewController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFBF5BA2C3F202200FBD8A3 /* UIViewController + Extension.swift */; };
 		FAFBF5BD2C400A0500FBD8A3 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFBF5BC2C400A0500FBD8A3 /* StorageManager.swift */; };
 		FAFBF5BF2C41402B00FBD8A3 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFBF5BE2C41402B00FBD8A3 /* PickerView.swift */; };
+
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -111,6 +113,7 @@
 		64285E582C34AFC400A7E7ED /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		64CD25B12C3BDDC9000FF2C8 /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
 		64CD25B32C3BE2E9000FF2C8 /* ProfileSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSectionHeaderView.swift; sourceTree = "<group>"; };
+		D91A322F2C4174C50026A597 /* String + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Extension.swift"; sourceTree = "<group>"; };
 		D9628C372C372F5200E1DF5E /* PageContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageContentViewController.swift; sourceTree = "<group>"; };
 		D9628C392C37339B00E1DF5E /* PageContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageContentView.swift; sourceTree = "<group>"; };
 		D9628C3B2C37442D00E1DF5E /* OnboardingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingData.swift; sourceTree = "<group>"; };
@@ -167,7 +170,10 @@
 		FAFBF5B32C3F0A4000FBD8A3 /* CreateInstructionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateInstructionCell.swift; sourceTree = "<group>"; };
 		FAFBF5BA2C3F202200FBD8A3 /* UIViewController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extension.swift"; sourceTree = "<group>"; };
 		FAFBF5BC2C400A0500FBD8A3 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
+
 		FAFBF5BE2C41402B00FBD8A3 /* PickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
+
+
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -280,6 +286,7 @@
 				4D16C4872C3F4E8100F8BCC7 /* UIViewController + Extension.swift */,
 				FA685EB12C3490C80028BA17 /* UIView + Extension.swift */,
 				FAFBF5BA2C3F202200FBD8A3 /* UIViewController + Extension.swift */,
+				D91A322F2C4174C50026A597 /* String + Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -575,6 +582,7 @@
 				FA685EAC2C34100C0028BA17 /* HomeView.swift in Sources */,
 				64285E592C34AFC400A7E7ED /* UIImageView+Extension.swift in Sources */,
 				640BFA522C372F5A00BB4923 /* RecipeCell.swift in Sources */,
+				D91A32302C4174C50026A597 /* String + Extension.swift in Sources */,
 				64285E522C3483F300A7E7ED /* NetworkManager.swift in Sources */,
 				4D16C4882C3F4E8100F8BCC7 /* UIViewController + Extension.swift in Sources */,
 				DC39DC842C34470600464EBD /* ButtonFactory.swift in Sources */,
