@@ -9,6 +9,7 @@ import UIKit
 
 final class TabBarController: UITabBarController, UITabBarControllerDelegate {
     
+    private var middleBtn: UIButton?
     
     override func viewDidLoad() {
         
@@ -21,6 +22,10 @@ final class TabBarController: UITabBarController, UITabBarControllerDelegate {
         setupMiddleButton()
         setupTabBar()
         setupViewControllers()
+    }
+
+    func toggleMiddleButtonVisability(_ state: Bool) {
+        middleBtn?.isHidden = state
     }
     
     private func setupViewControllers() {
@@ -70,17 +75,17 @@ final class TabBarController: UITabBarController, UITabBarControllerDelegate {
         )
         buttonContainer.backgroundColor = .clear
         
-        let middleBtn = UIButton(type: .system)
-        middleBtn.frame = buttonContainer.bounds
+        middleBtn = UIButton(type: .system)
+        middleBtn?.frame = buttonContainer.bounds
         
-        middleBtn.backgroundColor = UIColor.Colors.Primary.primary50
-        middleBtn.setImage(UIImage(systemName: "plus"), for: .normal)
-        middleBtn.tintColor = UIColor.Colors.Neutral.neutral100
-        middleBtn.layer.cornerRadius = 25
+        middleBtn?.backgroundColor = UIColor.Colors.Primary.primary50
+        middleBtn?.setImage(UIImage(systemName: "plus"), for: .normal)
+        middleBtn?.tintColor = UIColor.Colors.Neutral.neutral100
+        middleBtn?.layer.cornerRadius = 25
         
-        buttonContainer.addSubview(middleBtn)
+        buttonContainer.addSubview(middleBtn!)
         self.view.addSubview(buttonContainer)
-        middleBtn.addTarget(self, action: #selector(menuButtonAction), for: .touchUpInside)
+        middleBtn?.addTarget(self, action: #selector(menuButtonAction), for: .touchUpInside)
         
         self.view.layoutIfNeeded()
     }
