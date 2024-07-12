@@ -28,6 +28,8 @@ final class HomeScreen: UIViewController, HomeScreenDelegate {
         mainView.setDelegates(viewController: self)
         fetchRecipes(typeUrl: .recipesURL(offset: dataStore.offsetRecipes, query: ""))
         fetchRecipes(typeUrl: .popularRecipesURL(offset: dataStore.offsetPopularResipes))
+        setupHomeScreenNavBar(on: self, with: "Get amazing recipes",
+                              searchController: mainView.searchController)
     }
     
     // MARK: - Private methods
@@ -62,6 +64,24 @@ final class HomeScreen: UIViewController, HomeScreenDelegate {
             case .failure(let error):
                 print(error.localizedDescription)
                 mainView.activityIndicator.stopAnimation()
+            }
+        }
+    }
+    
+    /// Поиск рецепта
+    private func searchRecipe(query: String) {
+        let url = APIEndpoint.recipesURL(offset: 0, query: query).url
+        networkManager.fetch(ComplexSearch.self, from: url) { [weak self]  result in
+            guard let self else { return }
+            switch result {
+            case .success(let recipes):
+                if let resultController = self.mainView.searchController.searchResultsController as? SearchResultViewController {
+                    DispatchQueue.main.async {
+                        resultController.update(with: recipes.results)
+                    }
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
             }
         }
     }
@@ -104,9 +124,8 @@ extension HomeScreen: UICollectionViewDelegateFlowLayout {
         
         switch indexSection {
         case 0, 2, 3:
-            let detailVC = RecipeDetailViewController()
             let recipe = dataSource[indexSection].recipes[indexPath.item]
-            detailVC.firstRecipe = recipe
+            let detailVC = RecipeDetailViewController(recipe: recipe)
             addRecentRecipe(recipe: recipe)
             detailVC.hidesBottomBarWhenPushed = true
             navigationController?.pushViewController(detailVC, animated: true)
@@ -282,5 +301,58 @@ extension HomeScreen {
         }
         dataSource = dataStore.getData()
         mainView.collectionView.reloadData()
+    }
+}
+
+//MARK: - SearchResultViewControllerDelegate
+extension HomeScreen: SearchResultViewControllerDelegate {
+
+    func didTapResult(_ result: Recipe) {
+        let detail = RecipeDetailViewController(recipe: result)
+        addRecentRecipe(recipe: result)
+        navigationController?.pushViewController(detail, animated: true)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+            guard let self else { return }
+            self.mainView.collectionView.reloadData()
+        }
+    }
+}
+
+//MARK: - UISearchResultsUpdating
+extension HomeScreen: UISearchResultsUpdating, UISearchBarDelegate {
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let query = searchController.searchBar.text,
+              !query.trimmingCharacters(in: .whitespaces).isEmpty else { return }
+
+        //searchRecipe(query: query)
+        filterContentForSearchText(query)
+    }
+    
+    private func filterContentForSearchText(_ searchText: String) {
+        
+        let filterFirstSection = dataSource[0].recipes.filter { (recipe: Recipe) -> Bool in
+            return recipe.title.lowercased().contains(searchText.lowercased())
+        }
+        let filterThirdSection = dataSource[2].recipes.filter { (recipe: Recipe) -> Bool in
+            return recipe.title.lowercased().contains(searchText.lowercased())
+        }
+        let filterFifthSection = dataSource[4].recipes.filter { (recipe: Recipe) -> Bool in
+            return recipe.title.lowercased().contains(searchText.lowercased())
+        }
+        let filterAllSections = filterFirstSection + filterThirdSection + filterFifthSection
+
+        if let resultController = mainView.searchController.searchResultsController as? SearchResultViewController {
+            resultController.filteredRecipe = filterAllSections
+            resultController.resultView.searchResultCollectionView.reloadData()
+        }
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.searchTextField.layer.borderColor = UIColor.Search.borderSelectedField.cgColor
+    }
+
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        searchBar.searchTextField.layer.borderColor = UIColor.Search.borderField.cgColor
     }
 }

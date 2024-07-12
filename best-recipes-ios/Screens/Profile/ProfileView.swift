@@ -30,7 +30,7 @@ final class ProfileView: UIView {
     private func setupLayout() {
         NSLayoutConstraint.activate(
             [
-                collectionView.topAnchor.constraint(equalTo: topAnchor),
+                collectionView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
                 collectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
                 collectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
                 collectionView.bottomAnchor.constraint(equalTo: bottomAnchor)

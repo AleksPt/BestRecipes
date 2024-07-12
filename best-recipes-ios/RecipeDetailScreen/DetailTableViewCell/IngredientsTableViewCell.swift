@@ -115,6 +115,7 @@ final class IngredientsTableViewCell: UITableViewCell {
             
             countItemsLabel.centerYAnchor.constraint(equalTo: backgroundIngredientView.centerYAnchor),
             countItemsLabel.trailingAnchor.constraint(equalTo: checkCircleImageView.leadingAnchor, constant: -10),
+            countItemsLabel.widthAnchor.constraint(equalToConstant: 100),
             
             checkCircleImageView.centerYAnchor.constraint(equalTo: backgroundIngredientView.centerYAnchor),
             checkCircleImageView.trailingAnchor.constraint(equalTo: backgroundCellView.trailingAnchor, constant: -16),
