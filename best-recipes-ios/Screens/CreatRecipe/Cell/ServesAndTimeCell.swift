@@ -38,7 +38,16 @@ final class ServesAndTimeCell: UICollectionViewCell {
         return label
     }()
     
-    private var subtitleLabel: UILabel = {
+    private var subtitleServesLabel: UILabel = {
+        let label = UILabel()
+        label.text = "0"
+        label.textColor = UIColor.CreateRecipe.subtitle
+        label.font = UIFont.TextFonts.CreateRecipe.parametersSubtitle
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private var subtitleCookTimeLabel: UILabel = {
         let label = UILabel()
         label.text = "0 min"
         label.textColor = UIColor.CreateRecipe.subtitle
@@ -56,12 +65,12 @@ final class ServesAndTimeCell: UICollectionViewCell {
         
     var valueServes = 0 {
         didSet {
-            subtitleLabel.text = "\(valueCookTime)"
+            subtitleServesLabel.text = "\(valueCookTime)"
         }
     }
     var valueCookTime = 0 {
         didSet {
-            subtitleLabel.text = "\(valueCookTime) min"
+            subtitleCookTimeLabel.text = "\(valueCookTime) min"
         }
     }
     
@@ -85,9 +94,11 @@ final class ServesAndTimeCell: UICollectionViewCell {
         case .serves:
             titleLabel.text = "Serves"
             iconImage.image = UIImage(named: "Profile")
+            subtitleCookTimeLabel.isHidden = true
         case .time:
             titleLabel.text = "Cook time"
             iconImage.image = UIImage(named: "Clock")
+            subtitleServesLabel.isHidden = true
         }
     }
     
@@ -97,7 +108,8 @@ final class ServesAndTimeCell: UICollectionViewCell {
         addSubview(iconImage)
         addSubview(titleLabel)
         addSubview(button)
-        addSubview(subtitleLabel)
+        addSubview(subtitleServesLabel)
+        addSubview(subtitleCookTimeLabel)
     }
     
     private func setupLayout() {
@@ -120,8 +132,11 @@ final class ServesAndTimeCell: UICollectionViewCell {
             button.centerYAnchor.constraint(equalTo: centerYAnchor),
             button.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             
-            subtitleLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
-            subtitleLabel.trailingAnchor.constraint(equalTo: button.leadingAnchor, constant: -12)
+            subtitleServesLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
+            subtitleServesLabel.trailingAnchor.constraint(equalTo: button.leadingAnchor, constant: -12),
+            
+            subtitleCookTimeLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
+            subtitleCookTimeLabel.trailingAnchor.constraint(equalTo: button.leadingAnchor, constant: -12)
         ])
     }
 }

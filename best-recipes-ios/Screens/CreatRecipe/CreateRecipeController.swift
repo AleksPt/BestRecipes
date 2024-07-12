@@ -364,7 +364,6 @@ extension CreateRecipeController: CreateRecipeDelegate {
         let index = IndexPath(row: 0, section: 3)
         if let cell = createRecipeView.collectionView.cellForItem(at: index) as? ServesAndTimeCell {
             cell.valueCookTime = time
-//            createRecipeView.collectionView.reloadItems(at: [index])
         }
     }
 }
