@@ -69,7 +69,7 @@ final class AllCuisinesCell: UITableViewCell {
     
     // MARK: - Public methods
     func configureCell(cuisine: Cuisine) {
-        flagImageView.image = UIImage(named: cuisine.rawValue.lowercased())
+        flagImageView.image = UIImage(named: cuisine.rawValue.toCamelCase())
         title.text = cuisine.rawValue
         selectionStyle = .none
     }
