@@ -40,7 +40,7 @@ final class ServesAndTimeCell: UICollectionViewCell {
     
     private var subtitleLabel: UILabel = {
         let label = UILabel()
-        label.text = "20 min"
+        label.text = "0 min"
         label.textColor = UIColor.CreateRecipe.subtitle
         label.font = UIFont.TextFonts.CreateRecipe.parametersSubtitle
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -54,7 +54,16 @@ final class ServesAndTimeCell: UICollectionViewCell {
         return button
     }()
         
-    private var value = 0
+    var valueServes = 0 {
+        didSet {
+            subtitleLabel.text = "\(valueCookTime)"
+        }
+    }
+    var valueCookTime = 0 {
+        didSet {
+            subtitleLabel.text = "\(valueCookTime) min"
+        }
+    }
     
     // MARK: - Init
     override init(frame: CGRect) {
@@ -76,11 +85,9 @@ final class ServesAndTimeCell: UICollectionViewCell {
         case .serves:
             titleLabel.text = "Serves"
             iconImage.image = UIImage(named: "Profile")
-            subtitleLabel.text = "\(value)"
         case .time:
             titleLabel.text = "Cook time"
             iconImage.image = UIImage(named: "Clock")
-            subtitleLabel.text = "\(value) min"
         }
     }
     

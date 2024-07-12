@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol CreateRecipeDelegate: AnyObject {
+    func updateCookTime(time: Int)
+}
+
 final class CreateRecipeController: UIViewController {
     private let dataStore = DataStore.shared
     private let storageManager = StorageManager.shared
@@ -74,6 +78,12 @@ final class CreateRecipeController: UIViewController {
     
     @objc func keyboardWillHide(_ notification: Notification) {
         createRecipeView.collectionView.contentInset = .zero
+    }
+    
+    @objc func showPickerCookTime() {
+        let picker = PickerViewController()
+        picker.delegate = self
+        present(picker, animated: true)
     }
 }
 
@@ -298,6 +308,14 @@ extension CreateRecipeController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        switch indexPath.section {
+        case 2:
+            break
+        case 3:
+            showPickerCookTime()
+        default:
+            break
+        }
     }
 }
 
@@ -318,6 +336,7 @@ extension CreateRecipeController {
         alert.addAction(okAction)
         present(alert, animated: true)
     }
+
 }
 
 // MARK: - Notifications
@@ -335,5 +354,17 @@ extension CreateRecipeController {
             name: UIResponder.keyboardWillHideNotification,
             object: nil
         )
+    }
+}
+
+// MARK: - CreateRecipeDelegate
+extension CreateRecipeController: CreateRecipeDelegate {
+    func updateCookTime(time: Int) {
+        storageManager.readyInMinutes = time
+        let index = IndexPath(row: 0, section: 3)
+        if let cell = createRecipeView.collectionView.cellForItem(at: index) as? ServesAndTimeCell {
+            cell.valueCookTime = time
+//            createRecipeView.collectionView.reloadItems(at: [index])
+        }
     }
 }
