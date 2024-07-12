@@ -54,13 +54,6 @@ extension UIViewController {
     }
 
     func setupNavBarWithButtons(on viewController: UIViewController, text: String) {
-        
-        let shareButton: UIButton = {
-            let button = UIButton()
-            button.setImage(Icons.moreHorizontal, for: .normal)
-            button.addTarget(self, action: #selector(shareButtonPressed), for: .touchUpInside)
-            return button
-        }()
 
         let backButton: UIButton = {
             let button = UIButton()
@@ -80,7 +73,6 @@ extension UIViewController {
         viewController.navigationItem.titleView = titleLabel
         viewController.navigationItem.setHidesBackButton(true, animated: true)
         viewController.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
-        viewController.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: shareButton)
     }
     
     @objc func backButtonPressed(_ sender: UIButton) {
@@ -89,12 +81,5 @@ extension UIViewController {
             sender.alpha = 1
             self.navigationController?.popViewController(animated: true)
        }
-    }
-    
-    @objc func shareButtonPressed(_ sender: UIButton) {
-        sender.alpha = 0.45
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-            sender.alpha = 1
-        }
     }
 }
