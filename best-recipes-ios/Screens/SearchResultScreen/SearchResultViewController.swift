@@ -42,7 +42,6 @@ extension SearchResultViewController: UICollectionViewDelegate, UICollectionView
         guard let resultDelegate = resultDelegate else { return }
         let result = filteredRecipe[indexPath.row]
         resultDelegate.didTapResult(result)
-        print("go to Recipe Detail Screen")
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

@@ -427,7 +427,6 @@ extension CreateRecipeController: CreateRecipeDelegate {
         let index = IndexPath(row: 0, section: 2)
         if let cell = createRecipeView.collectionView.cellForItem(at: index) as? ServesAndTimeCell {
             cell.valueServes = count
-            print(cell.valueServes)
         }
     }
 }

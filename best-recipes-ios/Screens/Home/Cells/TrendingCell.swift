@@ -102,7 +102,6 @@ final class TrendingCell: UICollectionViewCell {
         let image = sender.currentImage == 
             bigActiveIcon ? bigInactiveIcon : bigActiveIcon
         sender.setImage(image, for: .normal)
-        print("add to Favorite")
     }
 }
 
