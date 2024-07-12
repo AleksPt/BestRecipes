@@ -17,6 +17,7 @@ final class HomeScreen: UIViewController, HomeScreenDelegate {
     private let networkManager = NetworkManager.shared
     private var dataStore = DataStore.shared
     private var dataSource: [Section] = []
+    private var selectedCategory: IndexPath = IndexPath(item: 0, section: 1)
     
     // MARK: - Life Cycle
     override func loadView() {
@@ -30,6 +31,11 @@ final class HomeScreen: UIViewController, HomeScreenDelegate {
         fetchRecipes(typeUrl: .popularRecipesURL(offset: dataStore.offsetPopularResipes))
         setupHomeScreenNavBar(on: self, with: "Get amazing recipes",
                               searchController: mainView.searchController)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        selectCategory()
     }
     
     // MARK: - Private methods
@@ -89,9 +95,9 @@ final class HomeScreen: UIViewController, HomeScreenDelegate {
     /// Выделяет популярную категорию перед показом экрана
     private func selectCategory() {
         if !dataSource.isEmpty {
-            let indexPath = IndexPath(item: 0, section: 1)
+//            let indexPath = IndexPath(item: 0, section: 1)
             mainView.collectionView.selectItem(
-                at: indexPath,
+                at: selectedCategory,
                 animated: true,
                 scrollPosition: []
             )
@@ -135,6 +141,7 @@ extension HomeScreen: UICollectionViewDelegateFlowLayout {
                 mainView.collectionView.reloadData()
             }
         case 1:
+            selectedCategory = indexPath
             filterRecipes(indexPath)
         case 4:
             let seeAllVC = SeeAllViewController(type: .worldCuisine)
