@@ -132,7 +132,7 @@ extension ProfileController: UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegate
 extension ProfileController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let detailVC = RecipeDetailViewController(recipe = dataStore.userRecipes[indexPath.item]
+        let detailVC = RecipeDetailViewController(recipe: dataStore.userRecipes[indexPath.item])
         navigationController?.pushViewController(detailVC, animated: true)
     }
     
