@@ -35,7 +35,7 @@ class RecipeDetailViewController: UIViewController {
         super.viewDidLoad()
         
         recipeDetailView.setDelegate(viewController: self)
-        setupNavBarWithButtons(on: self, text: "")
+        setupNavBarWithButtons(on: self, text: "Recipe detail")
     }
     
     override func viewWillAppear(_ animated: Bool) {
