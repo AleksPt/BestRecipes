@@ -29,10 +29,13 @@ final class CreateInstructionCell: UICollectionViewCell {
         return button
     }()
     
+    private lazy var toolbar = Toolbar.setupToolbar(target: self, selector: #selector(didTapToolbarButton))
+    
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         instructionTextField.delegate = self
+        instructionTextField.inputAccessoryView = toolbar
         addSubviews()
         setupLayout()
     }
@@ -85,6 +88,10 @@ final class CreateInstructionCell: UICollectionViewCell {
         } else {
             completionHandlerDelete?()
         }
+    }
+    
+    @objc private func didTapToolbarButton() {
+        instructionTextField.resignFirstResponder()
     }
 }
 

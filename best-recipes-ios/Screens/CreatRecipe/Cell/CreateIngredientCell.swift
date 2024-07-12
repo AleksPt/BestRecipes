@@ -26,12 +26,18 @@ final class CreateIngredientCell: UICollectionViewCell {
         return button
     }()
     
+    private lazy var toolbar = Toolbar.setupToolbar(target: self, selector: #selector(didTapToolbarButton))
+    
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         quantityTextField.keyboardType = .decimalPad
+        ingredientNameTextField.inputAccessoryView = toolbar
+        quantityTextField.inputAccessoryView = toolbar
+        unitTextField.inputAccessoryView = toolbar
         addSubviews()
         setupLayout()
+        setDelegates()
     }
     
     required init?(coder: NSCoder) {
@@ -111,6 +117,12 @@ final class CreateIngredientCell: UICollectionViewCell {
             completionHandlerDelete?()
         }
     }
+    
+    @objc private func didTapToolbarButton() {
+        ingredientNameTextField.resignFirstResponder()
+        quantityTextField.resignFirstResponder()
+        unitTextField.resignFirstResponder()
+    }
 }
 
 // MARK: - UITextFieldDelegate
@@ -121,5 +133,10 @@ extension CreateIngredientCell: UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         textField.layer.borderColor = UIColor.CreateRecipe.unselectedBorderField.cgColor
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }

@@ -86,7 +86,7 @@
 		FAFBF5BB2C3F202200FBD8A3 /* UIViewController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFBF5BA2C3F202200FBD8A3 /* UIViewController + Extension.swift */; };
 		FAFBF5BD2C400A0500FBD8A3 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFBF5BC2C400A0500FBD8A3 /* StorageManager.swift */; };
 		FAFBF5BF2C41402B00FBD8A3 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFBF5BE2C41402B00FBD8A3 /* PickerView.swift */; };
-
+		FAFBF5C32C41DA5100FBD8A3 /* Toolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFBF5C22C41DA5100FBD8A3 /* Toolbar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -170,10 +170,8 @@
 		FAFBF5B32C3F0A4000FBD8A3 /* CreateInstructionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateInstructionCell.swift; sourceTree = "<group>"; };
 		FAFBF5BA2C3F202200FBD8A3 /* UIViewController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extension.swift"; sourceTree = "<group>"; };
 		FAFBF5BC2C400A0500FBD8A3 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
-
 		FAFBF5BE2C41402B00FBD8A3 /* PickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
-
-
+		FAFBF5C22C41DA5100FBD8A3 /* Toolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toolbar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -380,6 +378,7 @@
 				D998A1452C345A9E0084F9C4 /* TabBar */,
 				FA9D2FA32C3D3EAC0074E04E /* Spinner */,
 				FAFBF5C02C41404600FBD8A3 /* PickerView */,
+				FAFBF5C22C41DA5100FBD8A3 /* Toolbar.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -599,6 +598,7 @@
 				FA685EB22C3490C80028BA17 /* UIView + Extension.swift in Sources */,
 				FA9D2FAC2C3EB50A0074E04E /* AllCuisinesCell.swift in Sources */,
 				640BFA552C37305300BB4923 /* ProfileController.swift in Sources */,
+				FAFBF5C32C41DA5100FBD8A3 /* Toolbar.swift in Sources */,
 				FA685E6D2C329F0B0028BA17 /* Colors.swift in Sources */,
 				FA685EB52C3574DF0028BA17 /* CategoryCell.swift in Sources */,
 				DCE1D6472C37060E00CAEAB2 /* SeeAllViewController.swift in Sources */,

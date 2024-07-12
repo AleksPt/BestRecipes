@@ -16,10 +16,13 @@ final class RecipeTitleCell: UICollectionViewCell {
         return textField.createTextField()
     }()
     
+    private lazy var toolbar = Toolbar.setupToolbar(target: self, selector: #selector(didTapToolbarButton))
+    
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         titleTextField.delegate = self
+        titleTextField.inputAccessoryView = toolbar
         addSubviews()
         setupLayout()
     }
@@ -41,6 +44,10 @@ final class RecipeTitleCell: UICollectionViewCell {
             titleTextField.trailingAnchor.constraint(equalTo: trailingAnchor),
             titleTextField.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
+    }
+    
+    @objc private func didTapToolbarButton() {
+        titleTextField.resignFirstResponder()
     }
 }
 
