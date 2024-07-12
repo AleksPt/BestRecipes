@@ -32,6 +32,8 @@ final class SavedRecipesCell: UICollectionViewCell {
         return image
     }()
     private var cookNameLabel = LabelFactory.makeCreatorNameLabel(text: "")
+    private let saveRecipesTimeLabel = ReadyInMinutesFactory.makeView(ratingLabel: "15:10")
+
     
     //MARK: - Lifecycle
     
@@ -39,6 +41,7 @@ final class SavedRecipesCell: UICollectionViewCell {
         super.init(frame: frame)
         addSubviews()
         setupConstraints()
+        likeButton.addTarget(self, action: #selector(didTapLikeButton), for: .touchUpInside)
     }
     
     required init?(coder: NSCoder) {
@@ -56,14 +59,25 @@ final class SavedRecipesCell: UICollectionViewCell {
     func configureCell(recipe:Recipe) {
         recipesImageView.getImage(from: recipe.imageURL)
         recipesTitleLabel.text = recipe.title
-        //cookAvatarImage.image = item.avatar
-        cookNameLabel.text = "By" + "Me"
+        if let author = Images.Avatars.getAvatar().randomElement() {
+            cookAvatarImage.image = author.value
+            cookNameLabel.text = "By \(author.key)"
+        }
     }
+    
+    // MARK: - Actions
+    @objc func didTapLikeButton(_ sender:UIButton) {
+        if sender.isSelected {
+    
+        }
+    }
+    
     //MARK: - UI Setup
     private func addSubviews() {
         addSubview(recipesImageView)
         recipesImageView.addSubview(likeButton)
         recipesImageView.addSubview(ratingView)
+        recipesImageView.addSubview(saveRecipesTimeLabel)
         addSubview(recipesTitleLabel)
         addSubview(cookAvatarImage)
         addSubview(cookNameLabel)
@@ -84,6 +98,9 @@ final class SavedRecipesCell: UICollectionViewCell {
             likeButton.trailingAnchor.constraint(equalTo: recipesImageView.trailingAnchor, constant: -8),
             likeButton.widthAnchor.constraint(equalToConstant: 32),
             likeButton.heightAnchor.constraint(equalToConstant: 32),
+            
+            saveRecipesTimeLabel.leadingAnchor.constraint(equalTo: recipesImageView.trailingAnchor, constant: -49),
+            saveRecipesTimeLabel.topAnchor.constraint(equalTo: recipesImageView.bottomAnchor, constant: -33),
             
             recipesTitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
             recipesTitleLabel.heightAnchor.constraint(equalToConstant: 22),

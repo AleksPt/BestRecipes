@@ -428,6 +428,7 @@ final class DataStore {
     var popularRecipes: [Recipe]?
     var recentRecipes: [Recipe]? = []
     var worlCuisineRecipes: [Recipe]?
+    var favoriteRecipes: [Recipe]?
     
     private init() {}
     

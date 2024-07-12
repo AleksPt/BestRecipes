@@ -12,7 +12,7 @@ final class SavedRecipesViewController: UIViewController {
     // MARK: - Variables
     
     private let savedRecipesView = SavedRecipesView()
-    var collectionDataArray : [Recipe] = []
+    private let dataStore = DataStore.shared
     
     //MARK: - Lifecycle
     
@@ -30,7 +30,7 @@ final class SavedRecipesViewController: UIViewController {
 extension SavedRecipesViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailViewController = RecipeDetailViewController()
-        detailViewController.firstRecipe = DataStore.shared.recipes[indexPath.item]
+        detailViewController.firstRecipe = dataStore.recipes[indexPath.item]
         navigationController?.pushViewController(detailViewController, animated: true)
     }
     
@@ -39,17 +39,13 @@ extension SavedRecipesViewController: UICollectionViewDelegate {
     // MARK: - UICollectionViewDataSource
 extension SavedRecipesViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        DataStore.shared.recipes.count
+        dataStore.recipes.count
     }
     
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let item = DataStore.shared.recipes[indexPath.item]
+        let item = dataStore.recipes[indexPath.item]
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SavedRecipesCell.identifier, for: indexPath) as? SavedRecipesCell else {return UICollectionViewCell()}
         cell.configureCell(recipe: item)
         return cell
     }
-    
-    
-    
 }
