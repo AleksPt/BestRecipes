@@ -117,7 +117,11 @@ extension RecipeDetailViewController: UITableViewDataSource, UITableViewDelegate
         case 2:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: IngredientsTableViewCell.identifier, for: indexPath) as? IngredientsTableViewCell else { return UITableViewCell() }
             let ingredient = recipeIngredient[indexPath.row]
-            cell.configureCell(with: ingredient)
+            if recipe.id == 0 {
+                cell.configureCell(with: ingredient, isUserCreated: true)
+            } else {
+                cell.configureCell(with: ingredient)
+            }
             return cell
         default:
             return UITableViewCell()

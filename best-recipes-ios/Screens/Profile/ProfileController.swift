@@ -133,6 +133,7 @@ extension ProfileController: UICollectionViewDataSource {
 extension ProfileController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailVC = RecipeDetailViewController(recipe: dataStore.userRecipes[indexPath.item])
+        detailVC.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(detailVC, animated: true)
     }
     
