@@ -22,14 +22,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window?.makeKeyAndVisible()
         
-//        if UserDefaults.standard.bool(forKey: "isOnboardingCompleted"){
-//            let tabBarController = TabBarController()
-//            self.window?.rootViewController = tabBarController
-//        } else {
-            let welcomeController = WelcomeController()
-            let navigationController = UINavigationController(rootViewController: welcomeController)
-            self.window?.rootViewController = navigationController
-//        }
+        let tabBarController = TabBarController()
+        let welcomeController = WelcomeController()
+        let navigationController = UINavigationController(rootViewController: tabBarController)
+        self.window?.rootViewController = navigationController
+        
+        if !UserDefaults.standard.bool(forKey: "isOnboardingCompleted"){
+            navigationController.pushViewController(welcomeController, animated: true)
+        }
     }
     
 
