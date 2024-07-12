@@ -7,6 +7,11 @@
 
 import UIKit
 
+protocol CreateRecipeDelegate: AnyObject {
+    func updateCookTime(time: Int)
+    func updateServes(count: Int)
+}
+
 final class CreateRecipeController: UIViewController {
     private let dataStore = DataStore.shared
     private let storageManager = StorageManager.shared
@@ -66,7 +71,7 @@ final class CreateRecipeController: UIViewController {
     // MARK: - Actions
     @objc private func createRecipe() {
         guard !storageManager.title.isEmpty else {
-            showAlert(message: "Enter recipe name")
+            showErrorAlert(message: "Enter recipe name")
             return
         }
         storageManager.creatRecipe()
@@ -92,6 +97,12 @@ final class CreateRecipeController: UIViewController {
     
     @objc func keyboardWillHide(_ notification: Notification) {
         createRecipeView.collectionView.contentInset = .zero
+    }
+    
+    @objc func showPickerCookTime() {
+        let picker = PickerViewController()
+        picker.delegate = self
+        present(picker, animated: true)
     }
 }
 
@@ -316,12 +327,20 @@ extension CreateRecipeController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        switch indexPath.section {
+        case 2:
+            showServesAlert()
+        case 3:
+            showPickerCookTime()
+        default:
+            break
+        }
     }
 }
 
 // MARK: - Alert Controller
 extension CreateRecipeController {
-    func showAlert(message: String) {
+    func showErrorAlert(message: String) {
         let alert = UIAlertController(
             title: "Ooops!",
             message: message,
@@ -336,6 +355,43 @@ extension CreateRecipeController {
         alert.addAction(okAction)
         present(alert, animated: true)
     }
+    
+    func showServesAlert() {
+        let alert = UIAlertController(
+            title: "Enter count serves:",
+            message: nil,
+            preferredStyle: .alert
+        )
+        
+        alert.addTextField { textField in
+            textField.keyboardType = .numberPad
+            
+        }
+        
+        let okAction = UIAlertAction(
+            title: "Ok",
+            style: .default) { [weak self] _ in
+                guard let self else { return }
+                guard let text = alert.textFields?.first?.text,
+                        !text.isEmpty else {
+                    return
+                }
+                
+                if let serves = Int(text) {
+                    updateServes(count: serves)
+                }
+            }
+        
+        let cancelAction = UIAlertAction(
+            title: "Cancel",
+            style: .cancel
+        )
+        
+        alert.addAction(okAction)
+        alert.addAction(cancelAction)
+        present(alert, animated: true)
+    }
+
 }
 
 // MARK: - Notifications
@@ -353,5 +409,25 @@ extension CreateRecipeController {
             name: UIResponder.keyboardWillHideNotification,
             object: nil
         )
+    }
+}
+
+// MARK: - CreateRecipeDelegate
+extension CreateRecipeController: CreateRecipeDelegate {
+    func updateCookTime(time: Int) {
+        storageManager.readyInMinutes = time
+        let index = IndexPath(row: 0, section: 3)
+        if let cell = createRecipeView.collectionView.cellForItem(at: index) as? ServesAndTimeCell {
+            cell.valueCookTime = time
+        }
+    }
+    
+    func updateServes(count: Int) {
+        storageManager.servings = count
+        let index = IndexPath(row: 0, section: 2)
+        if let cell = createRecipeView.collectionView.cellForItem(at: index) as? ServesAndTimeCell {
+            cell.valueServes = count
+            print(cell.valueServes)
+        }
     }
 }
