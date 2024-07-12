@@ -150,7 +150,7 @@ final class SearchResultCollectionViewCell: UICollectionViewCell {
 }
 
 extension UIView {
-        func setGradient() {
+    func setGradient() {
         let gradient = CAGradientLayer()
         gradient.frame = bounds
         
