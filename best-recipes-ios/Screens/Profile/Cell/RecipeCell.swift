@@ -116,7 +116,7 @@ final class RecipeCell: UICollectionViewCell {
     // MARK: - Private Methods
     private func addSubviews(){
         addSubview(imageView)
-        addSubview(ratingView)
+//        addSubview(ratingView)
         
         subTitleStack.addArrangedSubview(ingredientsLabel)
         subTitleStack.addArrangedSubview(lineView)
@@ -125,7 +125,7 @@ final class RecipeCell: UICollectionViewCell {
         titleStack.addArrangedSubview(recipeTitleLabel)
         titleStack.addArrangedSubview(subTitleStack)
         
-        textStack.addArrangedSubview(ratingView)
+//        textStack.addArrangedSubview(ratingView)
         textStack.addArrangedSubview(titleStack)
         
         addSubview(textStack)
