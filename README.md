@@ -5,7 +5,6 @@
 <div>
 <img src="https://github.com/user-attachments/assets/a9c50165-1ac7-47f0-9fe1-295d44226496" width="200" />
 <img src="https://github.com/user-attachments/assets/4deec240-0914-43b0-983a-8851891070f7" width="200" />
-<img src="https://github.com/user-attachments/assets/cdb1cad0-c659-419b-ab1a-54e85a4f7640" width="200" />
 <img src="https://github.com/user-attachments/assets/c91dcf82-9330-400d-aacb-67e78dd36ed3" width="200" />
 </div>
 
