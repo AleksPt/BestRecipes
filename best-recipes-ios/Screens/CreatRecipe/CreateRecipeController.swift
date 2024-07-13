@@ -81,7 +81,7 @@ final class CreateRecipeController: UIViewController {
             object: nil,
             userInfo: nil
         )
-        dismiss(animated: true)
+        navigationController?.popViewController(animated: true)
     }
     
     @objc func keyboardWillShow(_ notification: Notification) {

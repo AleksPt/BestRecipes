@@ -96,7 +96,7 @@ final class TabBarController: UITabBarController, UITabBarControllerDelegate {
             return false
         }
         if viewController.tabBarItem.tag == 3 {
-            if let navigationController = self.viewControllers?[0] as? UINavigationController {
+            if let navigationController = self.viewControllers?[self.selectedIndex] as? UINavigationController {
                 navigationController.pushViewController(CreateRecipeController(), animated: true)
             }
             return false
@@ -107,7 +107,7 @@ final class TabBarController: UITabBarController, UITabBarControllerDelegate {
     
     
     @objc func menuButtonAction(sender: UIButton) {
-        if let navigationController = self.viewControllers?[0] as? UINavigationController {
+        if let navigationController = self.viewControllers?[self.selectedIndex] as? UINavigationController {
             navigationController.pushViewController(CreateRecipeController(), animated: true)
         }
     }
