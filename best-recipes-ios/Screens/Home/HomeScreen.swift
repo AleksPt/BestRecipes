@@ -31,6 +31,7 @@ final class HomeScreen: UIViewController, HomeScreenDelegate {
         fetchRecipes(typeUrl: .popularRecipesURL(offset: dataStore.offsetPopularResipes))
         setupHomeScreenNavBar(on: self, with: "Get amazing recipes",
                               searchController: mainView.searchController)
+        addTapGesture()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -322,6 +323,20 @@ extension HomeScreen: SearchResultViewControllerDelegate {
             guard let self else { return }
             self.mainView.collectionView.reloadData()
         }
+    }
+}
+
+//MARK: - UITapDestureRecognizer
+
+extension HomeScreen {
+    func addTapGesture() {
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture))
+        tapRecognizer.cancelsTouchesInView = false
+        mainView.addGestureRecognizer(tapRecognizer)
+    }
+    
+    @objc private func handleTapGesture(sender: UITapGestureRecognizer) {
+        self.mainView.searchController.searchBar.resignFirstResponder()
     }
 }
 

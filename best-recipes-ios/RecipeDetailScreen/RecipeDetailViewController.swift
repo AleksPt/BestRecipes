@@ -40,16 +40,18 @@ class RecipeDetailViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         if let tabBarController = self.tabBarController as? TabBarController {
+            tabBarController.tabBar.isHidden = true
             tabBarController.toggleMiddleButtonVisability(true)
         }
     }
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
+
         if let tabBarController = self.tabBarController as? TabBarController {
+            tabBarController.tabBar.isHidden = false
             tabBarController.toggleMiddleButtonVisability(false)
         }
     }
