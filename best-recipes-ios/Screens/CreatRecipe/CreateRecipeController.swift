@@ -35,6 +35,7 @@ final class CreateRecipeController: UIViewController {
         createRecipeView.setDelegates(self)
         setupImagePicker()
         addNotifications()
+        setupNavBarWithButtons(on: self, text: "Create recipe")
     }
     
     override func viewWillAppear(_ animated: Bool) {
