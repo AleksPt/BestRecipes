@@ -45,7 +45,7 @@ final class ButtonFactory {
         button.backgroundColor = .primary50
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = UIFont(name: UIFont.Poppins.regular, size: 20)
-        button.layer.cornerRadius = 25
+        button.layer.cornerRadius = 22.5
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }
