@@ -20,10 +20,7 @@ final class SearchResultCollectionViewCell: UICollectionViewCell {
         return imageView
     }()
     
-    private var ratingView = RatingFactory.makeSavedTrandingRating(
-        image: UIImageView(image: Icons.star),
-        ratingLabel: "5.0"
-    )
+    private var ratingView = RatingView.make(ratingLabel: "", blur: true)
     
     private var recipeTitleLabel: UILabel = {
         let label = UILabel()
@@ -102,6 +99,7 @@ final class SearchResultCollectionViewCell: UICollectionViewCell {
         recipeTitleLabel.text = nil
         ingredientsLabel.text = nil
         timeLabel.text = nil
+        ratingView.setRatingLabel(0.0)
     }
     
     // MARK: - Public Methods
@@ -110,6 +108,7 @@ final class SearchResultCollectionViewCell: UICollectionViewCell {
         recipeTitleLabel.text = recipe.title
         ingredientsLabel.text = "\(recipe.extendedIngredients.count) ingredients"
         timeLabel.text = "\(recipe.readyInMinutes) mins"
+        ratingView.setRatingLabel(recipe.spoonacularScore)
     }
     
     // MARK: - Private Methods

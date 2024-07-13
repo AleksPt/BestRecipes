@@ -25,11 +25,7 @@ final class ImageTableViewCell: UITableViewCell {
         return imageView
     }()
     
-    private let ratingView: UIView = {
-        let view = RatingFactory.makeSavedTrandingRating(image: UIImageView(image: Icons.star), ratingLabel: "4,5", blur: false)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
+    private let ratingView = RatingView.make(ratingLabel: "", blur: false)
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -54,10 +50,12 @@ final class ImageTableViewCell: UITableViewCell {
         super.prepareForReuse()
         recipeImageView.image = nil
         titleLabel.text = nil
+        ratingView.setRatingLabel(0.0)
     }
     
     public func configureCell(with recipe: Recipe?, imageData: Data? = nil) {
         titleLabel.text = recipe?.title
+        ratingView.setRatingLabel(recipe?.spoonacularScore ?? 0.0)
         selectionStyle = .none
         guard let image = imageData else {
             if let image = recipe?.imageURL {

@@ -13,11 +13,8 @@ final class CustomCell: UICollectionViewCell {
     private var recipe: Recipe?
     
     //MARK: - UI
-    private let ratingLabel = RatingFactory.makeSavedTrandingRating(
-        image: UIImageView(image: UIImage(resource: .star)),
-        ratingLabel: "5,0",
-        blur: true
-    )
+    private let ratingLabel = RatingView.make(ratingLabel: "", blur: true)
+    
     
     private let coverImageView = CoverImageFactory.makeCoverImageView(image: Images.Trending.tranding1)
     
@@ -72,6 +69,7 @@ final class CustomCell: UICollectionViewCell {
         nameAuthor.text = nil
         delegate = nil
         recipe = nil
+        ratingLabel.setRatingLabel(0.0)
     }
     
     // MARK: - Public methods
@@ -83,6 +81,7 @@ final class CustomCell: UICollectionViewCell {
             avatar.image = author.value
         }
         nameAuthor.text = item.sourceName
+        ratingLabel.setRatingLabel(item.spoonacularScore)
         self.delegate = delegate
         updateFavoriteButtonAppearance(isFavorite: isFavorite)
     }
@@ -90,7 +89,7 @@ final class CustomCell: UICollectionViewCell {
     //MARK: - Private methods
     private func setupView() {
         addSubview(coverImageView)
-        coverImageView.addSubview(ratingLabel)
+        addSubview(ratingLabel)
         coverImageView.addSubview(buttonFavorite)
         coverImageView.addSubview(timeLabel)
         addSubview(titleLabel)

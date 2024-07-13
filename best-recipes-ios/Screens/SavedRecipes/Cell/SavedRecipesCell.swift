@@ -16,7 +16,8 @@ final class SavedRecipesCell: UICollectionViewCell {
     
     // MARK: - UI Components
     
-    private var ratingView = RatingFactory.makeSavedTrandingRating(image: UIImageView(image: Icons.star), ratingLabel: "2.9")
+    private var ratingView = RatingView.make(ratingLabel: "", blur: true)
+    
     private let likeButton : UIButton = {
         var button = ButtonFactory.makeButtonFavorite(isActive: true)
         button.layer.cornerRadius = 16
@@ -60,6 +61,7 @@ final class SavedRecipesCell: UICollectionViewCell {
         cookNameLabel.text = nil
         delegate = nil
         recipe = nil
+        ratingView.setRatingLabel(0.0)
     }
     
     func configureCell(recipe: Recipe, delegate: FavoriteProtocol) {
@@ -72,6 +74,7 @@ final class SavedRecipesCell: UICollectionViewCell {
         }
         self.delegate = delegate
         updateFavoriteButtonAppearance()
+        ratingView.setRatingLabel(recipe.spoonacularScore)
     }
     
     private func updateFavoriteButtonAppearance() {
@@ -90,8 +93,8 @@ final class SavedRecipesCell: UICollectionViewCell {
     //MARK: - UI Setup
     private func addSubviews() {
         addSubview(recipesImageView)
+        addSubview(ratingView)
         recipesImageView.addSubview(likeButton)
-        recipesImageView.addSubview(ratingView)
         recipesImageView.addSubview(saveRecipesTimeLabel)
         addSubview(recipesTitleLabel)
         addSubview(cookAvatarImage)
