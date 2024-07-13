@@ -333,10 +333,10 @@ extension HomeScreen {
 }
 
 //MARK: - UISearchResultsUpdating
-extension HomeScreen: UISearchResultsUpdating, UISearchBarDelegate {
+extension HomeScreen: UISearchBarDelegate {
     
-    func updateSearchResults(for searchController: UISearchController) {
-        guard let query = searchController.searchBar.text,
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let query = searchBar.text,
               !query.trimmingCharacters(in: .whitespaces).isEmpty else {
             
             if let tabBarController = self.tabBarController as? TabBarController {
@@ -352,8 +352,8 @@ extension HomeScreen: UISearchResultsUpdating, UISearchBarDelegate {
             tabBarController.toggleMiddleButtonVisability(true)
         }
         
-        //searchRecipe(query: query)
-        filterContentForSearchText(query)
+        searchRecipe(query: query)
+        //filterContentForSearchText(query)
     }
     
     private func filterContentForSearchText(_ searchText: String) {
