@@ -52,7 +52,7 @@
       </BuildableProductRunnable>
       <EnvironmentVariables>
          <EnvironmentVariable
-            key = "IDEPreferLogStreaming"
+            key = "API_KEY"
             value = "YES"
             isEnabled = "YES">
          </EnvironmentVariable>

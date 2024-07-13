@@ -12,7 +12,7 @@ final class RatingFactory {
         let ratingView = UIView(frame: CGRect(origin: .zero, size: CGSize(width: 58, height: 27.6)))
         ratingView.layer.cornerRadius = 8
         
-        let blurEffect = UIBlurEffect(style: .dark)
+        let blurEffect = UIBlurEffect(style: .systemUltraThinMaterialDark)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.layer.cornerRadius = 8
         blurEffectView.clipsToBounds = true

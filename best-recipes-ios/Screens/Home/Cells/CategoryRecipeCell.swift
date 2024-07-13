@@ -9,6 +9,9 @@ import UIKit
 
 final class CategoryRecipeCell: UICollectionViewCell {
     
+    weak var delegate: FavoriteProtocol?
+    private var recipe: Recipe?
+    
     // MARK: - UI
     private let coverImageView = CoverImageFactory.makeCoverImageView(image: Images.Trending.tranding4)
     
@@ -53,6 +56,8 @@ final class CategoryRecipeCell: UICollectionViewCell {
         coverImageView.image = nil
         titleLabel.text = nil
         timeValueLabel.text = nil
+        delegate = nil
+        recipe = nil
     }
     
     override func layoutSubviews() {
@@ -85,18 +90,26 @@ final class CategoryRecipeCell: UICollectionViewCell {
     }
     
     // MARK: - Configure Cell
-    func configureCell(item: Recipe) {
+    func configureCell(item: Recipe, isFavorite: Bool, delegate: FavoriteProtocol) {
+        self.recipe = item
         coverImageView.getImage(from: item.imageURL)
         titleLabel.text = item.title
         timeValueLabel.text = item.readyInMinutes.description + " Mins"
+        self.delegate = delegate
+        updateFavoriteButtonAppearance(isFavorite: isFavorite)
+    }
+    
+    private func updateFavoriteButtonAppearance(isFavorite: Bool) {
+        let smallActiveIcon = Icons.bookmarkActiveSmall.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
+        let smallInctiveIcon = Icons.bookmarkInactiveSmall.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
+        let image = isFavorite ? smallActiveIcon : smallInctiveIcon
+        buttonFavorite.setImage(image, for: .normal)
     }
     
     // MARK: - Actions
     @objc private func didTapFavorite(_ sender: UIButton) {
-        let smallActiveIcon = Icons.bookmarkActiveSmall.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
-        let smallInctiveIcon = Icons.bookmarkInactiveSmall.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
-        let image = sender.currentImage == smallActiveIcon ? smallInctiveIcon : smallActiveIcon
-        sender.setImage(image, for: .normal)
+        guard let recipe = recipe else { return }
+        delegate?.switchFavorite(for: recipe)
     }
 }
 

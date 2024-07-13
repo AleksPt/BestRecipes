@@ -9,6 +9,9 @@ import UIKit
 
 final class CustomCell: UICollectionViewCell {
     
+    weak var delegate: FavoriteProtocol?
+    private var recipe: Recipe?
+    
     //MARK: - UI
     private let ratingLabel = RatingFactory.makeSavedTrandingRating(
         image: UIImageView(image: UIImage(resource: .star)),
@@ -67,16 +70,21 @@ final class CustomCell: UICollectionViewCell {
         titleLabel.text = nil
         avatar.image = nil
         nameAuthor.text = nil
+        delegate = nil
+        recipe = nil
     }
     
     // MARK: - Public methods
-    func configure(with item: Recipe) {
+    func configure(with item: Recipe, isFavorite: Bool, delegate: FavoriteProtocol) {
+        self.recipe = item
         titleLabel.text = item.title
         coverImageView.getImage(from: item.imageURL)
         if let author = Images.Avatars.getAvatar().randomElement() {
             avatar.image = author.value
         }
         nameAuthor.text = item.sourceName
+        self.delegate = delegate
+        updateFavoriteButtonAppearance(isFavorite: isFavorite)
     }
     
     //MARK: - Private methods
@@ -90,17 +98,21 @@ final class CustomCell: UICollectionViewCell {
         addSubview(nameAuthor)
     }
     
-    // MARK: - Actions
-    @objc private func didTapFavorite(_ sender: UIButton) {
+    private func updateFavoriteButtonAppearance(isFavorite: Bool) {
         let bigActiveIcon =
             Icons.TabBar.bookmarkActive
             .withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
         let bigInactiveIcon =
             Icons.TabBar.bookmarkInactive
             .withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
-        let image = sender.currentImage ==
-            bigActiveIcon ? bigInactiveIcon : bigActiveIcon
-        sender.setImage(image, for: .normal)
+        let image = isFavorite ? bigActiveIcon : bigInactiveIcon
+        buttonFavorite.setImage(image, for: .normal)
+    }
+    
+    // MARK: - Actions
+    @objc private func didTapFavorite(_ sender: UIButton) {
+        guard let recipe = recipe else { return }
+        delegate?.switchFavorite(for: recipe)
     }
 }
 

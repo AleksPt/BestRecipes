@@ -111,7 +111,9 @@ extension SeeAllViewController: UICollectionViewDelegate, UICollectionViewDataSo
         }
         
         if let recipe = recipes?[indexPath.item] {
-            cell.configure(with: recipe)
+            
+            let isFavorite = dataStore.isFavorite(recipe: recipe)
+            cell.configure(with: recipe, isFavorite: isFavorite, delegate: self)
         }
         
         return cell
@@ -122,6 +124,16 @@ extension SeeAllViewController: UICollectionViewDelegate, UICollectionViewDataSo
             let detailVC = RecipeDetailViewController(recipe: recipe)
             delegate?.addRecentRecipe(recipe: recipe)
             navigationController?.pushViewController(detailVC, animated: true)
+        }
+    }
+}
+
+extension SeeAllViewController: FavoriteProtocol {
+    func switchFavorite(for recipe: Recipe) {
+        dataStore.toggleFavorite(for: recipe)
+        
+        if let index = recipes?.firstIndex(where: { $0.id == recipe.id }) {
+            customView.collectionView.reloadItems(at: [IndexPath(item: index, section: 0)])
         }
     }
 }
