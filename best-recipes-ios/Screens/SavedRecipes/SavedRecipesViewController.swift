@@ -23,14 +23,19 @@ final class SavedRecipesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         savedRecipesView.setDelegates(viewController: self)
+        setupNavBarWithoutButtons(on: self, with: "Saved recipes")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        savedRecipesView.collectionView.reloadData()
     }
 }
 
     //MARK: - UICollectionViewDelegate
 extension SavedRecipesViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let detailViewController = RecipeDetailViewController()
-        detailViewController.firstRecipe = dataStore.recipes[indexPath.item]
+        let detailViewController = RecipeDetailViewController(recipe: dataStore.favoriteRecipes[indexPath.item])
         navigationController?.pushViewController(detailViewController, animated: true)
     }
     
@@ -39,13 +44,20 @@ extension SavedRecipesViewController: UICollectionViewDelegate {
     // MARK: - UICollectionViewDataSource
 extension SavedRecipesViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        dataStore.recipes.count
+        dataStore.favoriteRecipes.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let item = dataStore.recipes[indexPath.item]
+        let item = dataStore.favoriteRecipes[indexPath.item]
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SavedRecipesCell.identifier, for: indexPath) as? SavedRecipesCell else {return UICollectionViewCell()}
-        cell.configureCell(recipe: item)
+        cell.configureCell(recipe: item, delegate: self)
         return cell
+    }
+}
+
+extension SavedRecipesViewController: FavoriteProtocol {
+    func switchFavorite(for recipe: Recipe) {
+        dataStore.toggleFavorite(for: recipe)
+        savedRecipesView.collectionView.reloadData()
     }
 }

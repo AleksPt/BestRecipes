@@ -35,7 +35,7 @@ final class TabBarController: UITabBarController, UITabBarControllerDelegate {
         homeVC.tabBarItem.tag = 1
         
         // Saved Recipes
-        let favoriteRecipesVC = UIViewController(ootViewController: SavedRecipesViewController())
+        let favoriteRecipesVC = UINavigationController(rootViewController: SavedRecipesViewController())
         favoriteRecipesVC.tabBarItem = UITabBarItem(title: nil, image: Icons.TabBar.bookmarkInactive, selectedImage: Icons.TabBar.bookmarkActive.withRenderingMode(UIImage.RenderingMode.alwaysOriginal))
         favoriteRecipesVC.tabBarItem.tag = 2
         

@@ -36,7 +36,6 @@ struct Recipe: Decodable {
     let analyzedInstructions: [AnalyzedInstruction]
     let aggregateLikes: Int
     let spoonacularScore: Double
-    var isFavorite: Bool?
     
     var imageURL: URL {
         URL(string: image)!
@@ -54,8 +53,7 @@ struct Recipe: Decodable {
         dishTypes: [String],
         analyzedInstructions: [AnalyzedInstruction],
         aggregateLikes: Int,
-        spoonacularScore: Double,
-        isFavorite: Bool? = false
+        spoonacularScore: Double
     ) {
         self.sourceName = sourceName
         self.extendedIngredients = extendedIngredients
@@ -69,7 +67,6 @@ struct Recipe: Decodable {
         self.analyzedInstructions = analyzedInstructions
         self.aggregateLikes = aggregateLikes
         self.spoonacularScore = spoonacularScore
-        self.isFavorite = isFavorite
     }
 }
 

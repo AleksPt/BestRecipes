@@ -9,6 +9,9 @@ import UIKit
 
 final class SavedRecipesCell: UICollectionViewCell {
     
+    weak var delegate: FavoriteProtocol?
+    private var recipe: Recipe?
+    
     static let identifier = "SavedRecipesCell"
     
     // MARK: - UI Components
@@ -55,21 +58,33 @@ final class SavedRecipesCell: UICollectionViewCell {
         recipesTitleLabel.text = nil
         cookAvatarImage.image = nil
         cookNameLabel.text = nil
+        delegate = nil
+        recipe = nil
     }
-    func configureCell(recipe:Recipe) {
+    
+    func configureCell(recipe: Recipe, delegate: FavoriteProtocol) {
+        self.recipe = recipe
         recipesImageView.getImage(from: recipe.imageURL)
         recipesTitleLabel.text = recipe.title
         if let author = Images.Avatars.getAvatar().randomElement() {
             cookAvatarImage.image = author.value
             cookNameLabel.text = "By \(author.key)"
         }
+        self.delegate = delegate
+        updateFavoriteButtonAppearance()
+    }
+    
+    private func updateFavoriteButtonAppearance() {
+        let bigActiveIcon =
+            Icons.TabBar.bookmarkActive
+            .withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
+        likeButton.setImage(bigActiveIcon, for: .normal)
     }
     
     // MARK: - Actions
     @objc func didTapLikeButton(_ sender:UIButton) {
-        if sender.isSelected {
-    
-        }
+        guard let recipe = recipe else { return }
+        delegate?.switchFavorite(for: recipe)
     }
     
     //MARK: - UI Setup
