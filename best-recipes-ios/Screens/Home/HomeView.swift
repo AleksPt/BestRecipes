@@ -71,7 +71,6 @@ final class HomeView: UIView {
         collectionView.delegate = viewController
         collectionView.dataSource = viewController
         searchResultController.resultDelegate = viewController
-        searchController.searchResultsUpdater = viewController
         searchController.searchBar.delegate = viewController
     }
     

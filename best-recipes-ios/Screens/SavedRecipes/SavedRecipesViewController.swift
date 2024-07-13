@@ -44,7 +44,12 @@ extension SavedRecipesViewController: UICollectionViewDelegate {
     // MARK: - UICollectionViewDataSource
 extension SavedRecipesViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        dataStore.favoriteRecipes.count
+        if dataStore.favoriteRecipes.count == 0 {
+            savedRecipesView.showLabel()
+        } else {
+            savedRecipesView.hideLabel()
+        }
+        return dataStore.favoriteRecipes.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

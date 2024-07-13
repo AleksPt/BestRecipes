@@ -32,6 +32,11 @@ final class SearchResultViewController: UIViewController {
         self.filteredRecipe = results
         resultView.searchResultCollectionView.reloadData()
     }
+    
+    func clearResults() {
+        self.filteredRecipe.removeAll()
+        resultView.searchResultCollectionView.reloadData()
+    }
 }
 
 //MARK: - UICollectionViewDataSource
@@ -45,6 +50,11 @@ extension SearchResultViewController: UICollectionViewDelegate, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if filteredRecipe.count == 0 {
+            resultView.showLabel()
+        } else {
+            resultView.hideLabel()
+        }
         return filteredRecipe.count
     }
     

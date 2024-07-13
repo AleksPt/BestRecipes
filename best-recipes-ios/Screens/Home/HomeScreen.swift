@@ -32,6 +32,9 @@ final class HomeScreen: UIViewController, HomeScreenDelegate {
         setupHomeScreenNavBar(on: self, with: "Get amazing recipes",
                               searchController: mainView.searchController)
         addTapGesture()
+        if let searchController = mainView.searchController as? SearchController {
+            searchController.searchControllerDelegate = self
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -333,10 +336,10 @@ extension HomeScreen {
 }
 
 //MARK: - UISearchResultsUpdating
-extension HomeScreen: UISearchResultsUpdating, UISearchBarDelegate {
+extension HomeScreen: UISearchBarDelegate {
     
-    func updateSearchResults(for searchController: UISearchController) {
-        guard let query = searchController.searchBar.text,
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let query = searchBar.text,
               !query.trimmingCharacters(in: .whitespaces).isEmpty else {
             
             if let tabBarController = self.tabBarController as? TabBarController {
@@ -352,8 +355,8 @@ extension HomeScreen: UISearchResultsUpdating, UISearchBarDelegate {
             tabBarController.toggleMiddleButtonVisability(true)
         }
         
-        //searchRecipe(query: query)
-        filterContentForSearchText(query)
+        searchRecipe(query: query)
+        //filterContentForSearchText(query)
     }
     
     private func filterContentForSearchText(_ searchText: String) {
@@ -392,6 +395,15 @@ extension HomeScreen: FavoriteProtocol {
                 mainView.collectionView.reloadItems(at: [IndexPath(item: index, section: section)])
                 break
             }
+        }
+    }
+}
+
+extension HomeScreen: SearchControllerDelegate {
+    func didDismissSearchController() {
+        if let tabBarController = self.tabBarController as? TabBarController {
+            tabBarController.tabBar.isHidden = false
+            tabBarController.toggleMiddleButtonVisability(false)
         }
     }
 }
