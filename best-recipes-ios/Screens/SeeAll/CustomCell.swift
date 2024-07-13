@@ -36,7 +36,19 @@ final class CustomCell: UICollectionViewCell {
     private let nameAuthor = LabelFactory
         .makeCreatorNameLabel(text: "Name")
     
-    private let timeLabel = ReadyInMinutesFactory.makeView(ratingLabel: "15:10")
+    
+    private lazy var timeLabelInner: UILabel = {
+        let label = UILabel()
+        label.textColor = UIColor.Colors.Rating.ratingWhite
+        label.font = UIFont.PoppinsFont.regular(size: 12)
+        label.text = ""
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private lazy var timeLabel: UIView = {
+        return ReadyInMinutesFactory.makeView(label: timeLabelInner)
+    }()
     
     //MARK: - Init
     override init(frame: CGRect) {
@@ -69,6 +81,7 @@ final class CustomCell: UICollectionViewCell {
         nameAuthor.text = nil
         delegate = nil
         recipe = nil
+        timeLabelInner.text = nil
         ratingLabel.setRatingLabel(0.0)
     }
     
@@ -81,9 +94,16 @@ final class CustomCell: UICollectionViewCell {
             avatar.image = author.value
         }
         nameAuthor.text = item.sourceName
+        timeLabelInner.text = convertMinutesToHHMM(item.readyInMinutes)
         ratingLabel.setRatingLabel(item.spoonacularScore)
         self.delegate = delegate
         updateFavoriteButtonAppearance(isFavorite: isFavorite)
+    }
+    
+    private func convertMinutesToHHMM(_ totalMinutes: Int) -> String {
+        let hours = totalMinutes / 60
+        let minutes = totalMinutes % 60
+        return String(format: "%02d:%02d", hours, minutes)
     }
     
     //MARK: - Private methods

@@ -91,7 +91,6 @@ final class TrendingCell: UICollectionViewCell {
         addSubview(avatar)
         addSubview(nameAuthor)
         addSubview(ratingView)
-        coverImageView.addSubview(ratingView)
         coverImageView.addSubview(buttonFavorite)
     }
     

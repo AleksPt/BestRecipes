@@ -36,7 +36,19 @@ final class SavedRecipesCell: UICollectionViewCell {
         return image
     }()
     private var cookNameLabel = LabelFactory.makeCreatorNameLabel(text: "")
-    private let saveRecipesTimeLabel = ReadyInMinutesFactory.makeView(ratingLabel: "15:10")
+    private lazy var timeLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = UIColor.Colors.Rating.ratingWhite
+        label.font = UIFont.PoppinsFont.regular(size: 12)
+        label.text = ""
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private lazy var saveRecipesTimeLabel: UIView = {
+        return ReadyInMinutesFactory.makeView(label: timeLabel)
+    }()
+    
 
     
     //MARK: - Lifecycle
@@ -62,6 +74,7 @@ final class SavedRecipesCell: UICollectionViewCell {
         delegate = nil
         recipe = nil
         ratingView.setRatingLabel(0.0)
+        timeLabel.text = nil
     }
     
     func configureCell(recipe: Recipe, delegate: FavoriteProtocol) {
@@ -74,7 +87,14 @@ final class SavedRecipesCell: UICollectionViewCell {
         }
         self.delegate = delegate
         updateFavoriteButtonAppearance()
+        timeLabel.text = convertMinutesToHHMM(recipe.readyInMinutes)
         ratingView.setRatingLabel(recipe.spoonacularScore)
+    }
+    
+    private func convertMinutesToHHMM(_ totalMinutes: Int) -> String {
+        let hours = totalMinutes / 60
+        let minutes = totalMinutes % 60
+        return String(format: "%02d:%02d", hours, minutes)
     }
     
     private func updateFavoriteButtonAppearance() {
