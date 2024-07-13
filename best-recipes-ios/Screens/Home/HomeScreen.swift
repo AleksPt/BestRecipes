@@ -36,6 +36,7 @@ final class HomeScreen: UIViewController, HomeScreenDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        mainView.collectionView.reloadData()
         selectCategory()
     }
     
@@ -96,13 +97,12 @@ final class HomeScreen: UIViewController, HomeScreenDelegate {
     /// Выделяет популярную категорию перед показом экрана
     private func selectCategory() {
         if !dataSource.isEmpty {
-//            let indexPath = IndexPath(item: 0, section: 1)
             mainView.collectionView.selectItem(
                 at: selectedCategory,
                 animated: true,
                 scrollPosition: []
             )
-            filterRecipes(IndexPath(item: 0, section: 1))
+            filterRecipes(selectedCategory)
         }
     }
     
@@ -136,14 +136,9 @@ extension HomeScreen: UICollectionViewDelegateFlowLayout {
             addRecentRecipe(recipe: recipe)
             detailVC.hidesBottomBarWhenPushed = true
             navigationController?.pushViewController(detailVC, animated: true)
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
-                guard let self else { return }
-                mainView.collectionView.reloadData()
-            }
         case 1:
             selectedCategory = indexPath
-            filterRecipes(indexPath)
+            filterRecipes(selectedCategory)
         case 4:
             let seeAllVC = SeeAllViewController(type: .worldCuisine)
             seeAllVC.nameCuisine = dataSource[4].cuisines[indexPath.item].rawValue
@@ -191,7 +186,8 @@ extension HomeScreen: UICollectionViewDataSource {
                 return UICollectionViewCell()
             }
             
-            cell.configureCell(item: recipe)
+            let isFavorite = dataStore.isFavorite(recipe: recipe)
+            cell.configureCell(item: recipe, isFavorite: isFavorite, delegate: self)
             return cell
             
         case 1:
@@ -213,8 +209,8 @@ extension HomeScreen: UICollectionViewDataSource {
             ) as? CategoryRecipeCell else {
                 return UICollectionViewCell()
             }
-            
-            cell.configureCell(item: recipe)
+            let isFavorite = dataStore.isFavorite(recipe: recipe)
+            cell.configureCell(item: recipe, isFavorite: isFavorite, delegate: self)
             return cell
             
         case 3:
@@ -307,8 +303,8 @@ extension HomeScreen {
                 dataStore.recentRecipes?.insert(recipe, at: 0)
             }
         }
-        dataSource = dataStore.getData()
-        mainView.collectionView.reloadData()
+        dataSource[3].recipes = dataStore.recentRecipes ?? []
+        mainView.collectionView.reloadSections(IndexSet(integer: 3))
     }
 }
 
@@ -319,10 +315,6 @@ extension HomeScreen: SearchResultViewControllerDelegate {
         let detail = RecipeDetailViewController(recipe: result)
         addRecentRecipe(recipe: result)
         navigationController?.pushViewController(detail, animated: true)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
-            guard let self else { return }
-            self.mainView.collectionView.reloadData()
-        }
     }
 }
 
@@ -389,5 +381,17 @@ extension HomeScreen: UISearchResultsUpdating, UISearchBarDelegate {
 
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         searchBar.searchTextField.layer.borderColor = UIColor.Search.borderField.cgColor
+    }
+}
+
+extension HomeScreen: FavoriteProtocol {
+    func switchFavorite(for recipe: Recipe) {
+        dataStore.toggleFavorite(for: recipe)
+        for section in 0..<dataSource.count {
+            if let index = dataSource[section].recipes.firstIndex(where: { $0.id == recipe.id }) {
+                mainView.collectionView.reloadItems(at: [IndexPath(item: index, section: section)])
+                break
+            }
+        }
     }
 }

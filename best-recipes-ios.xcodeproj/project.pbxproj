@@ -195,35 +195,19 @@
 		160BC27C2C36CEFA00944C89 /* SavedRecipes */ = {
 			isa = PBXGroup;
 			children = (
-				160BC27F2C36CFEE00944C89 /* Controller */,
-				160BC27E2C36CF4100944C89 /* Model */,
-				160BC27D2C36CF3800944C89 /* View */,
+				160BC2822C36D01E00944C89 /* SavedRecipesViewController.swift */,
+				160BC2802C36D01300944C89 /* SavedRecipesView.swift */,
+				160BC27D2C36CF3800944C89 /* Cell */,
 			);
 			path = SavedRecipes;
 			sourceTree = "<group>";
 		};
-		160BC27D2C36CF3800944C89 /* View */ = {
+		160BC27D2C36CF3800944C89 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				160BC2802C36D01300944C89 /* SavedRecipesView.swift */,
 				160BC2842C36D1C900944C89 /* SavedRecipesCell.swift */,
 			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		160BC27E2C36CF4100944C89 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		160BC27F2C36CFEE00944C89 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				160BC2822C36D01E00944C89 /* SavedRecipesViewController.swift */,
-			);
-			path = Controller;
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		4D15898A2C333213005F4D2E /* Factories */ = {

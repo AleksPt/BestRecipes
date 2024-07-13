@@ -12,7 +12,7 @@ final class ReadyInMinutesFactory {
         let ratingView = UIView(frame: CGRect(origin: .zero, size: CGSize(width: 41, height: 25)))
         ratingView.layer.cornerRadius = 8
         
-        let blurEffect = UIBlurEffect(style: .dark)
+        let blurEffect = UIBlurEffect(style: .systemUltraThinMaterialDark)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.layer.cornerRadius = 8
         blurEffectView.clipsToBounds = true

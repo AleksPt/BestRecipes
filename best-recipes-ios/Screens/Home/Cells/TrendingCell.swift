@@ -9,6 +9,9 @@ import UIKit
 
 final class TrendingCell: UICollectionViewCell {
     
+    weak var delegate: FavoriteProtocol?
+    private var recipe: Recipe?
+    
     // MARK: - UI
     private var ratingValue: String?
     
@@ -64,6 +67,8 @@ final class TrendingCell: UICollectionViewCell {
         avatar.image = nil
         nameAuthor.text = nil
         ratingValue = nil
+        delegate = nil
+        recipe = nil
     }
     
     override func layoutSubviews() {
@@ -72,13 +77,16 @@ final class TrendingCell: UICollectionViewCell {
     }
     
     // MARK: - Configure Cell
-    func configureCell(item: Recipe) {
+    func configureCell(item: Recipe, isFavorite: Bool, delegate: FavoriteProtocol) {
+        self.recipe = item
         coverImageView.getImage(from: item.imageURL)
         titleLabel.text = item.title
         if let author = Images.Avatars.getAvatar().randomElement() {
             avatar.image = author.value
         }
         nameAuthor.text = item.sourceName
+        self.delegate = delegate
+        updateFavoriteButtonAppearance(isFavorite: isFavorite)
     }
     
     // MARK: - Add subviews
@@ -91,17 +99,21 @@ final class TrendingCell: UICollectionViewCell {
         coverImageView.addSubview(buttonFavorite)
     }
     
-    // MARK: - Actions
-    @objc private func didTapFavorite(_ sender: UIButton) {
-        let bigActiveIcon = 
+    private func updateFavoriteButtonAppearance(isFavorite: Bool) {
+        let bigActiveIcon =
             Icons.TabBar.bookmarkActive
             .withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
-        let bigInactiveIcon = 
+        let bigInactiveIcon =
             Icons.TabBar.bookmarkInactive
             .withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
-        let image = sender.currentImage == 
-            bigActiveIcon ? bigInactiveIcon : bigActiveIcon
-        sender.setImage(image, for: .normal)
+        let image = isFavorite ? bigActiveIcon : bigInactiveIcon
+        buttonFavorite.setImage(image, for: .normal)
+    }
+    
+    // MARK: - Actions
+    @objc private func didTapFavorite(_ sender: UIButton) {
+        guard let recipe = recipe else { return }
+        delegate?.switchFavorite(for: recipe)
     }
 }
 

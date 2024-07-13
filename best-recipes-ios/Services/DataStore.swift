@@ -7,6 +7,10 @@
 
 import Foundation
 
+protocol FavoriteProtocol: AnyObject {
+    func switchFavorite(for recipe: Recipe)
+}
+
 struct Section {
     var recipes: [Recipe]
     let categories: [String] = DishTypes.getDishTypes()
@@ -110,8 +114,7 @@ final class DataStore {
                 )
             ],
             aggregateLikes: 1866,
-            spoonacularScore: 87.41600036621094,
-            isFavorite: true
+            spoonacularScore: 87.41600036621094
         ),
         Recipe(
             sourceName: "Bon Appetit",
@@ -428,7 +431,7 @@ final class DataStore {
     var popularRecipes: [Recipe]?
     var recentRecipes: [Recipe]? = []
     var worlCuisineRecipes: [Recipe]?
-    var favoriteRecipes: [Recipe]?
+    var favoriteRecipes: [Recipe] = []
     
     var userRecipes: [Recipe] = []
     
@@ -472,5 +475,18 @@ final class DataStore {
             sectionRecent,
             sectionWorldCuisine
         ]
+    }
+    
+    func isFavorite(recipe: Recipe) -> Bool {
+        return favoriteRecipes.contains { $0.id == recipe.id }
+    }
+    
+    func toggleFavorite(for recipe: Recipe) {
+        if let index = favoriteRecipes.firstIndex(where: { $0.id == recipe.id }) {
+            favoriteRecipes.remove(at: index)
+            return
+        } 
+        
+        favoriteRecipes.append(recipe)
     }
 }
