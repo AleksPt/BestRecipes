@@ -17,6 +17,7 @@ final class HomeScreen: UIViewController, HomeScreenDelegate {
     private let networkManager = NetworkManager.shared
     private var dataStore = DataStore.shared
     private var dataSource: [Section] = []
+    private var selectedCategory: IndexPath = IndexPath(item: 0, section: 1)
     
     // MARK: - Life Cycle
     override func loadView() {
@@ -28,6 +29,14 @@ final class HomeScreen: UIViewController, HomeScreenDelegate {
         mainView.setDelegates(viewController: self)
         fetchRecipes(typeUrl: .recipesURL(offset: dataStore.offsetRecipes, query: ""))
         fetchRecipes(typeUrl: .popularRecipesURL(offset: dataStore.offsetPopularResipes))
+        setupHomeScreenNavBar(on: self, with: "Get amazing recipes",
+                              searchController: mainView.searchController)
+        addTapGesture()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        selectCategory()
     }
     
     // MARK: - Private methods
@@ -66,12 +75,30 @@ final class HomeScreen: UIViewController, HomeScreenDelegate {
         }
     }
     
+    /// Поиск рецепта
+    private func searchRecipe(query: String) {
+        let url = APIEndpoint.recipesURL(offset: 0, query: query).url
+        networkManager.fetch(ComplexSearch.self, from: url) { [weak self]  result in
+            guard let self else { return }
+            switch result {
+            case .success(let recipes):
+                if let resultController = self.mainView.searchController.searchResultsController as? SearchResultViewController {
+                    DispatchQueue.main.async {
+                        resultController.update(with: recipes.results)
+                    }
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
     /// Выделяет популярную категорию перед показом экрана
     private func selectCategory() {
         if !dataSource.isEmpty {
-            let indexPath = IndexPath(item: 0, section: 1)
+//            let indexPath = IndexPath(item: 0, section: 1)
             mainView.collectionView.selectItem(
-                at: indexPath,
+                at: selectedCategory,
                 animated: true,
                 scrollPosition: []
             )
@@ -104,9 +131,8 @@ extension HomeScreen: UICollectionViewDelegateFlowLayout {
         
         switch indexSection {
         case 0, 2, 3:
-            let detailVC = RecipeDetailViewController()
             let recipe = dataSource[indexSection].recipes[indexPath.item]
-            detailVC.firstRecipe = recipe
+            let detailVC = RecipeDetailViewController(recipe: recipe)
             addRecentRecipe(recipe: recipe)
             detailVC.hidesBottomBarWhenPushed = true
             navigationController?.pushViewController(detailVC, animated: true)
@@ -116,6 +142,7 @@ extension HomeScreen: UICollectionViewDelegateFlowLayout {
                 mainView.collectionView.reloadData()
             }
         case 1:
+            selectedCategory = indexPath
             filterRecipes(indexPath)
         case 4:
             let seeAllVC = SeeAllViewController(type: .worldCuisine)
@@ -282,5 +309,85 @@ extension HomeScreen {
         }
         dataSource = dataStore.getData()
         mainView.collectionView.reloadData()
+    }
+}
+
+//MARK: - SearchResultViewControllerDelegate
+extension HomeScreen: SearchResultViewControllerDelegate {
+
+    func didTapResult(_ result: Recipe) {
+        let detail = RecipeDetailViewController(recipe: result)
+        addRecentRecipe(recipe: result)
+        navigationController?.pushViewController(detail, animated: true)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+            guard let self else { return }
+            self.mainView.collectionView.reloadData()
+        }
+    }
+}
+
+//MARK: - UITapDestureRecognizer
+
+extension HomeScreen {
+    func addTapGesture() {
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture))
+        tapRecognizer.cancelsTouchesInView = false
+        mainView.addGestureRecognizer(tapRecognizer)
+    }
+    
+    @objc private func handleTapGesture(sender: UITapGestureRecognizer) {
+        self.mainView.searchController.searchBar.resignFirstResponder()
+    }
+}
+
+//MARK: - UISearchResultsUpdating
+extension HomeScreen: UISearchResultsUpdating, UISearchBarDelegate {
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let query = searchController.searchBar.text,
+              !query.trimmingCharacters(in: .whitespaces).isEmpty else {
+            
+            if let tabBarController = self.tabBarController as? TabBarController {
+                tabBarController.tabBar.isHidden = false
+                tabBarController.toggleMiddleButtonVisability(false)
+            }
+            return
+        }
+        
+        
+        if let tabBarController = self.tabBarController as? TabBarController {
+            tabBarController.tabBar.isHidden = true
+            tabBarController.toggleMiddleButtonVisability(true)
+        }
+        
+        //searchRecipe(query: query)
+        filterContentForSearchText(query)
+    }
+    
+    private func filterContentForSearchText(_ searchText: String) {
+        
+        let filterFirstSection = dataSource[0].recipes.filter { (recipe: Recipe) -> Bool in
+            return recipe.title.lowercased().contains(searchText.lowercased())
+        }
+        let filterThirdSection = dataSource[2].recipes.filter { (recipe: Recipe) -> Bool in
+            return recipe.title.lowercased().contains(searchText.lowercased())
+        }
+        let filterFifthSection = dataSource[4].recipes.filter { (recipe: Recipe) -> Bool in
+            return recipe.title.lowercased().contains(searchText.lowercased())
+        }
+        let filterAllSections = filterFirstSection + filterThirdSection + filterFifthSection
+
+        if let resultController = mainView.searchController.searchResultsController as? SearchResultViewController {
+            resultController.filteredRecipe = filterAllSections
+            resultController.resultView.searchResultCollectionView.reloadData()
+        }
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.searchTextField.layer.borderColor = UIColor.Search.borderSelectedField.cgColor
+    }
+
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        searchBar.searchTextField.layer.borderColor = UIColor.Search.borderField.cgColor
     }
 }

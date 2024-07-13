@@ -80,13 +80,17 @@ final class IngredientsTableViewCell: UITableViewCell {
         ingredientNameLabelConstraint.isActive = true
     }
     
-    public func configureCell(with ingredient: Ingredient) {
+    public func configureCell(with ingredient: Ingredient, isUserCreated: Bool = false) {
         ingredientNameLabel.text = ingredient.capitalizedName
         let measureUntilShort = ingredient.measures.metric.unitShort
         let amountIngredient = String(format: "%.1f", ingredient.measures.metric.amount)
         countItemsLabel.text = "\(amountIngredient)" + " " + "\(measureUntilShort)"
-        ingredientImageView.getImage(from: ingredient.fullImageURL)
         selectionStyle = .none
+        if isUserCreated {
+            ingredientImageView.image = UIImage(named: ingredient.image)
+        } else {
+            ingredientImageView.getImage(from: ingredient.fullImageURL)
+        }
     }
     
     private func setConstraints() {
@@ -115,6 +119,7 @@ final class IngredientsTableViewCell: UITableViewCell {
             
             countItemsLabel.centerYAnchor.constraint(equalTo: backgroundIngredientView.centerYAnchor),
             countItemsLabel.trailingAnchor.constraint(equalTo: checkCircleImageView.leadingAnchor, constant: -10),
+            countItemsLabel.widthAnchor.constraint(equalToConstant: 100),
             
             checkCircleImageView.centerYAnchor.constraint(equalTo: backgroundIngredientView.centerYAnchor),
             checkCircleImageView.trailingAnchor.constraint(equalTo: backgroundCellView.trailingAnchor, constant: -16),

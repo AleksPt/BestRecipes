@@ -56,12 +56,16 @@ final class ImageTableViewCell: UITableViewCell {
         titleLabel.text = nil
     }
     
-    public func configureCell(with recipe: Recipe?) {
-        if let image = recipe?.imageURL {
-            recipeImageView.getImage(from: image)
-        }
+    public func configureCell(with recipe: Recipe?, imageData: Data? = nil) {
         titleLabel.text = recipe?.title
         selectionStyle = .none
+        guard let image = imageData else {
+            if let image = recipe?.imageURL {
+                recipeImageView.getImage(from: image)
+            }
+            return
+        }
+        recipeImageView.image = UIImage(data: image)
     }
     
     private func randomReviews() {

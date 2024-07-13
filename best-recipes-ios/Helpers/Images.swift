@@ -8,6 +8,8 @@
 import UIKit
 
 enum Images {
+    static let plugAddRecipe: UIImage = .defaultCover
+    
     enum Onboarding {
         static let page0: UIImage = .page0
         static let page1: UIImage = .page1

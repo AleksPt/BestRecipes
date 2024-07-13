@@ -75,8 +75,8 @@ final class CustomCell: UICollectionViewCell {
         coverImageView.getImage(from: item.imageURL)
         if let author = Images.Avatars.getAvatar().randomElement() {
             avatar.image = author.value
-            nameAuthor.text = "By \(author.key)"
         }
+        nameAuthor.text = item.sourceName
     }
     
     //MARK: - Private methods
@@ -101,7 +101,6 @@ final class CustomCell: UICollectionViewCell {
         let image = sender.currentImage ==
             bigActiveIcon ? bigInactiveIcon : bigActiveIcon
         sender.setImage(image, for: .normal)
-        print("add to Favorite")
     }
 }
 

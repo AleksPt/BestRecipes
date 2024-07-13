@@ -1,13 +1,15 @@
 //
-//  RecipeCell.swift
+//  SearchResultCollectionViewCell.swift
 //  best-recipes-ios
 //
-//  Created by Vladimir Dmitriev on 04.07.24.
+//  Created by Елена Логинова on 12.07.2024.
 //
 
 import UIKit
 
-final class RecipeCell: UICollectionViewCell {
+final class SearchResultCollectionViewCell: UICollectionViewCell {
+    
+    static let identifier = "SearchResultCollectionViewCell"
     
     private var imageView: UIImageView = {
         let imageView = UIImageView()
@@ -29,7 +31,6 @@ final class RecipeCell: UICollectionViewCell {
         label.textColor = .white
         label.font = UIFont.TextFonts.Home.Trending.titleTrendingCell
         label.translatesAutoresizingMaskIntoConstraints = false
-        
         return label
     }()
     
@@ -70,6 +71,7 @@ final class RecipeCell: UICollectionViewCell {
         stackView.spacing = 5
         return stackView
     }()
+    
     private var textStack: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -103,15 +105,11 @@ final class RecipeCell: UICollectionViewCell {
     }
     
     // MARK: - Public Methods
-    func configure(with recipe: Recipe, imageData: Data?) {
+    func configureCell(with recipe: Recipe) {
+        imageView.getImage(from: recipe.imageURL) // если image будет типа Data - проблемы
         recipeTitleLabel.text = recipe.title
         ingredientsLabel.text = "\(recipe.extendedIngredients.count) ingredients"
         timeLabel.text = "\(recipe.readyInMinutes) mins"
-        guard let image = imageData else {
-            imageView.image = UIImage(named: "defaultCover")
-            return
-        }
-        imageView.image = UIImage(data: image)
     }
     
     // MARK: - Private Methods
@@ -149,4 +147,28 @@ final class RecipeCell: UICollectionViewCell {
         ])
     }
     
+}
+
+extension UIView {
+    func setGradient() {
+        let gradient = CAGradientLayer()
+        gradient.frame = bounds
+        
+        gradient.colors = [
+            UIColor.black.withAlphaComponent(0.4).cgColor,
+            UIColor.clear.cgColor
+        ]
+        
+        gradient.locations = [0.0, 0.7]
+        gradient.startPoint = CGPoint(x: 0.5, y: 1.0)
+        gradient.endPoint = CGPoint(x: 0.5, y: 0.0)
+        
+        if let sublayers = layer.sublayers {
+            for layer in sublayers where layer is CAGradientLayer {
+                layer.removeFromSuperlayer()
+            }
+        }
+        
+        layer.insertSublayer(gradient, at: 0)
+    }
 }

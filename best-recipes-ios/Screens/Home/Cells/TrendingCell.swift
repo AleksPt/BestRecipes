@@ -77,8 +77,8 @@ final class TrendingCell: UICollectionViewCell {
         titleLabel.text = item.title
         if let author = Images.Avatars.getAvatar().randomElement() {
             avatar.image = author.value
-            nameAuthor.text = "By \(author.key)"
         }
+        nameAuthor.text = item.sourceName
     }
     
     // MARK: - Add subviews
@@ -102,7 +102,6 @@ final class TrendingCell: UICollectionViewCell {
         let image = sender.currentImage == 
             bigActiveIcon ? bigInactiveIcon : bigActiveIcon
         sender.setImage(image, for: .normal)
-        print("add to Favorite")
     }
 }
 

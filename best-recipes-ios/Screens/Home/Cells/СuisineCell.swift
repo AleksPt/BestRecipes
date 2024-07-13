@@ -58,7 +58,7 @@ final class WorldCuisineCell: UICollectionViewCell {
     
     // MARK: - Configure Cell
     func configureCell(item: Cuisine) {
-        coverImageView.image = UIImage(named: item.rawValue.lowercased())
+        coverImageView.image = UIImage(named: item.rawValue.toCamelCase())
         titleLabel.text = item.rawValue
     }
 }

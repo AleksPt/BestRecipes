@@ -34,11 +34,41 @@ final class SeeAllViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupNavBar(type)
         customView.setTitle(type)
         customView.setDelegates(value: self)
         
         if type == .worldCuisine {
             fetchRecipes()
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let tabBarController = self.tabBarController as? TabBarController {
+            tabBarController.tabBar.isHidden = true
+            tabBarController.toggleMiddleButtonVisability(true)
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        if let tabBarController = self.tabBarController as? TabBarController {
+            tabBarController.tabBar.isHidden = false
+            tabBarController.toggleMiddleButtonVisability(false)
+        }
+    }
+    
+    private func setupNavBar(_ type: RecipesType) {
+        switch type {
+        case .trendingNow:
+            setupNavBarWithButtons(on: self, text: "Trending now")
+        case .recentRecipe:
+            setupNavBarWithButtons(on: self, text: "Recent recipe")
+        case .worldCuisine:
+            setupNavBarWithButtons(on: self, text: "World cuisine")
         }
     }
     
@@ -88,9 +118,8 @@ extension SeeAllViewController: UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let detailVC = RecipeDetailViewController()
         if let recipe = recipes?[indexPath.item] {
-            detailVC.firstRecipe = recipe
+            let detailVC = RecipeDetailViewController(recipe: recipe)
             delegate?.addRecentRecipe(recipe: recipe)
             navigationController?.pushViewController(detailVC, animated: true)
         }

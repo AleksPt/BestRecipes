@@ -97,7 +97,6 @@ final class CategoryRecipeCell: UICollectionViewCell {
         let smallInctiveIcon = Icons.bookmarkInactiveSmall.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
         let image = sender.currentImage == smallActiveIcon ? smallInctiveIcon : smallActiveIcon
         sender.setImage(image, for: .normal)
-        print("add to Favorite")
     }
 }
 
