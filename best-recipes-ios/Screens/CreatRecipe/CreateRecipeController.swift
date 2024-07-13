@@ -77,6 +77,11 @@ final class CreateRecipeController: UIViewController {
         }
         storageManager.creatRecipe()
         storageManager.image = nil
+        storageManager.title = ""
+        storageManager.servings = 0
+        storageManager.readyInMinutes = 0
+        storageManager.instructions = []
+        storageManager.ingredientsTuple = []
         NotificationCenter.default.post(
             name: Notification.Name("reloadCollection"),
             object: nil,
