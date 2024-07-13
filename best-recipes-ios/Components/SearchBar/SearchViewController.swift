@@ -7,9 +7,14 @@
 
 import UIKit
 
+protocol SearchControllerDelegate: AnyObject {
+    func didDismissSearchController()
+}
+
 final class SearchController: UISearchController {
     
     private var recipeSearchBar = SearchBar()
+    weak var searchControllerDelegate: SearchControllerDelegate?
     
     override var searchBar: UISearchBar {
         get {
@@ -31,6 +36,10 @@ final class SearchController: UISearchController {
     }
     
     @objc private func clearButtonPressed() {
+        searchControllerDelegate?.didDismissSearchController()
         dismiss(animated: true)
+        if let resultController = self.searchResultsController as? SearchResultViewController {
+            resultController.clearResults()
+        }
     }
 }

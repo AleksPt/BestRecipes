@@ -32,6 +32,11 @@ final class SearchResultViewController: UIViewController {
         self.filteredRecipe = results
         resultView.searchResultCollectionView.reloadData()
     }
+    
+    func clearResults() {
+        self.filteredRecipe.removeAll()
+        resultView.searchResultCollectionView.reloadData()
+    }
 }
 
 //MARK: - UICollectionViewDataSource
