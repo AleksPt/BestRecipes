@@ -45,6 +45,11 @@ extension SearchResultViewController: UICollectionViewDelegate, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if filteredRecipe.count == 0 {
+            resultView.showLabel()
+        } else {
+            resultView.hideLabel()
+        }
         return filteredRecipe.count
     }
     

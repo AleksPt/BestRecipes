@@ -80,6 +80,11 @@ extension ProfileController: UICollectionViewDataSource {
         if section == 0 {
             return 1
         } else {
+            if dataStore.userRecipes.count == 0 {
+                profileView.showLabel()
+            } else {
+                profileView.hideLabel()
+            }
             return dataStore.userRecipes.count
         }
     }

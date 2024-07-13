@@ -20,6 +20,18 @@ final class SavedRecipesView:UIView {
         return collectionView
     }()
     
+    let emptyMessageLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.PoppinsFont.regular(size: 24)
+        label.textColor = UIColor.Colors.Neutral.neutral30
+        label.numberOfLines = 0
+        label.contentMode = .center
+        label.textAlignment = .center
+        label.text = "You haven't saved any recipes yet"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     //MARK: - Lifecycle
     
     override init(frame: CGRect) {
@@ -33,6 +45,14 @@ final class SavedRecipesView:UIView {
         fatalError("MainView not initialised")
     }
     
+    func showLabel() {
+        emptyMessageLabel.alpha = 1
+    }
+    
+    func hideLabel() {
+        emptyMessageLabel.alpha = 0
+    }
+    
     // MARK: - Set Delegates
     func setDelegates(viewController: SavedRecipesViewController) {
         collectionView.delegate = viewController
@@ -42,11 +62,17 @@ final class SavedRecipesView:UIView {
     
     private func addSubviews() {
         addSubview(collectionView)
+        addSubview(emptyMessageLabel)
     }
     
     // MARK: - Setup Constraints
     private func setupConstraints() {
         NSLayoutConstraint.activate([
+            emptyMessageLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 20),
+            emptyMessageLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
+            emptyMessageLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
+            emptyMessageLabel.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
+            
             collectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
             collectionView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 20),
