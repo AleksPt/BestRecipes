@@ -8,7 +8,7 @@
 import UIKit
 
 final class ReadyInMinutesFactory {
-    static func makeView(ratingLabel: String) -> UIView {
+    static func makeView(label: UILabel) -> UIView {
         let ratingView = UIView(frame: CGRect(origin: .zero, size: CGSize(width: 41, height: 25)))
         ratingView.layer.cornerRadius = 8
         
@@ -17,12 +17,6 @@ final class ReadyInMinutesFactory {
         blurEffectView.layer.cornerRadius = 8
         blurEffectView.clipsToBounds = true
         blurEffectView.frame = ratingView.frame
-        
-        let label = UILabel()
-        label.textColor = UIColor.Colors.Rating.ratingWhite
-        label.font = UIFont.PoppinsFont.regular(size: 12)
-        label.text = ratingLabel
-        label.translatesAutoresizingMaskIntoConstraints = false
         
         ratingView.addSubview(blurEffectView)
         blurEffectView.contentView.addSubview(label)

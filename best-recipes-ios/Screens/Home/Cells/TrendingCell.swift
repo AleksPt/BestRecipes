@@ -13,13 +13,7 @@ final class TrendingCell: UICollectionViewCell {
     private var recipe: Recipe?
     
     // MARK: - UI
-    private var ratingValue: String?
-    
-    private lazy var ratingView = RatingFactory
-        .makeSavedTrandingRating(
-        image: UIImageView(image: Icons.star),
-        ratingLabel: ratingValue ?? "2.9"
-    )
+    private lazy var ratingView = RatingView.make(ratingLabel: "", blur: true)
     
     private let buttonFavorite = ButtonFactory
         .makeButtonFavorite()
@@ -66,9 +60,9 @@ final class TrendingCell: UICollectionViewCell {
         titleLabel.text = nil
         avatar.image = nil
         nameAuthor.text = nil
-        ratingValue = nil
         delegate = nil
         recipe = nil
+        ratingView.setRatingLabel(0.0)
     }
     
     override func layoutSubviews() {
@@ -84,6 +78,7 @@ final class TrendingCell: UICollectionViewCell {
         if let author = Images.Avatars.getAvatar().randomElement() {
             avatar.image = author.value
         }
+        ratingView.setRatingLabel(item.spoonacularScore)
         nameAuthor.text = item.sourceName
         self.delegate = delegate
         updateFavoriteButtonAppearance(isFavorite: isFavorite)
@@ -95,7 +90,7 @@ final class TrendingCell: UICollectionViewCell {
         addSubview(titleLabel)
         addSubview(avatar)
         addSubview(nameAuthor)
-        coverImageView.addSubview(ratingView)
+        addSubview(ratingView)
         coverImageView.addSubview(buttonFavorite)
     }
     
