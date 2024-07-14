@@ -33,6 +33,7 @@ enum APIEndpoint {
     case popularRecipesURL(offset: Int)
     case cuisineSortedRecipesURL(offset: Int, cuisine: String)
     case ingredientImageURL(imageName: String)
+    case searchTitleMatch(titleMatch: String)
 
     private var baseURL: String {
         "\(link.base.url)\(link.info.url)&\(link.ingredients.url)&\(link.instructions.url)"
@@ -52,6 +53,8 @@ enum APIEndpoint {
             return URL(string: "\(baseURL)&apiKey=\(apiKey)&offset=\(offset)&cuisine=\(cuisine)")!
         case .ingredientImageURL(let imageName):
             return URL(string: "https://img.spoonacular.com/ingredients_100x100/\(imageName)")!
+        case .searchTitleMatch(let titleMatch):
+            return URL(string: "\(baseURL)&apiKey=\(apiKey)&titleMatch=\(titleMatch)&number=5")!
         }
     }
 }

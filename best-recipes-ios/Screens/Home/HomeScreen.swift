@@ -62,6 +62,8 @@ final class HomeScreen: UIViewController, HomeScreenDelegate {
                     dataStore.worlCuisineRecipes = recipes.results
                 case .ingredientImageURL(_):
                     break
+                case .searchTitleMatch(_):
+                    break
                 }
                 
                 dataSource = dataStore.getData()
@@ -81,7 +83,8 @@ final class HomeScreen: UIViewController, HomeScreenDelegate {
     
     /// Поиск рецепта
     private func searchRecipe(query: String) {
-        let url = APIEndpoint.recipesURL(offset: 0, query: query).url
+        let queryResult = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        let url = APIEndpoint.searchTitleMatch(titleMatch: queryResult).url
         networkManager.fetch(ComplexSearch.self, from: url) { [weak self]  result in
             guard let self else { return }
             switch result {
