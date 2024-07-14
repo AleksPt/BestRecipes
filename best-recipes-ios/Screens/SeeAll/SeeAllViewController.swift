@@ -33,7 +33,8 @@ final class SeeAllViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        customView.activityIndicator.startAnimation(delay: 0, replicates: 0)
+        customView.activityIndicator.stopAnimation()
         setupNavBar(type)
         customView.setTitle(type)
         customView.setDelegates(value: self)
