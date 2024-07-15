@@ -62,6 +62,15 @@ final class StorageManager {
         dataStore.userRecipes.insert(recipe, at: 0)
     }
     
+    func clearAfterCreateRecipe() {
+        image = nil
+        title = ""
+        servings = 0
+        readyInMinutes = 0
+        instructions = []
+        ingredientsTuple = []
+    }
+    
     func fetchRecipe(_ index: Int) -> Recipe {
         return dataStore.userRecipes[index]
     }

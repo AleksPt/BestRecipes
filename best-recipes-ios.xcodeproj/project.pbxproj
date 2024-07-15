@@ -45,7 +45,6 @@
 		D993B9CC2C35CBF7001E6F10 /* WelcomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D993B9CB2C35CBF7001E6F10 /* WelcomeController.swift */; };
 		D998A12B2C3089FB0084F9C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D998A12A2C3089FB0084F9C4 /* AppDelegate.swift */; };
 		D998A12D2C3089FB0084F9C4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D998A12C2C3089FB0084F9C4 /* SceneDelegate.swift */; };
-		D998A1322C3089FB0084F9C4 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = D998A1312C3089FB0084F9C4 /* Base */; };
 		D998A1342C3089FC0084F9C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D998A1332C3089FC0084F9C4 /* Assets.xcassets */; };
 		D998A1472C345ACB0084F9C4 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D998A1462C345ACB0084F9C4 /* TabBarController.swift */; };
 		D998A1522C345FD60084F9C4 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D998A1512C345FD60084F9C4 /* TabBar.swift */; };
@@ -132,7 +131,6 @@
 		D998A1272C3089FB0084F9C4 /* best-recipes-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "best-recipes-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D998A12A2C3089FB0084F9C4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D998A12C2C3089FB0084F9C4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		D998A1312C3089FB0084F9C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D998A1332C3089FC0084F9C4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D998A1362C3089FC0084F9C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D998A1382C3089FC0084F9C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -377,21 +375,16 @@
 		D998A1292C3089FB0084F9C4 /* best-recipes-ios */ = {
 			isa = PBXGroup;
 			children = (
+				D998A12A2C3089FB0084F9C4 /* AppDelegate.swift */,
+				D998A12C2C3089FB0084F9C4 /* SceneDelegate.swift */,
 				64285E572C34AF9B00A7E7ED /* Extensions */,
 				64285E4E2C34833900A7E7ED /* Services */,
 				64285E4B2C34823B00A7E7ED /* Models */,
 				D998A1442C345A980084F9C4 /* Components */,
 				4D15898A2C333213005F4D2E /* Factories */,
 				FA685E6B2C329EEB0028BA17 /* Helpers */,
-				D998A12A2C3089FB0084F9C4 /* AppDelegate.swift */,
-				4D4BC28B2C369B6500564A7A /* RecipeDetailScreen */,
-				D998A12C2C3089FB0084F9C4 /* SceneDelegate.swift */,
 				FA685EB32C356F980028BA17 /* Screens */,
-				D998A1302C3089FB0084F9C4 /* Main.storyboard */,
-				D998A1332C3089FC0084F9C4 /* Assets.xcassets */,
-				D998A1352C3089FC0084F9C4 /* LaunchScreen.storyboard */,
-				D998A1382C3089FC0084F9C4 /* Info.plist */,
-				FA6ED7B02C328DB3004F1B10 /* Fonts */,
+				FA0AF2A42C4545130049DD0D /* Resources */,
 			);
 			path = "best-recipes-ios";
 			sourceTree = "<group>";
@@ -431,6 +424,16 @@
 			path = SeeAll;
 			sourceTree = "<group>";
 		};
+		FA0AF2A42C4545130049DD0D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D998A1332C3089FC0084F9C4 /* Assets.xcassets */,
+				D998A1382C3089FC0084F9C4 /* Info.plist */,
+				FA6ED7B02C328DB3004F1B10 /* Fonts */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		FA685E6B2C329EEB0028BA17 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -468,14 +471,16 @@
 		FA685EB32C356F980028BA17 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				6497E0132C3DB7E400CCE015 /* CreatRecipe */,
-				4D16C4922C3F532200F8BCC7 /* SearchResultScreen */,
-				D993B9C32C35C947001E6F10 /* Onboarding */,
+				D998A1352C3089FC0084F9C4 /* LaunchScreen.storyboard */,
 				D993B9C82C35CBDD001E6F10 /* Welcome */,
-				640BFA502C372EF200BB4923 /* Profile */,
-				DCE1D63A2C37050D00CAEAB2 /* SeeAll */,
-				160BC27C2C36CEFA00944C89 /* SavedRecipes */,
+				D993B9C32C35C947001E6F10 /* Onboarding */,
 				FA685EA92C340FB30028BA17 /* Home */,
+				160BC27C2C36CEFA00944C89 /* SavedRecipes */,
+				6497E0132C3DB7E400CCE015 /* CreatRecipe */,
+				640BFA502C372EF200BB4923 /* Profile */,
+				4D16C4922C3F532200F8BCC7 /* SearchResultScreen */,
+				DCE1D63A2C37050D00CAEAB2 /* SeeAll */,
+				4D4BC28B2C369B6500564A7A /* RecipeDetailScreen */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -584,7 +589,6 @@
 			files = (
 				D998A1342C3089FC0084F9C4 /* Assets.xcassets in Resources */,
 				FA685E772C32B1F90028BA17 /* Poppins-Medium.ttf in Resources */,
-				D998A1322C3089FB0084F9C4 /* Base in Resources */,
 				FA685E792C32B2EF0028BA17 /* Inter-Medium.ttf in Resources */,
 				FA685E752C32ACF60028BA17 /* Poppins-SemiBold.ttf in Resources */,
 				FA6ED7B22C328DD4004F1B10 /* Poppins-Bold.ttf in Resources */,
@@ -684,14 +688,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		D998A1302C3089FB0084F9C4 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D998A1312C3089FB0084F9C4 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		D998A1352C3089FC0084F9C4 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -829,8 +825,9 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = L23B96GPNM;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "best-recipes-ios/Info.plist";
+				INFOPLIST_FILE = "best-recipes-ios/Resources/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Best Recipes";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -861,8 +858,9 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = L23B96GPNM;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "best-recipes-ios/Info.plist";
+				INFOPLIST_FILE = "best-recipes-ios/Resources/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Best Recipes";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;

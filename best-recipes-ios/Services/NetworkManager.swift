@@ -40,7 +40,8 @@ enum APIEndpoint {
     }
     
     private var apiKey: String {
-        ProcessInfo.processInfo.environment["API_KEY"] ?? ""
+//        ProcessInfo.processInfo.environment["API_KEY"] ?? ""
+        "2e111e0a086b4077a9f1ddbc857bdee5"
     }
 
     var url: URL {

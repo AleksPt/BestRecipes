@@ -18,7 +18,7 @@ class RecipeDetailViewController: UIViewController {
     
     init(recipe: Recipe) {
         self.recipe = recipe
-        recipeIngredient = recipe.extendedIngredients ?? []
+        recipeIngredient = recipe.extendedIngredients
         recipeSteps = recipe.analyzedInstructions.first?.steps ?? []
         super.init(nibName: nil, bundle: nil)
     }
